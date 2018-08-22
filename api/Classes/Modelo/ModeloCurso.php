@@ -13,14 +13,16 @@ class ModeloCurso {
 		$stmt = $this->conexao->prepare("SELECT * FROM curso WHERE id = :id"); // buscar as informações do curso
 		$stmt->execute(array(":id" => $id));
 
-		while($resultado = $stmt->fetch(PDO::FETCH_ASSOC)){ // só tem um
+		while($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)){ // só tem um
 
 			// buscar as disciplinas do curso
 			//TODO
-			$disciplinas = array();
+			$modeloDisciplinas = new ModeloDisciplina($this->conexao);
+
+			$disciplinas = $modeloDisciplinas->buscarDisciplinasCurso($resultado['id']);
 
 			$curso = new Curso($resultado['nomeCurso'], $resultado['nomePeriodos'], $resultado['qtPeriodos'], $resultado['cargaMinima'], $resultado['idCoordenador'], $resultado['publico'], $resultado['dataCadastro'], $disciplinas, $resultado['id']);
-			
+
 			return $curso;
 		}
 		return null;

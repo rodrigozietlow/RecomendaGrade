@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    #RewriteBase /~rodrigo/RecomendaGrade/api
+    RewriteBase /~rodrigo/RecomendaGrade/api
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ index.php?rota=$1 [QSA,L]
 </IfModule>

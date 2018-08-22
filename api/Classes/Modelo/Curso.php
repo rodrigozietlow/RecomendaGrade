@@ -22,6 +22,7 @@ class Curso {
 		$this->idCoordenador = $idCoordenador;
 		$this->publico = $publico;
 		$this->dataCadastro = $dataCadastro;
+		$this->disciplinas = $disciplinas;
 	}
 
     /**

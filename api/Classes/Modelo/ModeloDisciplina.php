@@ -10,12 +10,21 @@ class ModeloDisciplina {
 		$this->conexao = $conexao;
 	}
 
-	/*
-	$stmt2 = $this->conexao->prepare("SELECT * FROM disciplina WHERE idCurso = :idCurso");
-	$stmt2->execute(array(":idCurso" => $resultado['id']));
+	public function buscarDisciplina($id){
+		// TODO
+	}
 
-	$disciplinas = array();
+	public function buscarDisciplinasCurso($idCurso){
+		$stmt = $this->conexao->prepare("SELECT * FROM disciplina WHERE idCurso = :idCurso");
+		$stmt->execute(array(":idCurso" => $idCurso));
 
-	while($resultado2)*/
+		$disciplinas = array();
+
+		while($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)){
+			$disciplinas[] = new Disciplina($resultado['nome'], $resultado['periodo'], $resultado['creditos'], $resultado['cargaHoraria'], $resultado['idCurso'], $resultado['dataCadastro'], $resultado['id']);
+		}
+
+		return $disciplinas;
+	}
 
 }
