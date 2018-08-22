@@ -2,5 +2,5 @@
     RewriteEngine On
     RewriteBase /~rodrigo/RecomendaGrade/api
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ index.php?route=/$1 [QSA,L]
+    RewriteRule ^(.*)$ index.php?rota=$1 [QSA,L]
 </IfModule>
