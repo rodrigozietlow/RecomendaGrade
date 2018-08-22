@@ -18,24 +18,27 @@ $rotas = array(
 	"index" => array()
 );
 
-$rotasQuebradas = explode("/", $url['rota']);
+$rotasArray = explode("/", $url['rota']);
 
 $verbo = $_SERVER['REQUEST_METHOD'];
 
 
-if(empty($rotasQuebradas)){
+if(empty($rotasArray)){
 	// enviar erro
 }
 else{
-	$rotaEscolhida = $rotas[$rotasQuebradas[0]] ?? "index";
-	print_r($rotasQuebradas);
+	$rotaEscolhida = $rotas[$rotasArray[0]] ?? "index";
+	print_r($rotasArray);
 	echo "<br>";
 	print_r($rotaEscolhida);
 	// $modelo = new $rotaEscolhida["Modelo"]();
 	// and so on
 	if($verbo == "GET"){
-		if(count($rotasQuebradas) >= 2) { // tem disciplina/id
+		if(count($rotasArray) >= 2) { // tem disciplina/id
 			// executa $modelo->buscar($rotasQuebradas[1])
+		}
+		else{
+			// executa $modelo->listar
 		}
 	}
 	else if($verbo == "POST"){
