@@ -56,5 +56,9 @@ else{
 	else if($verbo == "POST"){
 		// chamar os métodos de salvar e buscar os dados
 	}
+	else if($verbo == "PUT"){
+		echo file_get_contents("php://input");
+		//echo json_encode(array("texto" => "Recebido com sucesso"));
+	}
 }
 ?>
