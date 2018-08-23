@@ -15,6 +15,6 @@ $modelo = new Modelo\ModeloCurso($pdo);
 //var_dump($modeloDisciplinas->buscarDisciplinasCurso(1));
 var_dump($modelo->buscarCurso(1));
 
-
+var_dump($modelo->publicarCurso(1));
 echo "</pre>";
 ?>
