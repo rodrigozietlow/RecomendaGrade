@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class IndexComponent implements OnInit {
 
   public objeto = {
-	  "id" : "",
+	"id" : "",
     "nomeCurso" : "",
     "nomePeriodos" : "",
     "qtPeriodos" : "",
@@ -23,10 +23,11 @@ export class IndexComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+	  this.buscarCurso();
   }
 
   buscarCurso(){
-    this.http.get<any>("localhost/RecomendaGrade/api/curso/1").subscribe((dados) => {
+    this.http.get<any>("http://localhost:80/~rodrigo/RecomendaGrade/api/curso/1").subscribe((dados) => {
       this.objeto = dados;
     });
   }
@@ -37,8 +38,8 @@ export class IndexComponent implements OnInit {
         'Content-Type':  'application/json',
       })
     };
-    this.http.put<any>("localhost/RecomendaGrade/api/curso/1", this.objeto, opcoes).subscribe((dados) => {
-      alert(dados);
+    this.http.put<any>("http://localhost:80/~rodrigo/RecomendaGrade/api/curso/1", this.objeto, opcoes).subscribe((dados) => {
+      console.log(dados);
     });
   }
 
