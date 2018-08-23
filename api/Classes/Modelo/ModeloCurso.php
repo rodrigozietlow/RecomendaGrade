@@ -41,7 +41,7 @@ class ModeloCurso {
 
 		}
 
-		if(empty($disciplinas){
+		if(empty($disciplinas)){
 			return false; //não possui disciplinas cadastrada
 		}else{
 			return true; //possui disciplinas cadastrada
@@ -49,5 +49,6 @@ class ModeloCurso {
 			//alterar o status de publico para 1 ou true
 		}
 
+	}
 
 }
