@@ -26,4 +26,29 @@ class ModeloCurso {
 		}
 		return null;
 	}
+
+	public function publicarCurso($id){
+
+		$stmt = $this->conexao->prepare("SELECT * FROM curso WHERE id = :id"); // buscar as informações do curso
+		$stmt->execute(array(":id" => $id));
+
+		while($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)){ // só tem um
+
+			// buscar as disciplinas do curso
+			$modeloDisciplinas = new ModeloDisciplina($this->conexao);
+
+			$disciplinas = $modeloDisciplinas->buscarDisciplinasCurso($resultado['id']);
+
+		}
+
+		if(empty($disciplinas)){
+			return false; //não possui disciplinas cadastrada
+		}else{
+			return true; //possui disciplinas cadastrada
+
+			//alterar o status de publico para 1 ou true
+		}
+
+	}
+
 }

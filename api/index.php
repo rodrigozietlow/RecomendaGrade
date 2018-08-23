@@ -1,6 +1,10 @@
 <?php
 namespace RecomendaGrade;
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require 'vendor/autoload.php';
 
 $url = $_GET;
@@ -35,7 +39,7 @@ else{
 	//print_r($rotaEscolhida);
 
 	// criar o modelo
-	$pdo = new \PDO('mysql:host=localhost;dbname=recomendagrade', 'root', 'root');//PDO('mysql:host=localhost;dbname=test', $user, $pass);
+	$pdo = new \PDO('mysql:host=localhost;dbname=recomendagrade', 'aluno', 'aluno');//PDO('mysql:host=localhost;dbname=test', $user, $pass);
 	$modelo = new $rotaEscolhida["Modelo"]($pdo);
 
 	// criar a visao
