@@ -22,7 +22,20 @@ class VisaoCurso {
 		}
 	}
 
+	public function publicarCurso($idCurso){
+			$curso = $this->modeloCurso->publicarCurso($idCurso);
+
+			if($curso){ // publicou
+				$texto = "Curso Publicado com Sucesso";
+				echo json_encode($texto);
+			}
+			else{
+				// emitir um erro
+			}
+
+	}
+
 	public function listar(){
-		
+
 	}
 }
