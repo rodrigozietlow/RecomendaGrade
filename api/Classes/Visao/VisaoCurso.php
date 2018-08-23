@@ -18,11 +18,12 @@ class VisaoCurso {
 		else{
 			$cursoArray = array();
 			$cursoArray['id'] = $curso->getId();
+			$cursoArray['nomeCurso'] = $curso->getNomeCurso();
 			echo json_encode($cursoArray, 1);
 		}
 	}
 
 	public function listar(){
-		
+
 	}
 }
