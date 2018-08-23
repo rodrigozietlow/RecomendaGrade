@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-index',
@@ -8,16 +9,37 @@ import { Component, OnInit } from '@angular/core';
 export class IndexComponent implements OnInit {
 
   public objeto = {
-	  "nome" : "Padrão"
+	  "id" : "",
+    "nomeCurso" : "",
+    "nomePeriodos" : "",
+    "qtPeriodos" : "",
+    "cargaMinima" : "",
+    "idCoordenador" : "",
+    "publico" : "",
+    "dataCadastro" : "",
+    "disciplinas" : []
   }
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
 
-  alertar() {
-	  alert("Alo");
+  buscarCurso(){
+    this.http.get<any>("localhost/RecomendaGrade/api/curso/1").subscribe((dados) => {
+      this.objeto = dados;
+    });
+  }
+
+  salvarCurso(){
+    const opcoes = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+      })
+    };
+    this.http.put<any>("localhost/RecomendaGrade/api/curso/1", this.objeto, opcoes).subscribe((dados) => {
+      alert(dados);
+    });
   }
 
 }
