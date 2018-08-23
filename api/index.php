@@ -1,4 +1,6 @@
 <?php
+namespace RecomendaGrade;
+
 require 'vendor/autoload.php';
 
 $url = $_GET;
@@ -11,9 +13,9 @@ $rotas = array(
 		"Visao" => "VisaoDisciplina"
 	),
 	"curso" => array(
-		"Modelo" => "ModeloCurso",
-		"Controle" => "ControleCurso",
-		"Visao" => "VisaoCurso"
+		"Modelo" => "RecomendaGrade\\Modelo\\ModeloCurso",
+		"Controle" => "",
+		"Visao" => "RecomendaGrade\\Visao\\VisaoCurso"
 	),
 	"index" => array()
 );
@@ -28,17 +30,23 @@ if(empty($rotasArray)){
 }
 else{
 	$rotaEscolhida = $rotas[$rotasArray[0]] ?? "index";
-	print_r($rotasArray);
-	echo "<br>";
-	print_r($rotaEscolhida);
-	// $modelo = new $rotaEscolhida["Modelo"]();
+	//print_r($rotasArray);
+	//echo "<br>";
+	//print_r($rotaEscolhida);
+
+	// criar o modelo
+	$pdo = new \PDO('mysql:host=localhost;dbname=recomendagrade', 'root', 'root');//PDO('mysql:host=localhost;dbname=test', $user, $pass);
+	$modelo = new $rotaEscolhida["Modelo"]($pdo);
+
+	// criar a visao
+	$visao = new $rotaEscolhida["Visao"]($modelo);
 	// and so on
 	if($verbo == "GET"){
 		if(count($rotasArray) >= 2) { // tem disciplina/id
-			// executa $modelo->buscar($rotasQuebradas[1])
+			$visao->buscar($rotasArray[1]);
 		}
 		else{
-			// executa $modelo->listar
+			// $visao->listar();
 		}
 	}
 	else if($verbo == "POST"){

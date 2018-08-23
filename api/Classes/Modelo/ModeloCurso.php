@@ -16,7 +16,6 @@ class ModeloCurso {
 		while($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)){ // só tem um
 
 			// buscar as disciplinas do curso
-			//TODO
 			$modeloDisciplinas = new ModeloDisciplina($this->conexao);
 
 			$disciplinas = $modeloDisciplinas->buscarDisciplinasCurso($resultado['id']);
