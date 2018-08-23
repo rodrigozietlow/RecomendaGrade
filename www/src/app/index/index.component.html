@@ -1,5 +1,18 @@
-<p>
-  index works!
-  <button type="button" name="button" (click)="alertar()">Clica!</button>
-  {{objeto.nome}}
-</p>
+<h1> Dados do Curso</h1>
+<form (submit)="salvarCurso()">
+  Nome do curso:
+  <input type="text" name="nomeCurso" [(ngModel)]="objeto.nomeCurso"></br>
+  Nome dos períodos:
+  <input type="text" name="nomePeriodos" [(ngModel)]="objeto.nomePeriodos"></br>
+  Total de períodos:
+  <input type="number" name="qtPeriodos" min="1" [(ngModel)]="objeto.qtPeriodos"></br>
+  Carga horária mínima:
+  <input type="number" name="cargaMinima" min="1" [(ngModel)]="objeto.cargaMinima"></br>
+  <!--Exibir data da última alteração -->
+  Data da última alteração:</br>
+  <!--Exibir quantidade de disciplinas -->
+  {{objeto.disciplinas}}
+  Quantidade de disciplinas:</br>
+  <button type="button">Cancelar edição</button>
+  <button type="submit">Salvar</button>
+</form>
