@@ -64,7 +64,9 @@ else{
 	}
 	else if($verbo == "PUT"){
 		$controle = new $rotaEscolhida["Controle"]($modelo);
-		$controle->editar();
+		if(!$controle->editar()){
+			echo header("HTTP/1.1 500 Internal Server Error");
+		}
 	}
 }
 ?>

@@ -10,25 +10,27 @@ class ControleCurso {
 		$this->modelo = $modelo;
 	}
 
-	public function editar(){
+	public function editar($id){
+
+		$Curso = $this->modelo->buscarCurso($id);
+
+		if($Curso == NULL){
+			// nós deveríamos jogar um erro aqui...
+			header("HTTP/1.1 404 Not Found");
+			die();
+		}
+
+
 		// primero, precisamos pegar os dados que vem por stream
 		$dados = json_decode(file_get_contents("php://input"), true);
 
 
 		// validação aqui TODO
 
-		$id = $dados['id'];
-		$nomeCurso = $dados['nomeCurso'];
-		$nomePeriodos = $dados['nomePeriodos'];
-		$qtPeriodos = $dados['qtPeriodos'];
-		$cargaMinima = $dados['cargaMinima'];
-		$idCoordenador = $dados['idCoordenador'];
-		$publico = $dados['publico'];
-		$dataCadastro = $dados['dataCadastro'];
-		$disciplinas = array();
-
-		// criar o curso
-		$curso = new Modelo\Curso($nomeCurso, $nomePeriodos, $qtPeriodos, $cargaMinima, $idCoordenador, $publico, $dataCadastro, $disciplinas, $id);
+		$Curso->setNomeCurso($dados['nomeCurso']);
+		$Curso->setNomePeriodos($dados['nomePeriodos']);
+		$Curso->setQtPeriodos($dados['qtPeriodos']);
+		$Curso->setCargaMinima($dados['cargaMinima']);
 
 		return $this->modelo->SalvarCurso($curso);
 	}

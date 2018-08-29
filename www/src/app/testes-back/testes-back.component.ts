@@ -31,7 +31,7 @@ export class TestesBackComponent implements OnInit {
 	      "dataCadastro" : "2018-08-28"
 	  }
 
-	  this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/index.php?rota=curso", envio, opcoes).subscribe((dados) => {
+	  this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/"+envio.id, envio, opcoes).subscribe((dados) => {
 		console.log(dados);
 	  });
   }
