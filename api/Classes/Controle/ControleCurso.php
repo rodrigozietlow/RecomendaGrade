@@ -32,7 +32,7 @@ class ControleCurso {
 		$Curso->setQtPeriodos($dados['qtPeriodos']);
 		$Curso->setCargaMinima($dados['cargaMinima']);
 
-		return $this->modelo->SalvarCurso($curso);
+		return $this->modelo->SalvarCurso($Curso);
 	}
 }
 ?>
