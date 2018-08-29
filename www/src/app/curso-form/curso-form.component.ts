@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CursoFormComponent implements OnInit {
 
 	public objeto = {
-  	"id" : "",
+  	  "id" : "",
       "nomeCurso" : "",
       "nomePeriodos" : "",
       "qtPeriodos" : "",

@@ -51,4 +51,9 @@ class ModeloCurso {
 
 	}
 
+	public function salvarCurso(Curso $curso){
+		$stmt = $this->conexao->prepare("UPDATE curso SET nomeCurso = :nomeCurso, nomePeriodos = :nomePeriodos, qtPeriodos = :qtPeriodos, cargaMinima = :cargaMinima, idCoordenador = :idCoordenador, publico = :publico, dataCadastro = :dataCadastro");
+		return true;
+	}
+
 }

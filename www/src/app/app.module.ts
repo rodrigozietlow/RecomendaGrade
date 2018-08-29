@@ -7,13 +7,15 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { CursoFormComponent } from './curso-form/curso-form.component';
+import { TestesBackComponent } from './testes-back/testes-back.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
-    CursoFormComponent
+    CursoFormComponent,
+    TestesBackComponent
   ],
   imports: [
     BrowserModule,

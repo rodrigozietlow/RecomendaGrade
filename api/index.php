@@ -7,18 +7,23 @@ error_reporting(E_ALL);
 
 require 'vendor/autoload.php';
 
+// permitir chamadas
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, OPTIONS, POST, PUT, PATCH, DELETE");
+header("Access-Control-Allow-Headers: Content-Type");
+
 $url = $_GET;
 
 // rotas estáticas:: podem ser mudadas no futuro
 $rotas = array(
-	"disciplina" => array( // é um exemplo pra mostrar como funciona o roteamento
+	"disciplina" => array(
 		"Modelo" => "ModeloDisciplina",
 		"Controle" => "ControleDisciplina",
 		"Visao" => "VisaoDisciplina"
 	),
 	"curso" => array(
 		"Modelo" => "RecomendaGrade\\Modelo\\ModeloCurso",
-		"Controle" => "",
+		"Controle" => "RecomendaGrade\\Controle\\ControleCurso",
 		"Visao" => "RecomendaGrade\\Visao\\VisaoCurso"
 	),
 	"index" => array()
@@ -27,6 +32,7 @@ $rotas = array(
 $rotasArray = explode("/", $url['rota']);
 
 $verbo = $_SERVER['REQUEST_METHOD'];
+
 
 
 if(empty($rotasArray)){
@@ -57,8 +63,8 @@ else{
 		// chamar os métodos de salvar e buscar os dados
 	}
 	else if($verbo == "PUT"){
-		echo file_get_contents("php://input");
-		//echo json_encode(array("texto" => "Recebido com sucesso"));
+		$controle = new $rotaEscolhida["Controle"]($modelo);
+		$controle->editar();
 	}
 }
 ?>
