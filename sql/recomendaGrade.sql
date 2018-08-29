@@ -1,5 +1,9 @@
 CREATE DATABASE recomendagrade;
 
+INSERT INTO curso(nomeCurso,nomePeriodos,qtPeriodos,cargaMinima,idCoordenador,publico,dataCadastro)
+	VALUES ('Gestão Ambiental',"semestres",4,60,1,0,'2018-08-23');
+
+
 CREATE TABLE disciplina(
 id INTEGER AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(100) NOT NULL, #não pode duplicar

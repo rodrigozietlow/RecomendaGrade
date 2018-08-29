@@ -1,0 +1,21 @@
+<h1> Cadastrar Disciplina</h1>
+<form (submit)="salvarDisciplina()">
+	{{objeto.id}}
+  Nome da disciplina:
+  <input type="text" name="nomeDisciplina" [(ngModel)]="objeto.nomeDisciplina"><br>
+  Periodo da Disciplina:
+  <input type="number" name="periodo" [(ngModel)]="objeto.periodo"><br>
+  Quantidade de Creditos:
+  <input type="number" name="creditos" min="1" [(ngModel)]="objeto.creditos"><br>
+  Carga horária mínima:
+  <input type="number" name="cargaHoraria" min="1" [(ngModel)]="objeto.cargaHoraria"><br>
+
+	<h3>Requisitos</h3>
+	
+
+  <!--Exibir data da última alteração -->
+  Data da última alteração:<br>
+
+  <button type="button">Cancelar edição</button>
+  <button type="submit">Salvar</button>
+</form>
