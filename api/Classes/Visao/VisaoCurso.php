@@ -16,6 +16,7 @@ class VisaoCurso {
 			// emitir um erro
 		}
 		else{
+
 			$cursoArray = array();
 			$cursoArray['id'] = $curso->getId();
 			$cursoArray['nomeCurso'] = $curso->getNomeCurso();
@@ -25,25 +26,21 @@ class VisaoCurso {
 			$cursoArray['dataCadastro'] = $curso->getdataCadastro();
 			$cursoArray['disciplinas'] = array();
 
-			foreach ($curso->getDisciplinas() as $disciplina) {
-					$cursoArray['disciplinas'][] = array(
-							"id" => $disciplina->getId(),
-							"nome" => $disciplina->getNome(),
-							"periodo" => $disciplina->getPeriodo(),
-							"creditos" => $disciplina->getCreditos(),
-							"cargaHoraria" => $disciplina->getCargaHoraria(),
-							"idCurso" => $curso->getId(),
-							"dataCadastro" => $disciplina->getDataCadastro()
-					);
-					/*	private $id;
-						private $nome;
-						private $periodo;
-						private $creditos;
-						private $cargaHoraria;
-						private $idCurso;
-						private $dataCadastro;*/
-			}
 
+			foreach ($curso->getDisciplinas() as $disciplina) {
+				//print_r($disciplina);
+				$array = array(
+					"id" => $disciplina->getId(),
+					"nome" => utf8_encode($disciplina->getNome()),
+					"periodo" => $disciplina->getPeriodo(),
+					"creditos" => utf8_encode($disciplina->getCreditos()),
+					"cargaHoraria" => $disciplina->getCargaHoraria(),
+					"idCurso" => $curso->getId(),
+					"dataCadastro" => $disciplina->getDataCadastro(),
+				);
+				//print_r($array);
+				$cursoArray['disciplinas'][] = $array;
+			}
 			//$cursoArray['disciplinas'] = $curso->getDisciplinas();
 			echo json_encode($cursoArray, 1);
 		}
