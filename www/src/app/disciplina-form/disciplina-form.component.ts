@@ -36,7 +36,7 @@ export class DisciplinaFormComponent implements OnInit {
     constructor(private http: HttpClient) { }
 
     ngOnInit() {
-  	  //this.buscarCurso();
+  	  this.buscarCurso();
     }
 
     public adicionarRequisito():void {
@@ -58,7 +58,7 @@ export class DisciplinaFormComponent implements OnInit {
     }
 
     buscarCurso(){
-      this.http.get<any>("http://localhost:80/~rodrigo/RecomendaGrade/api/curso/1").subscribe((dados) => {
+      this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1").subscribe((dados) => {
         this.objeto = dados;
       });
     }
@@ -69,7 +69,7 @@ export class DisciplinaFormComponent implements OnInit {
           'Content-Type':  'application/json',
         })
       };
-      this.http.put<any>("http://localhost:80/~rodrigo/RecomendaGrade/api/curso/1", this.objeto, opcoes).subscribe((dados) => {
+      this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1", this.objeto, opcoes).subscribe((dados) => {
         console.log(dados);
       });
     }
