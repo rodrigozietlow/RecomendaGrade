@@ -16,13 +16,45 @@ export class DisciplinaFormComponent implements OnInit {
       "cargaHoraria" : "",
       "idCurso" : "",
       "dataCadastro" : "",
-      "requisitos" : []
+      "requisitos" : [{
+        "idRequisito" : "1",
+        "tipo" : "1"
+      }]
     }
+
+    public possiveis = [
+      {
+      "id" : "1",
+      "nome" : "Dev Sis"
+    },
+    {
+      "id" : "2",
+      "nome" : "Mat 1"
+    }
+    ];
 
     constructor(private http: HttpClient) { }
 
     ngOnInit() {
   	  //this.buscarCurso();
+    }
+
+    public adicionarRequisito():void {
+      console.log(this.objeto.requisitos);
+      this.objeto.requisitos.push({
+        "idRequisito" : "1",
+        "tipo" : "1"
+      });
+      console.log(this.objeto.requisitos);
+    }
+
+    public trackByFn(index,item){
+      return item.myCustomIndex; // myCustomIndex should be unique
+    }
+
+    public removerRequisito(index):void {
+      console.log(index);
+      this.objeto.requisitos.splice(index, 1);
     }
 
     buscarCurso(){

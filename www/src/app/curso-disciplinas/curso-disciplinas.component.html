@@ -1,3 +1,9 @@
-<div class="disciplina" *ngFor="let disciplina of disciplinas">
-	{{disciplina.nome}}
-</div>
+<table>
+	<tr>
+		<th *ngFor="let numero of periodos">{{numero}}</th>
+	</tr>
+	<tr *ngFor="let disciplina of disciplinas">
+		<td>{{disciplina.periodo}}</td>
+		<td>{{disciplina.nome}}</td>
+	</tr>
+</table>
