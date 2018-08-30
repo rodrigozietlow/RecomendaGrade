@@ -20,10 +20,7 @@ import { CursoDisciplinasComponent } from './curso-disciplinas/curso-disciplinas
     IndexComponent,
     CursoFormComponent,
     DisciplinaFormComponent,
-    TestesBackComponent
-
     TestesBackComponent,
-    DisciplinaFormComponent,
     CursoDisciplinasComponent
   ],
   imports: [
