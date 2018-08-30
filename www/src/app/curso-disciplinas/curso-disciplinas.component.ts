@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CursoDisciplinasComponent implements OnInit {
 
-	public disciplinas[];
+	public disciplinas[]:any;
 
 	constructor(private http: HttpClient) { }
 
@@ -18,6 +18,7 @@ export class CursoDisciplinasComponent implements OnInit {
 
 	public buscarDisciplinas(): void{
 		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1").subscribe((resposta) => {
+			console.log(resposta);
 			this.disciplinas = resposta.disciplinas;
 		});
 	}
