@@ -22,7 +22,8 @@ export class CursoDisciplinasComponent implements OnInit {
 		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1").subscribe((resposta) => {
 			console.log(resposta);
 			this.disciplinas = resposta.disciplinas;
-			this.periodos = Array(+resposta.qtPeriodos).fill(0).map((x,i)=>i);
+			this.periodos = Array(+resposta.qtPeriodos).fill(0).map((x,i)=>i+1);
+			
 		});
 	}
 

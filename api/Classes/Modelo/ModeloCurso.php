@@ -21,8 +21,8 @@ class ModeloCurso {
 			$disciplinas = $modeloDisciplinas->buscarDisciplinasCurso($resultado['id']);
 
 			$curso = new Curso($resultado['nomeCurso'], $resultado['nomePeriodos'], $resultado['qtPeriodos'], $resultado['cargaMinima'], $resultado['idCoordenador'], $resultado['publico'], $resultado['dataCadastro'], $disciplinas, $resultado['id']);
-
 			return $curso;
+
 		}
 		return null;
 	}

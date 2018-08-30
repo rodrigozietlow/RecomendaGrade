@@ -19,14 +19,11 @@ import { CursoDisciplinasComponent } from './curso-disciplinas/curso-disciplinas
     AppComponent,
     IndexComponent,
     CursoFormComponent,
-<<<<<<< HEAD
     DisciplinaFormComponent,
     TestesBackComponent
-=======
     TestesBackComponent,
     DisciplinaFormComponent,
     CursoDisciplinasComponent
->>>>>>> fc22f73240b72ba9eb91008ef8da047050ec5277
   ],
   imports: [
     BrowserModule,

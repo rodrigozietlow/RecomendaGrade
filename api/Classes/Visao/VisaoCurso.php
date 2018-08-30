@@ -42,7 +42,7 @@ class VisaoCurso {
 				$cursoArray['disciplinas'][] = $array;
 			}
 			//$cursoArray['disciplinas'] = $curso->getDisciplinas();
-			echo json_encode($cursoArray, 1);
+			echo json_encode($cursoArray, JSON_UNESCAPED_UNICODE);
 		}
 	}
 
