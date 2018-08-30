@@ -7,7 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { CursoFormComponent } from './curso-form/curso-form.component';
+import { DisciplinaFormComponent } from './disciplina-form/disciplina-form.component';
 import { TestesBackComponent } from './testes-back/testes-back.component';
+
 
 
 @NgModule({
@@ -15,6 +17,7 @@ import { TestesBackComponent } from './testes-back/testes-back.component';
     AppComponent,
     IndexComponent,
     CursoFormComponent,
+    DisciplinaFormComponent,
     TestesBackComponent
   ],
   imports: [
