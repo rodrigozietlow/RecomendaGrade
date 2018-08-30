@@ -23,6 +23,7 @@ class VisaoCurso {
 			$cursoArray['qtPeriodos'] = $curso->getqtPeriodos();
 			$cursoArray['cargaMinima'] = $curso->getcargaMinima();
 			$cursoArray['dataCadastro'] = $curso->getdataCadastro();
+			$cursoArray['publico'] = $curso->getpublico();
 			$cursoArray['disciplinas'] = array();
 
 			foreach ($curso->getDisciplinas() as $disciplina) {

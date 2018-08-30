@@ -11,9 +11,10 @@
   <input type="number" name="cargaMinima" min="1" [(ngModel)]="objeto.cargaMinima"><br>
 	Ativar/curso:
 	<label class="switch">
-	  <input type="checkbox">
+		<input name="publico" type="checkbox" [(ngModel)]="objeto.publico"/>
 	  <span class="slider round"></span>
 	</label>
+
   <!--Exibir quantidade de disciplinas -->
   {{objeto.disciplinas}}
   Quantidade de disciplinas:<br>
