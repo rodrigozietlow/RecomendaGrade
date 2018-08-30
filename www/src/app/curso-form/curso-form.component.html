@@ -9,8 +9,11 @@
   <input type="number" name="qtPeriodos" min="1" [(ngModel)]="objeto.qtPeriodos"><br>
   Carga horária mínima:
   <input type="number" name="cargaMinima" min="1" [(ngModel)]="objeto.cargaMinima"><br>
-  <!--Exibir data da última alteração -->
-  Data da última alteração:<br>
+	Ativar/curso:
+	<label class="switch">
+	  <input type="checkbox">
+	  <span class="slider round"></span>
+	</label>
   <!--Exibir quantidade de disciplinas -->
   {{objeto.disciplinas}}
   Quantidade de disciplinas:<br>

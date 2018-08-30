@@ -19,6 +19,32 @@ class VisaoCurso {
 			$cursoArray = array();
 			$cursoArray['id'] = $curso->getId();
 			$cursoArray['nomeCurso'] = $curso->getNomeCurso();
+			$cursoArray['nomePeriodos'] = $curso->getnomePeriodos();
+			$cursoArray['qtPeriodos'] = $curso->getqtPeriodos();
+			$cursoArray['cargaMinima'] = $curso->getcargaMinima();
+			$cursoArray['dataCadastro'] = $curso->getdataCadastro();
+			$cursoArray['disciplinas'] = array();
+
+			foreach ($curso->getDisciplinas() as $disciplina) {
+					$cursoArray['disciplinas'][] = array(
+							"id" => $disciplina->getId(),
+							"nome" => $disciplina->getNome(),
+							"periodo" => $disciplina->getPeriodo(),
+							"creditos" => $disciplina->getCreditos(),
+							"cargaHoraria" => $disciplina->getCargaHoraria(),
+							"idCurso" => $curso->getId(),
+							"dataCadastro" => $disciplina->getDataCadastro()
+					);
+					/*	private $id;
+						private $nome;
+						private $periodo;
+						private $creditos;
+						private $cargaHoraria;
+						private $idCurso;
+						private $dataCadastro;*/
+			}
+
+			//$cursoArray['disciplinas'] = $curso->getDisciplinas();
 			echo json_encode($cursoArray, 1);
 		}
 	}

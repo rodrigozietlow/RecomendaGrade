@@ -9,9 +9,11 @@ class ModeloDisciplina {
 	public function __construct(\PDO $conexao){
 		$this->conexao = $conexao;
 	}
-
+	
 	public function buscarDisciplina($id){
 		// TODO
+
+		// essa provavelmente tem pré e co requisitos
 	}
 
 	public function buscarDisciplinasCurso($idCurso){

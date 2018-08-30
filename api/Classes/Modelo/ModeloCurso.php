@@ -52,8 +52,17 @@ class ModeloCurso {
 	}
 
 	public function salvarCurso(Curso $curso){
-		$stmt = $this->conexao->prepare("UPDATE curso SET nomeCurso = :nomeCurso, nomePeriodos = :nomePeriodos, qtPeriodos = :qtPeriodos, cargaMinima = :cargaMinima, idCoordenador = :idCoordenador, publico = :publico, dataCadastro = :dataCadastro");
-		return true;
+		$stmt = $this->conexao->prepare("UPDATE curso SET nomeCurso = :nomeCurso, nomePeriodos = :nomePeriodos, qtPeriodos = :qtPeriodos, cargaMinima = :cargaMinima WHERE id = :id");
+
+		return $stmt->execute(
+			array(
+				":nomeCurso" => $curso->getNomeCurso(),
+				":nomePeriodos" => $curso->getNomePeriodos(),
+				":qtPeriodos" => $curso->getQtPeriodos(),
+				":cargaMinima" => $curso->getCargaMinima(),
+				":id" => $curso->getId()
+			)
+		);
 	}
 
 }
