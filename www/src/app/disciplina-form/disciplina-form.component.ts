@@ -36,7 +36,7 @@ export class DisciplinaFormComponent implements OnInit {
     constructor(private http: HttpClient) { }
 
     ngOnInit() {
-  	  //this.buscarCurso();
+  	  this.buscarCurso();
     }
 
     public adicionarRequisito():void {
