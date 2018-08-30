@@ -52,7 +52,7 @@ class ModeloCurso {
 	}
 
 	public function salvarCurso(Curso $curso){
-		$stmt = $this->conexao->prepare("UPDATE curso SET nomeCurso = :nomeCurso, nomePeriodos = :nomePeriodos, qtPeriodos = :qtPeriodos, cargaMinima = :cargaMinima WHERE id = :id");
+		$stmt = $this->conexao->prepare("UPDATE curso SET nomeCurso = :nomeCurso, nomePeriodos = :nomePeriodos, qtPeriodos = :qtPeriodos, cargaMinima = :cargaMinima, publico = :publico WHERE id = :id");
 
 		return $stmt->execute(
 			array(
@@ -60,7 +60,8 @@ class ModeloCurso {
 				":nomePeriodos" => $curso->getNomePeriodos(),
 				":qtPeriodos" => $curso->getQtPeriodos(),
 				":cargaMinima" => $curso->getCargaMinima(),
-				":id" => $curso->getId()
+				":id" => $curso->getId(),
+				":publico" => $curso->getPublico()
 			)
 		);
 	}

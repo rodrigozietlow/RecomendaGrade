@@ -8,9 +8,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CursoDisciplinasComponent implements OnInit {
 
+	public periodos[]:number;
+
 	public disciplinas[]:any;
 
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {	}
 
 	ngOnInit() {
 		this.buscarDisciplinas();
@@ -20,6 +22,7 @@ export class CursoDisciplinasComponent implements OnInit {
 		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1").subscribe((resposta) => {
 			console.log(resposta);
 			this.disciplinas = resposta.disciplinas;
+			this.periodos = Array(+resposta.qtPeriodos).fill(0).map((x,i)=>i);
 		});
 	}
 

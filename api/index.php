@@ -52,7 +52,7 @@ else{
 	$visao = new $rotaEscolhida["Visao"]($modelo);
 	// and so on
 	if($verbo == "GET"){
-		if(count($rotasArray) >= 2) { // tem disciplina/id
+		if(count($rotasArray) >= 2) { // tem curso/id
 			$visao->buscar($rotasArray[1]);
 		}
 		else{
