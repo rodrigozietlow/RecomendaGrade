@@ -1,20 +1,40 @@
 <h1> Cadastrar Disciplina</h1>
 <form (submit)="salvarDisciplina()">
 	{{objeto.id}}
+
+	<!--nome da disciplina tem que ser unico-->
   Nome da disciplina:
   <input type="text" name="nomeDisciplina" [(ngModel)]="objeto.nomeDisciplina"><br>
+
+	<!--limitar com a quantidade de periodos inserido em curso-->
   Periodo da Disciplina:
-  <input type="number" name="periodo" [(ngModel)]="objeto.periodo"><br>
-  Quantidade de Creditos:
+  <input type="number" name="periodo" limit="curso.qtPeriodos" [(ngModel)]="objeto.periodo"><br>
+
+	<!--limitar com a quantidade de creditos inserido em curso-->
+  Quantidade de Créditos:
   <input type="number" name="creditos" min="1" [(ngModel)]="objeto.creditos"><br>
+
+	<!--limitar com a carga horaria inserido em curso-->
   Carga horária mínima:
   <input type="number" name="cargaHoraria" min="1" [(ngModel)]="objeto.cargaHoraria"><br>
 
 	<h3>Requisitos</h3>
-	
+	<div class="" *ngFor="let requisito of objeto.requisitos; let i = index">
+		<label for="disciplina">Disciplina</label>
+		<!--inserir no name do select: -{{i}} para atualizar a lista-->
+		<select class="" name="idRequisito-{{i}}" [(ngModel)]="objeto.requisitos[i].idRequisito">
+			<option *ngFor="let disciplina of possiveis" [value]="disciplina.id">{{disciplina.nome}}</option>
+		</select>
+		<label for="tipoRequisito">Tipo Requisito</label>
+			<select class="form-control" name="requisito.tipo-{{i}}" [(ngModel)]="objeto.requisitos[i].tipo">
+				<option value="">---Selecione---</option>
+				<option value="1">Pré-Requisito</option>
+				<option value="2">Co-Requisito</option>
+			</select>
+			<button type="button" name="button" (click)="removerRequisito(i)">Remover</button>
+	</div>
 
-  <!--Exibir data da última alteração -->
-  Data da última alteração:<br>
+	<button type="button" name="button" (click)="adicionarRequisito()">Adicionar Requisito</button><br><br>
 
   <button type="button">Cancelar edição</button>
   <button type="submit">Salvar</button>
