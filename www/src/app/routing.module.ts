@@ -8,6 +8,7 @@ import { DisciplinaFormComponent } from './disciplina-form/disciplina-form.compo
 
 const rotas : Routes = [
 	/* raiz e extras */
+	{path: '', redirectTo: '/curso/disciplinas', pathMatch: 'full' },
 	{path: 'index', component: IndexComponent},
 	/* curso */
 	{path: 'curso/editar', component: CursoFormComponent},
