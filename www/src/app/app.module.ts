@@ -10,7 +10,7 @@ import { CursoFormComponent } from './curso-form/curso-form.component';
 import { DisciplinaFormComponent } from './disciplina-form/disciplina-form.component';
 import { TestesBackComponent } from './testes-back/testes-back.component';
 import { CursoDisciplinasComponent } from './curso-disciplinas/curso-disciplinas.component';
-
+import { RoutingModule } from './routing.module';
 
 
 @NgModule({
@@ -25,7 +25,8 @@ import { CursoDisciplinasComponent } from './curso-disciplinas/curso-disciplinas
   imports: [
     BrowserModule,
     HttpClientModule,
-	FormsModule
+	FormsModule,
+	RoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

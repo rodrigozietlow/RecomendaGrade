@@ -23,7 +23,6 @@ export class CursoDisciplinasComponent implements OnInit {
 			console.log(resposta);
 			this.disciplinas = resposta.disciplinas;
 			this.periodos = Array(+resposta.qtPeriodos).fill(0).map((x,i)=>i+1);
-
 		});
 	}
 
