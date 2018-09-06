@@ -23,9 +23,13 @@ $modelo = new Modelo\ModeloCurso($pdo);
 
 //echo "==============================================";
 
-$controle = new Controle\ControleCurso($modelo);
+//$controle = new Controle\ControleCurso($modelo);
 
-$controle->editar();
+//$controle->editar();
+
+$curso = new Modelo\Curso("ADS", "Semestre", 7, 600, 1, 0, '2018-09-06', [], 1);
+
+$modelo->salvarCurso($curso);
 
 //echo "</pre>";
 ?>

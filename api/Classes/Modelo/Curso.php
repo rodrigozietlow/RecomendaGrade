@@ -176,11 +176,6 @@ class Curso {
      */
     public function getPublico()
     {
-			if $this->publico = 1 {
-				$this->publico = true;
-			}else{
-				$this->publico = false;
-			}
         return $this->publico;
     }
 

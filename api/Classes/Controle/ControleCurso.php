@@ -23,11 +23,15 @@ class ControleCurso {
 
 		// primero, precisamos pegar os dados que vem por stream
 		$dados = json_decode(file_get_contents("php://input"), true);
+
+
+		$dados['publico'] = $dados['publico'] ?? false;
 		if($dados['publico']){
-		 $dados['publico'] = 0;
-	 }else{
-		 $dados['publico'] = 1;
-	 }
+			$dados['publico'] = 1;
+		}else{
+			$dados['publico'] = 0;
+		}
+		
 
 		// validação aqui TODO
 
@@ -35,7 +39,7 @@ class ControleCurso {
 		$Curso->setNomePeriodos($dados['nomePeriodos']);
 		$Curso->setQtPeriodos($dados['qtPeriodos']);
 		$Curso->setCargaMinima($dados['cargaMinima']);
-		$Curso->setPublico($dados['publico'])
+		$Curso->setPublico($dados['publico']);
 
 		return $this->modelo->SalvarCurso($Curso);
 	}

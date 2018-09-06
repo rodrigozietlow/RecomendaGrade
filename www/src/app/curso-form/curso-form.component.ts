@@ -15,7 +15,7 @@ export class CursoFormComponent implements OnInit {
       "qtPeriodos" : "",
       "cargaMinima" : "",
       "idCoordenador" : "",
-      "publico" : "",
+      "publico" : false,
       "dataCadastro" : "",
       "disciplinas" : []
     }
