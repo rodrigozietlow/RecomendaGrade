@@ -1,22 +1,19 @@
 <h1> Dados do Curso</h1>
 <form (submit)="salvarCurso()">
   Nome do curso:
-  <input type="text" name="nomeCurso" [(ngModel)]="objeto.nomeCurso"><br>
+  <input type="text" name="nomeCurso" [(ngModel)]="objeto.nomeCurso" required><br>
   Nome dos períodos:
-  <input type="text" name="nomePeriodos" [(ngModel)]="objeto.nomePeriodos"><br>
+  <input type="text" name="nomePeriodos" [(ngModel)]="objeto.nomePeriodos" required="true"><br>
   Total de períodos:
-  <input type="number" name="qtPeriodos" min="1" [(ngModel)]="objeto.qtPeriodos"><br>
+  <input type="number" name="qtPeriodos" min="1" max="127" [(ngModel)]="objeto.qtPeriodos" required="required"><br>
   Carga horária mínima:
-  <input type="number" name="cargaMinima" min="1" [(ngModel)]="objeto.cargaMinima"><br>
+  <input type="number" name="cargaMinima" min="1" max="999999,99" [(ngModel)]="objeto.cargaMinima" required="required"><br>
 	Ativar/curso:
 	<label class="switch">
 		<input name="publico" type="checkbox" [(ngModel)]="objeto.publico"/>
 	  <span class="slider round"></span>
-	</label>
+	</label><br>
 
-  <!--Exibir quantidade de disciplinas -->
-  {{objeto.disciplinas}}
-  Quantidade de disciplinas:<br>
   <button type="button">Cancelar edição</button>
   <button type="submit">Salvar</button>
 </form>
