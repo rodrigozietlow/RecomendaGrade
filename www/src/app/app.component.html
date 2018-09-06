@@ -1,4 +1,9 @@
-<app-curso-form></app-curso-form>
-<app-disciplina-form></app-disciplina-form>
-<app-testes-back></app-testes-back>
-<app-curso-disciplinas></app-curso-disciplinas>
+<h1>{{title}}</h1>
+
+<nav>
+	<a routerLink='/curso/editar'>Editar curso</a><br>
+	<a routerLink='/curso/disciplinas'>Ver grade</a><br>
+	<a routerLink='/disciplinas/cadastrar'>Cadastrar disciplina</a><br>
+</nav>
+
+<router-outlet></router-outlet>

@@ -8,9 +8,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CursoDisciplinasComponent implements OnInit {
 
-	public periodos[]:number;
+	public periodos:number[];
 
-	public disciplinas[]:any;
+	public disciplinas:any[];
 
 	constructor(private http: HttpClient) {	}
 
@@ -23,7 +23,6 @@ export class CursoDisciplinasComponent implements OnInit {
 			console.log(resposta);
 			this.disciplinas = resposta.disciplinas;
 			this.periodos = Array(+resposta.qtPeriodos).fill(0).map((x,i)=>i+1);
-			
 		});
 	}
 
