@@ -25,21 +25,46 @@ class ControleCurso {
 		$dados = json_decode(file_get_contents("php://input"), true);
 
 
-		$dados['publico'] = $dados['publico'] ?? false;
-		if($dados['publico']){
-			$dados['publico'] = 1;
+		$publico = $dados['publico'] ?? false;
+		if($publico){
+			$publico = 1;
 		}else{
-			$dados['publico'] = 0;
+			$publico = 0;
 		}
-		
+
 
 		// validação aqui TODO
 
-		$Curso->setNomeCurso($dados['nomeCurso']);
-		$Curso->setNomePeriodos($dados['nomePeriodos']);
-		$Curso->setQtPeriodos($dados['qtPeriodos']);
-		$Curso->setCargaMinima($dados['cargaMinima']);
-		$Curso->setPublico($dados['publico']);
+		$nomePeriodos = $dados['nomePeriodos'] ?? "";
+		$qtPeriodos = $dados['qtPeriodos'] ?? 0;
+		$cargaMinima = $dados['cargaMinima'] ?? 0;
+
+		// validação do nome do curso??
+		//$Curso->setNomeCurso($dados['nomeCurso']); // -> não altera
+
+		// validação do nome dos períodos
+		if(!$nomePeriodos || strlen($nomePeriodos) > 25){
+			header("HTTP/1.1 422 Unprocessable Entity: Nome dos periodos");
+			die();
+		}
+
+		// validação do total de períodos
+		if(!is_numeric($qtPeriodos) || $qtPeriodos <= 0 || $qtPeriodos > 127){
+			header("HTTP/1.1 422 Unprocessable Entity: Quantidade de periodos");
+			die();
+		}
+
+		// validação da carga horária
+		if(!is_numeric($cargaMinima) || $cargaMinima <= 0 || $cargaMinima > 999999.99){
+			header("HTTP/1.1 422 Unprocessable Entity: Carga horaria minima");
+			die();
+		}
+
+
+		$Curso->setNomePeriodos($nomePeriodos);
+		$Curso->setQtPeriodos($qtPeriodos);
+		$Curso->setCargaMinima($cargaMinima);
+		$Curso->setPublico($publico);
 
 		return $this->modelo->SalvarCurso($Curso);
 	}
