@@ -9,18 +9,19 @@
 	Carga horária mínima:
 	<input type="number" name="cargaMinima" min="1" [(ngModel)]="objeto.cargaMinima"><br>
 
-	Tornar público:
-	<label class="switch">
-		<input name="publico" type="checkbox" [(ngModel)]="objeto.publico" />
-		<span class="slider round" [class.desabilitado]="objeto.disciplinas.length==0"></span>
-	</label>
+	<div>
+		Tornar público:
+		<label class="switch">
+			<input name="publico" type="checkbox" [(ngModel)]="objeto.publico" [disabled]="objeto.disciplinas.length==0"/>
+			<span class="slider round" ></span>
+		</label>
+	</div>
 
 	<div *ngIf="objeto.disciplinas.length == 0">
 		Você precisa cadastrar uma disciplina para publicar o curso <br>
 		<a routerLink='/disciplinas/cadastrar'>Cadastre uma agora</a>
 	</div>
+
 	<button type="button">Cancelar edição</button>
 	<button type="submit">Salvar</button>
-  <button type="button">Cancelar edição</button>
-  <button type="submit">Salvar</button>
 </form>
