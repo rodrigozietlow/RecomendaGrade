@@ -8,6 +8,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DisciplinaFormComponent implements OnInit {
 
+
+  public curso:any;
+
 	public objetoDisciplina = {
   	  "id" : "",
       "nomeDisciplina" : "",
@@ -19,7 +22,7 @@ export class DisciplinaFormComponent implements OnInit {
       "requisitos" : [{
         "idRequisito" : "1",
         "tipo" : "1"
-      }]
+      }],
     }
 
     public possiveis = [
@@ -39,8 +42,15 @@ export class DisciplinaFormComponent implements OnInit {
   	  this.buscarCurso();
     }
 
-    public carregarDisciplinas(){
+    public carregarDisciplinas():void{
+      console.log(this.curso.disciplinas);
+      /*
+      for(item in objetoCurso.disciplinas){
+        console.log(item);
+      }
+
       possiveis.push();
+      */
     }
 
     public adicionarRequisito():void {
@@ -65,7 +75,8 @@ export class DisciplinaFormComponent implements OnInit {
 
     buscarCurso(){
       this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1").subscribe((dados) => {
-        this.objetoCurso = dados;
+        this.curso = dados;
+        this.carregarDisciplinas();
       });
     }
 
