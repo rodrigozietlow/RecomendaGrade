@@ -1,27 +1,59 @@
 <h2>Dados do Curso</h2>
-<form (submit)="salvarCurso()">
+<form (submit)="salvarCurso()" [formGroup]="form">
 	Nome do curso:
-	<input type="text" name="nomeCurso" [(ngModel)]="objeto.nomeCurso"><br>
+	<input type="text" name="nomeCurso" [(ngModel)]="curso.nomeCurso" formControlName="nomeCurso"><br>
+
 	Nome dos períodos:
-	<input type="text" name="nomePeriodos" [(ngModel)]="objeto.nomePeriodos"><br>
-	Total de períodos:
-	<input type="number" name="qtPeriodos" min="1" [(ngModel)]="objeto.qtPeriodos"><br>
-	Carga horária mínima:
-	<input type="number" name="cargaMinima" min="1" [(ngModel)]="objeto.cargaMinima"><br>
+	<input type="text" name="nomePeriodos" [(ngModel)]="curso.nomePeriodos" formControlName="nomePeriodos">
+
+	<div *ngIf="form.controls['nomePeriodos'].invalid && (form.controls['nomePeriodos'].dirty || form.controls['nomePeriodos'].touched)" class="erros">
+		Erros:
+		<div *ngIf="form.controls['nomePeriodos'].errors.required">
+			Você deve preencher o nome dos períodos
+		</div>
+		<div *ngIf="form.controls['nomePeriodos'].errors.maxlength">
+			Máximo de 25 caracteres
+		</div>
+	</div>
+
+	<br>Total de períodos:
+
+
+	<input type="number" name="qtPeriodos" [(ngModel)]="curso.qtPeriodos" formControlName="qtPeriodos">
+
+
+	<div *ngIf="form.controls['qtPeriodos'].invalid && (form.controls['qtPeriodos'].dirty || form.controls['qtPeriodos'].touched)" class="erros">
+		Erros:
+		<div *ngIf="form.controls['qtPeriodos'].errors.required">
+			Você deve preencher a quantidade
+		</div>
+		<div *ngIf="form.controls['qtPeriodos'].errors.max">
+			Máximo 127 períodos
+		</div>
+		<div *ngIf="form.controls['qtPeriodos'].errors.min">
+			Mínimo 1 período
+		</div>
+	</div>
+
+	<br>Carga horária mínima:
+	<input type="number" name="cargaMinima" min="1" [(ngModel)]="curso.cargaMinima" formControlName="cargaMinima"><br>
+
+
 
 	<div>
 		Tornar público:
 		<label class="switch">
-			<input name="publico" type="checkbox" [(ngModel)]="objeto.publico" [disabled]="objeto.disciplinas.length==0"/>
+			<input name="publico" type="checkbox" [(ngModel)]="curso.publico" [disabled]="curso.disciplinas.length==0" formControlName="publico"/>
 			<span class="slider round" ></span>
 		</label>
 	</div>
 
-	<div *ngIf="objeto.disciplinas.length == 0">
+	<div *ngIf="curso.disciplinas.length == 0">
 		Você precisa cadastrar uma disciplina para publicar o curso <br>
 		<a routerLink='/disciplinas/cadastrar'>Cadastre uma agora</a>
 	</div>
 
+
 	<button type="button">Cancelar edição</button>
-	<button type="submit">Salvar</button>
+	<button type="submit" [disabled]="!form.valid">Salvar</button>
 </form>
