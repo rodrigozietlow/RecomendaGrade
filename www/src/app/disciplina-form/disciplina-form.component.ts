@@ -19,22 +19,10 @@ export class DisciplinaFormComponent implements OnInit {
       "cargaHoraria" : "",
       "idCurso" : "",
       "dataCadastro" : "",
-      "requisitos" : [{
-        "idRequisito" : "1",
-        "tipo" : "1"
-      }],
+      "requisitos" : [],
     }
 
-    public possiveis = [
-      {
-      "id" : "1",
-      "nome" : "Dev Sis"
-    },
-    {
-      "id" : "2",
-      "nome" : "Mat 1"
-    }
-    ];
+    public possiveis = [];
 
     constructor(private http: HttpClient) { }
 
@@ -43,18 +31,16 @@ export class DisciplinaFormComponent implements OnInit {
     }
 
     public carregarDisciplinas():void{
-      console.log(this.curso.disciplinas);
-      /*
-      for(item in objetoCurso.disciplinas){
-        console.log(item);
+      for(let i of this.curso.disciplinas){
+          this.possiveis.push({
+            "id" : i.id,
+            "nome": i.nome
+          });
       }
-
-      possiveis.push();
-      */
     }
 
     public adicionarRequisito():void {
-      console.log(this.objetoCurso);
+      console.log(this.objetoDisciplina);
 
       this.objetoDisciplina.requisitos.push({
         "idRequisito" : "1",
@@ -86,7 +72,7 @@ export class DisciplinaFormComponent implements OnInit {
           'Content-Type':  'application/json',
         })
       };
-      this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1", this.objetoCurso, opcoes).subscribe((dados) => {
+      this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1", this.objetoDisciplina, opcoes).subscribe((dados) => {
         console.log(dados);
       });
     }
