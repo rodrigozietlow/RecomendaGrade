@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-disciplina-form',
@@ -21,6 +22,16 @@ export class DisciplinaFormComponent implements OnInit {
       "dataCadastro" : "",
       "requisitos" : [],
     }
+
+    /* ESTA DANDO ERRO, VERIFICAR
+
+    public form:FormGroup = new FormGroup({
+      nomeDisciplina: new FormControl({this.objetoDisciplina.nomeDisciplina, [Validators.required, Validators.maxLength(25)]}),
+      periodo: new FormControl({this.objetoDisciplina.periodo, [Validators.min(1), Validators.required]}),
+      creditos: new FormControl({}),
+      cargaHoraria: new FormControl({this.objetoDisciplina.cargaHoraria, [Validators.required, Validators.min(1), Validators.max(999999.99)]}),
+    });
+    */
 
     public possiveis = [];
 
