@@ -25,8 +25,8 @@ export class CursoFormComponent implements OnInit {
 		nomeCurso: new FormControl({value:this.curso.nomeCurso, disabled:"true"}),
 		nomePeriodos: new FormControl(this.curso.nomePeriodos, [Validators.required, Validators.maxLength(25)]),
 		qtPeriodos: new FormControl(this.curso.qtPeriodos, [Validators.max(127), Validators.min(1), Validators.required]),
-		cargaMinima: new FormControl(this.curso.cargaMinima, [Validators.required, Validators.min(0), Validators.max(999999.99)]),
-		publico: new FormControl({value:this.curso.disciplinas.length, disabled: (this.curso.disciplinas.length == 0) ? "true" : "false"}),
+		cargaMinima: new FormControl(this.curso.cargaMinima, [Validators.required, Validators.min(1), Validators.max(999999.99)]),
+		publico: new FormControl({value:"", disabled: (this.curso.disciplinas.length == 0) ? "true" : "false"}),
 	});
 
 	//public qtPeriodosControl:any = new FormControl(this.curso.qtPeriodos, [Validators.max(127), Validators.min(1), Validators.required]);
@@ -41,6 +41,9 @@ export class CursoFormComponent implements OnInit {
 		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1").subscribe((dados) => {
 			console.log(dados)
 			this.curso = dados;
+      if(this.curso.disciplinas.length>0){
+        this.form.controls['publico'].enable();
+      }
 		});
 	}
 

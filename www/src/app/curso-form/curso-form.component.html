@@ -19,7 +19,7 @@
 	<br>Total de períodos:
 
 
-	<input type="number" name="qtPeriodos" [(ngModel)]="curso.qtPeriodos" formControlName="qtPeriodos">
+	<input type="number" name="qtPeriodos" min="1" [(ngModel)]="curso.qtPeriodos" formControlName="qtPeriodos">
 
 
 	<div *ngIf="form.controls['qtPeriodos'].invalid && (form.controls['qtPeriodos'].dirty || form.controls['qtPeriodos'].touched)" class="erros">
@@ -38,12 +38,24 @@
 	<br>Carga horária mínima:
 	<input type="number" name="cargaMinima" min="1" [(ngModel)]="curso.cargaMinima" formControlName="cargaMinima"><br>
 
+	<div *ngIf="form.controls['cargaMinima'].invalid && (form.controls['cargaMinima'].dirty || form.controls['cargaMinima'].touched)" class="erros">
+		Erros:
+		<div *ngIf="form.controls['cargaMinima'].errors.required">
+			Você deve preencher a quantidade
+		</div>
+		<div *ngIf="form.controls['cargaMinima'].errors.max">
+			Máximo 127 períodos
+		</div>
+		<div *ngIf="form.controls['cargaMinima'].errors.min">
+			Mínimo 1 período
+		</div>
+	</div>
 
 
 	<div>
 		Tornar público:
 		<label class="switch">
-			<input name="publico" type="checkbox" [(ngModel)]="curso.publico" [disabled]="curso.disciplinas.length==0" formControlName="publico"/>
+			<input name="publico" type="checkbox" [(ngModel)]="curso.publico" formControlName="publico"/>
 			<span class="slider round" ></span>
 		</label>
 	</div>
