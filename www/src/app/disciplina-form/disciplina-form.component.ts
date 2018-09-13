@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DisciplinaFormComponent implements OnInit {
 
-	public objeto = {
+	public objetoDisciplina = {
   	  "id" : "",
       "nomeDisciplina" : "",
       "periodo" : "",
@@ -39,13 +39,19 @@ export class DisciplinaFormComponent implements OnInit {
   	  this.buscarCurso();
     }
 
+    public carregarDisciplinas(){
+      possiveis.push();
+    }
+
     public adicionarRequisito():void {
-      console.log(this.objeto.requisitos);
-      this.objeto.requisitos.push({
+      console.log(this.objetoCurso);
+
+      this.objetoDisciplina.requisitos.push({
         "idRequisito" : "1",
         "tipo" : "1"
       });
-      console.log(this.objeto.requisitos);
+      console.log(this.objetoDisciplina.requisitos);
+
     }
 
     public trackByFn(index,item){
@@ -54,12 +60,12 @@ export class DisciplinaFormComponent implements OnInit {
 
     public removerRequisito(index):void {
       console.log(index);
-      this.objeto.requisitos.splice(index, 1);
+      this.objetoDisciplina.requisitos.splice(index, 1);
     }
 
     buscarCurso(){
       this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1").subscribe((dados) => {
-        this.objeto = dados;
+        this.objetoCurso = dados;
       });
     }
 
@@ -69,7 +75,7 @@ export class DisciplinaFormComponent implements OnInit {
           'Content-Type':  'application/json',
         })
       };
-      this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1", this.objeto, opcoes).subscribe((dados) => {
+      this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1", this.objetoCurso, opcoes).subscribe((dados) => {
         console.log(dados);
       });
     }
