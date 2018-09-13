@@ -27,7 +27,7 @@ class ControleDisciplina {
 
 
 		// criar um objeto disciplinas
-		$Disciplina = new Disciplina($nome, $periodo, $creditos, $cargaHoraria, $idCurso, $dataCadastro);
+		$Disciplina = new Modelo\Disciplina($nome, $periodo, $creditos, $cargaHoraria, $idCurso, $dataCadastro);
 
 		$Disciplina->setNome($nome);
 		$Disciplina->setPeriodo($periodo);

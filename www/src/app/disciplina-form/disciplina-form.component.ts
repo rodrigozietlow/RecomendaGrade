@@ -45,7 +45,7 @@ export class DisciplinaFormComponent implements OnInit {
     public carregarDisciplinas():void{
       console.log(this.curso.disciplinas);
       /*
-      for(item in objetoCurso.disciplinas){
+      for(item in curso.disciplinas){
         console.log(item);
       }
 
@@ -54,7 +54,7 @@ export class DisciplinaFormComponent implements OnInit {
     }
 
     public adicionarRequisito():void {
-      console.log(this.objetoCurso);
+      console.log(this.curso);
 
       this.objetoDisciplina.requisitos.push({
         "idRequisito" : "1",
@@ -86,7 +86,7 @@ export class DisciplinaFormComponent implements OnInit {
           'Content-Type':  'application/json',
         })
       };
-      this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1", this.objetoCurso, opcoes).subscribe((dados) => {
+      this.http.post<any>("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina", this.objetoDisciplina, opcoes).subscribe((dados) => {
         console.log(dados);
       });
     }
