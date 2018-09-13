@@ -17,9 +17,9 @@ $url = $_GET;
 // rotas estáticas:: podem ser mudadas no futuro
 $rotas = array(
 	"disciplina" => array(
-		"Modelo" => "ModeloDisciplina",
-		"Controle" => "ControleDisciplina",
-		"Visao" => "VisaoDisciplina"
+		"Modelo" => "RecomendaGrade\\Modelo\\ModeloDisciplina",
+		"Controle" => "RecomendaGrade\\Controle\\ControleDisciplina",
+		"Visao" => "RecomendaGrade\\Visao\\VisaoDisciplina"
 	),
 	"curso" => array(
 		"Modelo" => "RecomendaGrade\\Modelo\\ModeloCurso",
@@ -60,12 +60,17 @@ else{
 		}
 	}
 	else if($verbo == "POST"){
-		// chamar os métodos de salvar e buscar os dados
+		$controle = new $rotaEscolhida['Controle']($modelo);
+		if(!$controle->salvar()){
+			header("HTTP/1.1 500 Internal Server Error");
+			die();
+		}
 	}
 	else if($verbo == "PUT"){
 		$controle = new $rotaEscolhida["Controle"]($modelo);
 		if(!$controle->editar($rotasArray[1])){
-			echo header("HTTP/1.1 500 Internal Server Error");
+			header("HTTP/1.1 500 Internal Server Error");
+			die();
 		}
 	}
 }

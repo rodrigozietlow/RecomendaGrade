@@ -33,7 +33,7 @@ class ControleCurso {
 		}
 
 
-		// validação aqui TODO
+		// validação
 
 		$nomePeriodos = $dados['nomePeriodos'] ?? "";
 		$qtPeriodos = $dados['qtPeriodos'] ?? 0;
