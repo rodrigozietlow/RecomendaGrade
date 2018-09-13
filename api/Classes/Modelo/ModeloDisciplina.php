@@ -9,7 +9,7 @@ class ModeloDisciplina {
 	public function __construct(\PDO $conexao){
 		$this->conexao = $conexao;
 	}
-	
+
 	public function buscarDisciplina($id){
 		// TODO
 
@@ -28,5 +28,22 @@ class ModeloDisciplina {
 
 		return $disciplinas;
 	}
+
+	public function criarDisciplina (Disciplina $disciplina){
+		$stmt = $this->conexao->prepare("INSERT INTO disciplina (nome = :nome, periodo = :periodo, creditos = :creditos, cargaHoraria = :cargaHoraria, idCurso = :idCurso, dataCadastro = :dataCadastro");
+
+		return $stmt->execute(
+			array(
+				":nome" => $disciplina->getNome(),
+				":periodo" => $disciplina->getPeriodo(),
+				":creditos" => $disciplina->getCreditos(),
+				":cargaHoraria" => $disciplina->getCargaHoraria(),
+				":idCurso" => $disciplina->getIdCurso(),
+				":dataCadastro" => $disciplina->getDataCadastro()
+			)
+		);
+	}
+
+
 
 }
