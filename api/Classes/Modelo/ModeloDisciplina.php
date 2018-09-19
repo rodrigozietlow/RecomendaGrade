@@ -30,7 +30,7 @@ class ModeloDisciplina {
 	}
 
 	public function salvarDisciplina (Disciplina $disciplina){
-		$stmt = $this->conexao->prepare("INSERT INTO disciplina (nome = :nome, periodo = :periodo, creditos = :creditos, cargaHoraria = :cargaHoraria, idCurso = :idCurso, dataCadastro = :dataCadastro");
+		$stmt = $this->conexao->prepare("INSERT INTO disciplina(nome, periodo, creditos, cargaHoraria, idCurso, dataCadastro) VALUES (:nome, :periodo, :creditos, :cargaHoraria, :idCurso, :dataCadastro)");
 
 		return $stmt->execute(
 			array(

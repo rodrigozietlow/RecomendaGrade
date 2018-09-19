@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-disciplina-form',
@@ -19,22 +20,20 @@ export class DisciplinaFormComponent implements OnInit {
       "cargaHoraria" : "",
       "idCurso" : "",
       "dataCadastro" : "",
-      "requisitos" : [{
-        "idRequisito" : "1",
-        "tipo" : "1"
-      }],
+      "requisitos" : [],
     }
 
-    public possiveis = [
-      {
-      "id" : "1",
-      "nome" : "Dev Sis"
-    },
-    {
-      "id" : "2",
-      "nome" : "Mat 1"
-    }
-    ];
+    /* ESTA DANDO ERRO, VERIFICAR
+
+    public form:FormGroup = new FormGroup({
+      nomeDisciplina: new FormControl({this.objetoDisciplina.nomeDisciplina, [Validators.required, Validators.maxLength(25)]}),
+      periodo: new FormControl({this.objetoDisciplina.periodo, [Validators.min(1), Validators.required]}),
+      creditos: new FormControl({}),
+      cargaHoraria: new FormControl({this.objetoDisciplina.cargaHoraria, [Validators.required, Validators.min(1), Validators.max(999999.99)]}),
+    });
+    */
+
+    public possiveis = [];
 
     constructor(private http: HttpClient) { }
 
@@ -43,18 +42,15 @@ export class DisciplinaFormComponent implements OnInit {
     }
 
     public carregarDisciplinas():void{
-      console.log(this.curso.disciplinas);
-      /*
-      for(item in objetoCurso.disciplinas){
-        console.log(item);
+      for(let i of this.curso.disciplinas){
+          this.possiveis.push({
+            "id" : i.id,
+            "nome": i.nome
+          });
       }
-
-      possiveis.push();
-      */
     }
 
     public adicionarRequisito():void {
-      console.log(this.curso);
 
       this.objetoDisciplina.requisitos.push({
         "idRequisito" : "1",
@@ -86,7 +82,8 @@ export class DisciplinaFormComponent implements OnInit {
           'Content-Type':  'application/json',
         })
       };
-      this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1", this.curso, opcoes).subscribe((dados) => {
+
+      this.http.post<any>("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina", this.objetoDisciplina, opcoes).subscribe((dados) => {
         console.log(dados);
       });
     }
