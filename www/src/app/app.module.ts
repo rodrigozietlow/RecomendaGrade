@@ -11,6 +11,8 @@ import { DisciplinaFormComponent } from './disciplina-form/disciplina-form.compo
 import { TestesBackComponent } from './testes-back/testes-back.component';
 import { CursoDisciplinasComponent } from './curso-disciplinas/curso-disciplinas.component';
 import { RoutingModule } from './routing.module';
+import { DisciplinaEditarComponent } from './disciplina-editar/disciplina-editar.component';
+import { DisciplinaCadastrarComponent } from './disciplina-cadastrar/disciplina-cadastrar.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { RoutingModule } from './routing.module';
     CursoFormComponent,
     DisciplinaFormComponent,
     TestesBackComponent,
-    CursoDisciplinasComponent
+    CursoDisciplinasComponent,
+    DisciplinaEditarComponent,
+    DisciplinaCadastrarComponent
   ],
   imports: [
     BrowserModule,

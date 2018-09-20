@@ -4,7 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 import { CursoFormComponent } from './curso-form/curso-form.component';
 import { CursoDisciplinasComponent } from './curso-disciplinas/curso-disciplinas.component';
-import { DisciplinaFormComponent } from './disciplina-form/disciplina-form.component';
+import { DisciplinaEditarComponent } from './disciplina-editar/disciplina-editar.component';
+import { DisciplinaCadastrarComponent } from './disciplina-cadastrar/disciplina-cadastrar.component';
 
 const rotas : Routes = [
 	/* raiz e extras */
@@ -14,7 +15,8 @@ const rotas : Routes = [
 	{path: 'curso/editar', component: CursoFormComponent},
 	{path: 'curso/disciplinas', component: CursoDisciplinasComponent},
 	/* disciplina */
-	{path: 'disciplinas/cadastrar', component: DisciplinaFormComponent},
+	{path: 'disciplinas/cadastrar', component: DisciplinaCadastrarComponent},
+	{path: 'disciplinas/editar/:id', component: DisciplinaEditarComponent},
 
 ];
 
