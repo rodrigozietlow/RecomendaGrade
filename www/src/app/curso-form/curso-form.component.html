@@ -1,10 +1,10 @@
 <h2>Dados do Curso</h2>
 <form (submit)="salvarCurso()" [formGroup]="form">
-	Nome do curso:
+	Nome/sigla do curso:
 	<input type="text" name="nomeCurso" [(ngModel)]="curso.nomeCurso" formControlName="nomeCurso"><br>
 
 	Nome dos períodos:
-	<input type="text" name="nomePeriodos" [(ngModel)]="curso.nomePeriodos" formControlName="nomePeriodos">
+	<input type="text" name="nomePeriodos" [(ngModel)]="curso.nomePeriodos" formControlName="nomePeriodos" placeholder="Exemplo: Semestre, Ano">
 
 	<div *ngIf="form.controls['nomePeriodos'].invalid && (form.controls['nomePeriodos'].dirty || form.controls['nomePeriodos'].touched)" class="erros">
 		Erros:
@@ -50,6 +50,9 @@
 			Mínimo 1 período
 		</div>
 	</div>
+	<sub>
+		Está é a carga horária mínima que um aluno precisa realizar do curso para se formar. É utilizada para calcular a porcentagem de conclusão do curso pelo aluno
+	</sub>
 
 
 	<div>
@@ -66,6 +69,6 @@
 	</div>
 
 
-	<button type="button">Cancelar edição</button>
-	<button type="submit" [disabled]="!form.valid">Salvar</button>
+	<button type="submit" [disabled]="!form.valid">Editar</button>
+	<button type="button" (click)="voltar()">Voltar</button>
 </form>

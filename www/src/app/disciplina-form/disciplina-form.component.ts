@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import {Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-disciplina-form',
-  templateUrl: './disciplina-form.component.html',
-  styleUrls: ['./disciplina-form.component.css']
+	selector: 'app-disciplina-form',
+	templateUrl: './disciplina-form.component.html',
+	styleUrls: ['./disciplina-form.component.css']
 })
 export class DisciplinaFormComponent implements OnInit {
 
@@ -87,8 +89,14 @@ export class DisciplinaFormComponent implements OnInit {
       };
 
       this.http.post<any>("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina", this.objetoDisciplina, opcoes).subscribe((dados) => {
-        console.log(dados);
-      });
-    }
+  			console.log(dados);
+  			alert("Salvo com sucesso!");
+  			this.router.navigateByUrl('/curso/disciplinas');
+  		});
+  	}
+
+  	voltar():void {
+  		this.location.back();
+  	}
 
 }

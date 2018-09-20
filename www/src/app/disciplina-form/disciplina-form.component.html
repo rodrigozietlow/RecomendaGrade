@@ -86,8 +86,8 @@
 			<button type="button" name="button" (click)="removerRequisito(i)">Remover</button>
 	</div>
 
-	<button type="button" name="button" (click)="adicionarRequisito()">Adicionar Requisito</button><br><br>
+	<button type="button" name="button" (click)="adicionarRequisito()" [disabled]='curso == undefined'>Adicionar Requisito</button><br><br>
 
-  <button type="button">Cancelar edição</button>
-  <button type="submit">Salvar</button>
+	<button type="submit">Salvar</button>
+  	<button type="button" (click)="voltar()">Voltar</button>
 </form>

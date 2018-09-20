@@ -16,7 +16,7 @@ class ControleDisciplina {
 		// primero, precisamos pegar os dados que vem por stream
 		$dados = json_decode(file_get_contents("php://input"), true);
 
-		$nome = $dados['nome'] ?? "";
+		$nome = $dados['nomeDisciplina'] ?? "";
 		$periodo = $dados['periodo'] ?? 0;
 		$creditos = $dados['creditos'] ?? 0;
 		$cargaHoraria = $dados['cargaHoraria'] ?? 0;
@@ -29,16 +29,13 @@ class ControleDisciplina {
 		// criar um objeto disciplinas
 		$Disciplina = new Modelo\Disciplina($nome, $periodo, $creditos, $cargaHoraria, $idCurso, $dataCadastro);
 
-		$Disciplina->setNome($nome);
-		$Disciplina->setPeriodo($periodo);
-		$Disciplina->setCreditos($creditos);
-		$Disciplina->setCargaHoraria($cargaHoraria);
-		$Disciplina->setIdCurso($idCurso);
-		$Disciplina->setDataCadastro($dataCadastro);
+		$resultado = $this->modelo->salvarDisciplina($Disciplina);
 
+		$requisitos = $dados['requisitos'] ?? array();
 
+		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina->getId(), $requisitos);
 
-		return $this->modelo->salvarDisciplina($Disciplina);
+		return $resultado;
 	}
 
 	public function editar($id){
