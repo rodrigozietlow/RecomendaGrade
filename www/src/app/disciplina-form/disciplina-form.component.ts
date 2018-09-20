@@ -82,6 +82,7 @@ export class DisciplinaFormComponent implements OnInit {
     }
 
     salvarDisciplina(){
+      this.objetoDisciplina.idCurso = this.curso.id;
       const opcoes = {
         headers: new HttpHeaders({
           'Content-Type':  'application/json',
