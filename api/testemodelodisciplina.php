@@ -27,7 +27,7 @@ $modelo = new Modelo\ModeloDisciplina($pdo);
 
 //$controle->editar();
 
-$disciplina = new Modelo\Disciplina (5, 'engenharia', 2, 4, 40, 1, '2018-04-01');
+$disciplina = new Modelo\Disciplina ('engeharia', 2, 4, 40, 1, '2018-04-01');
 
 //$modelo->salvarDisciplina($disciplina);
 echo $modelo->salvarDisciplina($disciplina);

@@ -32,7 +32,7 @@ class ModeloDisciplina {
 	public function salvarDisciplina (Disciplina $disciplina){
 		$stmt = $this->conexao->prepare("INSERT INTO disciplina(nome, periodo, creditos, cargaHoraria, idCurso, dataCadastro) VALUES (:nome, :periodo, :creditos, :cargaHoraria, :idCurso, :dataCadastro)");
 
-		return $stmt->execute(
+		$resultado = $stmt->execute(
 			array(
 				":nome" => $disciplina->getNome(),
 				":periodo" => $disciplina->getPeriodo(),
@@ -42,6 +42,29 @@ class ModeloDisciplina {
 				":dataCadastro" => $disciplina->getDataCadastro()
 			)
 		);
+
+		$disciplina->setId($this->conexao->lastInsertId());
+
+		return $resultado;
+	}
+
+	public function salvarRequisitos($idDisciplina, $requisitos){
+		$resultado = TRUE;
+
+		if(count($requisitos) > 0){
+			$stmt = $this->conexao->prepare("INSERT into requisito(idDisciplina, idRequisito, tipoRequisito) VALUES (:idDisciplina, :idRequisito, :tipoRequisito)");
+
+			foreach ($requisitos as $requisito) {
+				$resultado = $resultado && $stmt->execute(array(
+					":idDisciplina" => $idDisciplina,
+					":idRequisito" => $requisito['idRequisito'],
+					":tipoRequisito" => $requisito['tipo'],
+				));
+			}
+
+		}
+
+		return $resultado;
 	}
 
 

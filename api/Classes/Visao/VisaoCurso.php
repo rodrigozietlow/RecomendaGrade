@@ -32,9 +32,9 @@ class VisaoCurso {
 				//print_r($disciplina);
 				$array = array(
 					"id" => $disciplina->getId(),
-					"nome" => utf8_encode($disciplina->getNome()),
+					"nome" => $disciplina->getNome(),
 					"periodo" => $disciplina->getPeriodo(),
-					"creditos" => utf8_encode($disciplina->getCreditos()),
+					"creditos" => $disciplina->getCreditos(),
 					"cargaHoraria" => $disciplina->getCargaHoraria(),
 					"idCurso" => $curso->getId(),
 					"dataCadastro" => $disciplina->getDataCadastro(),
