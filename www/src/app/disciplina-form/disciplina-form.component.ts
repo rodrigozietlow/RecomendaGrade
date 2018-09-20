@@ -12,7 +12,7 @@ export class DisciplinaFormComponent implements OnInit {
 
   public curso:any;
 
-	public objetoDisciplina = {
+	public objetoDisciplina:any = {
   	  "id" : "",
       "nomeDisciplina" : "",
       "periodo" : "",
@@ -20,18 +20,16 @@ export class DisciplinaFormComponent implements OnInit {
       "cargaHoraria" : "",
       "idCurso" : "",
       "dataCadastro" : "",
-      "requisitos" : [],
-    }
-
-    /* ESTA DANDO ERRO, VERIFICAR
+      "requisitos" : []
+    };
 
     public form:FormGroup = new FormGroup({
-      nomeDisciplina: new FormControl({this.objetoDisciplina.nomeDisciplina, [Validators.required, Validators.maxLength(25)]}),
-      periodo: new FormControl({this.objetoDisciplina.periodo, [Validators.min(1), Validators.required]}),
-      creditos: new FormControl({}),
-      cargaHoraria: new FormControl({this.objetoDisciplina.cargaHoraria, [Validators.required, Validators.min(1), Validators.max(999999.99)]}),
+      nomeDisciplina: new FormControl(this.objetoDisciplina.nomeDisciplina, [Validators.required, Validators.maxLength(25)]),
+      periodo: new FormControl(this.objetoDisciplina.periodo, [Validators.min(1), Validators.required]),
+      creditos: new FormControl(''),
+      cargaHoraria: new FormControl(this.objetoDisciplina.cargaHoraria, [Validators.required, Validators.min(1), Validators.max(999999.99)]),
     });
-    */
+
 
     public possiveis = [];
 
