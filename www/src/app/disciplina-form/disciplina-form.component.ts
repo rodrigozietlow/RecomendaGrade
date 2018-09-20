@@ -11,6 +11,8 @@ export class DisciplinaFormComponent implements OnInit {
 
 
   public curso:any;
+  public form:FormGroup;
+  public possiveis = [];
 
 	public objetoDisciplina:any = {
   	  "id" : "",
@@ -23,15 +25,16 @@ export class DisciplinaFormComponent implements OnInit {
       "requisitos" : []
     };
 
-    public form:FormGroup = new FormGroup({
-      nomeDisciplina: new FormControl(this.objetoDisciplina.nomeDisciplina, [Validators.required, Validators.maxLength(25)]),
-      periodo: new FormControl(this.objetoDisciplina.periodo, [Validators.min(1), Validators.required]),
-      creditos: new FormControl(''),
-      cargaHoraria: new FormControl(this.objetoDisciplina.cargaHoraria, [Validators.required, Validators.min(1), Validators.max(999999.99)]),
-    });
+    public validacao():void{
 
+      this.form = new FormGroup({
+        nomeDisciplina: new FormControl(this.objetoDisciplina.nomeDisciplina, [Validators.required, Validators.maxLength(25)]),
+        periodo: new FormControl(this.objetoDisciplina.periodo, [Validators.min(1),Validators.max(this.curso.qtPeriodos), Validators.required]),
+        creditos: new FormControl(this.objetoDisciplina.creditos, [Validators.min(1),Validators.max(127), Validators.required]),
+        cargaHoraria: new FormControl(this.objetoDisciplina.cargaHoraria, [Validators.min(1),Validators.max(this.curso.cargaMinima), Validators.required]),
+      });
 
-    public possiveis = [];
+    }
 
     constructor(private http: HttpClient) { }
 
@@ -71,6 +74,8 @@ export class DisciplinaFormComponent implements OnInit {
       this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1").subscribe((dados) => {
         this.curso = dados;
         this.carregarDisciplinas();
+        this.validacao();
+        console.log(this.possiveis);
       });
     }
 
