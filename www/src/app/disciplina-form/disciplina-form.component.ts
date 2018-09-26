@@ -17,7 +17,7 @@ export class DisciplinaFormComponent implements OnInit {
 	public possiveis = [];
 	@Input() public objetoDisciplina: any;
 
-	/*
+
 	public objetoDisciplina:any = {
 		"id" : "",
 		"nomeDisciplina" : "",
@@ -28,7 +28,7 @@ export class DisciplinaFormComponent implements OnInit {
 		"dataCadastro" : "",
 		"requisitos" : []
 	};
-	*/
+
 
 	constructor(private http: HttpClient, private location: Location, private router: Router) {
 
@@ -87,6 +87,7 @@ export class DisciplinaFormComponent implements OnInit {
 	}
 
 	salvarDisciplina(){
+		this.objetoDisciplina.idCurso = this.curso.id;
 		const opcoes = {
 			headers: new HttpHeaders({
 				'Content-Type':  'application/json',
