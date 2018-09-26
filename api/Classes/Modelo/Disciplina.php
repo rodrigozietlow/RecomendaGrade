@@ -10,8 +10,9 @@ class Disciplina {
 	private $cargaHoraria;
 	private $idCurso;
 	private $dataCadastro;
+	private $requisitos;
 
-	public function __construct($nome, $periodo, $creditos, $cargaHoraria, $idCurso, $dataCadastro, $id=NULL){
+	public function __construct($nome, $periodo, $creditos, $cargaHoraria, $idCurso, $dataCadastro, $requisitos = [], $id=NULL){
 		$this->id = $id;
 		$this->nome = $nome;
 		$this->periodo = $periodo;
@@ -19,6 +20,7 @@ class Disciplina {
 		$this->cargaHoraria = $cargaHoraria;
 		$this->idCurso = $idCurso;
 		$this->dataCadastro = $dataCadastro;
+		$this->requisitos = $requisitos;
 	}
 
     /**
@@ -185,6 +187,30 @@ class Disciplina {
     public function setDataCadastro($dataCadastro)
     {
         $this->dataCadastro = $dataCadastro;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Requisitos
+     *
+     * @return mixed
+     */
+    public function getRequisitos()
+    {
+        return $this->requisitos;
+    }
+
+    /**
+     * Set the value of Requisitos
+     *
+     * @param mixed requisitos
+     *
+     * @return self
+     */
+    public function setRequisitos($requisitos)
+    {
+        $this->requisitos = $requisitos;
 
         return $this;
     }

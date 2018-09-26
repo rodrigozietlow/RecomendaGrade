@@ -63,7 +63,7 @@ class ControleDisciplina {
 
 		$requisitos = $dados['requisitos'] ?? array();
 
-		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina->getId(), $requisitos);
+		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina, $requisitos);
 
 		return $resultado;
 	}
