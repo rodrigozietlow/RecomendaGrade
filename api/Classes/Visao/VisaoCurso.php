@@ -38,6 +38,7 @@ class VisaoCurso {
 					"cargaHoraria" => $disciplina->getCargaHoraria(),
 					"idCurso" => $curso->getId(),
 					"dataCadastro" => $disciplina->getDataCadastro(),
+					"requisitos" => $disciplina->getRequisitos(),
 				);
 				//print_r($array);
 				$cursoArray['disciplinas'][] = $array;

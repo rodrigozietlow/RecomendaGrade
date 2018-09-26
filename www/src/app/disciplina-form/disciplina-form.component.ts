@@ -24,7 +24,6 @@ export class DisciplinaFormComponent implements OnInit {
 
 	ngOnInit() {
 		this.buscarCurso();
-		console.log(this.objetoDisciplina);
 	}
 
 	public validacao():void{
@@ -52,7 +51,6 @@ export class DisciplinaFormComponent implements OnInit {
 			"idRequisito" : "1",
 			"tipoRequisito" : "1"
 		});
-		console.log(this.objetoDisciplina.requisitos);
 
 	}
 
@@ -61,7 +59,6 @@ export class DisciplinaFormComponent implements OnInit {
 	}
 
 	public removerRequisito(index):void {
-		console.log(index);
 		this.objetoDisciplina.requisitos.splice(index, 1);
 	}
 
@@ -70,7 +67,6 @@ export class DisciplinaFormComponent implements OnInit {
 			this.curso = dados;
 			this.carregarDisciplinas();
 			this.validacao();
-			console.log(this.possiveis);
 		});
 	}
 
