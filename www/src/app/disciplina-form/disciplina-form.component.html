@@ -1,8 +1,8 @@
-<form (submit)="salvarDisciplina()" >
-<div *ngIf="curso != undefined" [formGroup]="form">
+<form (submit)="salvarDisciplina()">
+<div *ngIf="curso != undefined"  [formGroup]="form">
 	<!--nome da disciplina tem que ser unico-->
   Nome da disciplina:
-  <input type="text" name="nomeDisciplina" [(ngModel)]="objetoDisciplina.nomeDisciplina" formControlName="nomeDisciplina"><br>
+  <input type="text" name="nomeDisciplina" id="nomeDisciplina" [(ngModel)]="objetoDisciplina.nomeDisciplina" formControlName="nomeDisciplina"><br>
 
   <div *ngIf="form.controls['nomeDisciplina'].invalid && (form.controls['nomeDisciplina'].dirty || form.controls['nomeDisciplina'].touched)" class="erros">
 		Erros:
@@ -16,7 +16,7 @@
 
 	<!--limitar com a quantidade de periodos inserido em curso-->
   Periodo da Disciplina:
-  <input type="number" name="periodo" [(ngModel)]="objetoDisciplina.periodo" formControlName="periodo"><br>
+  <input type="number" name="periodo" id="periodo" [(ngModel)]="objetoDisciplina.periodo" formControlName="periodo"><br>
 
   <div *ngIf="form.controls['periodo'].invalid && (form.controls['periodo'].dirty || form.controls['periodo'].touched)" class="erros">
 		Erros:
@@ -33,7 +33,7 @@
 
 	<!--limitar com a quantidade de creditos inserido em curso-->
   Quantidade de Créditos:
-  <input type="number" name="creditos" min="1" [(ngModel)]="objetoDisciplina.creditos" formControlName="creditos"><br>
+  <input type="number" name="creditos" id="creditos" min="1" [(ngModel)]="objetoDisciplina.creditos" formControlName="creditos"><br>
 
   <div *ngIf="form.controls['creditos'].invalid && (form.controls['creditos'].dirty || form.controls['creditos'].touched)" class="erros">
 		Erros:
@@ -50,7 +50,7 @@
 
 	<!--limitar com a carga horaria inserido em curso-->
   Carga horária mínima:
-  <input type="number" name="cargaHoraria" min="1" [(ngModel)]="objetoDisciplina.cargaHoraria" formControlName="cargaHoraria"><br>
+  <input type="number" name="cargaHoraria" id="cargaHoraria" min="1" [(ngModel)]="objetoDisciplina.cargaHoraria" formControlName="cargaHoraria"><br>
 
   <div *ngIf="form.controls['cargaHoraria'].invalid && (form.controls['cargaHoraria'].dirty || form.controls['cargaHoraria'].touched)" class="erros">
 		Erros:
@@ -70,13 +70,13 @@
 	<h3>Requisitos</h3>
 	<div class="" *ngFor="let requisito of objetoDisciplina.requisitos; let i = index">
 		<label for="disciplina">Disciplina</label>
-		<!--inserir no name do select: -{{i}} para atualizar a lista-->
+
 		<select  name="idRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].idRequisito">
 			<option *ngFor="let disciplina of possiveis" [value]="disciplina.id">{{disciplina.nome}}</option>
 		</select>
 		<label for="tipoRequisito">Tipo Requisito</label>
 			<select class="form-control" name="requisito.tipo-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].tipo">
-				<option value="">---Selecione---</option>
+				<option value="">Selecione</option>
 				<option value="1">Pré-Requisito</option>
 				<option value="2">Co-Requisito</option>
 			</select>
@@ -85,6 +85,7 @@
 
 	<button type="button" name="button" (click)="adicionarRequisito()" [disabled]='curso == undefined'>Adicionar Requisito</button><br><br>
 
+
 	<button type="submit">Salvar</button>
-  	<button type="button" (click)="voltar()">Voltar</button>
+  	<button type="button" (click)="voltar()" >Voltar</button>
 </form>

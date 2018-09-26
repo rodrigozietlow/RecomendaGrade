@@ -1,10 +1,10 @@
 <h2>Dados do Curso</h2>
 <form (submit)="salvarCurso()" [formGroup]="form">
 	Nome/sigla do curso:
-	<input type="text" name="nomeCurso" [(ngModel)]="curso.nomeCurso" formControlName="nomeCurso"><br>
+	<input type="text" name="nomeCurso" id="nomeCurso" [(ngModel)]="curso.nomeCurso" formControlName="nomeCurso"><br>
 
 	Nome dos períodos:
-	<input type="text" name="nomePeriodos" [(ngModel)]="curso.nomePeriodos" formControlName="nomePeriodos" placeholder="Exemplo: Semestre, Ano">
+	<input type="text" name="nomePeriodos" id="nomePeriodos" [(ngModel)]="curso.nomePeriodos" formControlName="nomePeriodos" placeholder="Exemplo: Semestre, Ano">
 
 	<div *ngIf="form.controls['nomePeriodos'].invalid && (form.controls['nomePeriodos'].dirty || form.controls['nomePeriodos'].touched)" class="erros">
 		Erros:
@@ -19,7 +19,7 @@
 	<br>Total de períodos:
 
 
-	<input type="number" name="qtPeriodos" min="1" [(ngModel)]="curso.qtPeriodos" formControlName="qtPeriodos">
+	<input type="number" name="qtPeriodos" id="qtPeriodos" min="1" [(ngModel)]="curso.qtPeriodos" formControlName="qtPeriodos">
 
 
 	<div *ngIf="form.controls['qtPeriodos'].invalid && (form.controls['qtPeriodos'].dirty || form.controls['qtPeriodos'].touched)" class="erros">
@@ -36,7 +36,7 @@
 	</div>
 
 	<br>Carga horária mínima:
-	<input type="number" name="cargaMinima" min="1" [(ngModel)]="curso.cargaMinima" formControlName="cargaMinima"><br>
+	<input type="number" name="cargaMinima" id="cargaMinima" min="1" [(ngModel)]="curso.cargaMinima" formControlName="cargaMinima"><br>
 
 	<div *ngIf="form.controls['cargaMinima'].invalid && (form.controls['cargaMinima'].dirty || form.controls['cargaMinima'].touched)" class="erros">
 		Erros:
