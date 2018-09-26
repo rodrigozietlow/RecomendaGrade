@@ -18,18 +18,6 @@ export class DisciplinaFormComponent implements OnInit {
 	@Input() public objetoDisciplina: any;
 
 
-	public objetoDisciplina:any = {
-		"id" : "",
-		"nome" : "",
-		"periodo" : "",
-		"creditos" : "",
-		"cargaHoraria" : "",
-		"idCurso" : "",
-		"dataCadastro" : "",
-		"requisitos" : []
-	};
-
-
 	constructor(private http: HttpClient, private location: Location, private router: Router) {
 
 	}
