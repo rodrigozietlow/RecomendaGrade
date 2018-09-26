@@ -20,10 +20,40 @@ class ControleDisciplina {
 		$periodo = $dados['periodo'] ?? 0;
 		$creditos = $dados['creditos'] ?? 0;
 		$cargaHoraria = $dados['cargaHoraria'] ?? 0;
-		$idCurso = $dados['idCurso'] ?? 1;
 		$dataCadastro = date("Y-m-d");
+		$idCurso = $dados['idCurso'] ?? 1;
+
+		$CursoModelo = new Modelo\ModeloCurso($this->modelo->getConexao());
+		$Curso = $CursoModelo->buscarCurso($idCurso);
+		$maxPeriodo = $Curso->getQtPeriodos();
+		$maxCarga = $Curso->getCargaMinima();
 
 		//validação
+
+		// validação do nome das disciplinas
+		if(!$nome || strlen($nome) > 25){
+			header("HTTP/1.1 422 Unprocessable Entity: Nome da disciplina");
+			die();
+		}
+
+		// validação do total de períodos   - ver $maxPeriodo de periodo como puxar
+		if(!is_numeric($periodo) || $periodo <= 0 || $periodo > $maxPeriodo){
+			header("HTTP/1.1 422 Unprocessable Entity: Período da disciplina");
+			die();
+		}
+
+		// validação do total de creditos
+		if(!is_numeric($creditos) || $creditos <= 0 || $creditos > 127){
+			header("HTTP/1.1 422 Unprocessable Entity: Créditos da disciplina");
+			die();
+		}
+
+		// validação da carga Horária
+		if(!is_numeric($cargaHoraria) || $cargaHoraria <= 0 || $cargaHoraria > $maxCarga){
+			header("HTTP/1.1 422 Unprocessable Entity: Carga Horária da disciplina");
+			die();
+		}
+
 
 
 		// criar um objeto disciplinas
