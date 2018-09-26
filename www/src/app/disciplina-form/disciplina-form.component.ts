@@ -72,7 +72,7 @@ export class DisciplinaFormComponent implements OnInit {
 
 	salvarDisciplina(){
 		this.objetoDisciplina.idCurso = this.curso.id;
-		if(nomeDisciplina.value == "" || periodo.value == 0 || creditos.value == 0 || cargaHoraria.value == 0){
+		if(nome.value == "" || periodo.value == 0 || creditos.value == 0 || cargaHoraria.value == 0){
 
 			alert('Você deve Prencher todos os campos');
 		}else{
