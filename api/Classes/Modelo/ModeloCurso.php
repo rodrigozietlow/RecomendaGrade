@@ -66,4 +66,8 @@ class ModeloCurso {
 		);
 	}
 
+
+	public getConexao(){
+		return $this->conexao;
+	}
 }
