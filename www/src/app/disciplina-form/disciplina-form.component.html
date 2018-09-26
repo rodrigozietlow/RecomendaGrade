@@ -1,6 +1,7 @@
-<form (submit)="salvarDisciplina()" >
-<div *ngIf="curso != undefined" [formGroup]="form">
+<form (submit)="salvarDisciplina()">
+<div *ngIf="curso != undefined"  [formGroup]="form">
 	<!--nome da disciplina tem que ser unico-->
+
   Nome da Disciplina:
   <input type="text" name="nome" [(ngModel)]="objetoDisciplina.nome" formControlName="nome"><br>
 
@@ -16,7 +17,7 @@
 
 	<!--limitar com a quantidade de periodos inserido em curso-->
   Periodo da Disciplina:
-  <input type="number" name="periodo" [(ngModel)]="objetoDisciplina.periodo" formControlName="periodo"><br>
+  <input type="number" name="periodo" id="periodo" [(ngModel)]="objetoDisciplina.periodo" formControlName="periodo"><br>
 
   <div *ngIf="form.controls['periodo'].invalid && (form.controls['periodo'].dirty || form.controls['periodo'].touched)" class="erros">
 		Erros:
@@ -33,7 +34,7 @@
 
 	<!--limitar com a quantidade de creditos inserido em curso-->
   Quantidade de Créditos:
-  <input type="number" name="creditos" min="1" [(ngModel)]="objetoDisciplina.creditos" formControlName="creditos"><br>
+  <input type="number" name="creditos" id="creditos" min="1" [(ngModel)]="objetoDisciplina.creditos" formControlName="creditos"><br>
 
   <div *ngIf="form.controls['creditos'].invalid && (form.controls['creditos'].dirty || form.controls['creditos'].touched)" class="erros">
 		Erros:
@@ -49,8 +50,10 @@
 	</div>
 
 	<!--limitar com a carga horaria inserido em curso-->
+
   Carga Horária:
   <input type="number" name="cargaHoraria" min="1" [(ngModel)]="objetoDisciplina.cargaHoraria" formControlName="cargaHoraria"><br>
+
 
   <div *ngIf="form.controls['cargaHoraria'].invalid && (form.controls['cargaHoraria'].dirty || form.controls['cargaHoraria'].touched)" class="erros">
 		Erros:
@@ -87,6 +90,7 @@
 
 	<button type="button" name="button" (click)="adicionarRequisito()" [disabled]='curso == undefined'>Adicionar Requisito</button><br><br>
 
+
 	<button type="submit">Salvar</button>
-  	<button type="button" (click)="voltar()">Voltar</button>
+  	<button type="button" (click)="voltar()" >Voltar</button>
 </form>

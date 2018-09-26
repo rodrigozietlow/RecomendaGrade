@@ -72,25 +72,35 @@ export class DisciplinaFormComponent implements OnInit {
 
 	salvarDisciplina(){
 		this.objetoDisciplina.idCurso = this.curso.id;
-		const opcoes = {
-			headers: new HttpHeaders({
-				'Content-Type':  'application/json',
-			})
-		};
-		if(this.objetoDisciplina.id != ""){
-			this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina/"+this.objetoDisciplina.id, this.objetoDisciplina, opcoes).subscribe((dados) => {
-				console.log(dados);
-				alert("Editado com sucesso!");
-				this.router.navigateByUrl('/curso/disciplinas');
-			});
+		if(nome.value == "" || periodo.value == 0 || creditos.value == 0 || cargaHoraria.value == 0){
+
+			alert('Você deve Prencher todos os campos');
+		}else{
+
+			const opcoes = {
+				headers: new HttpHeaders({
+					'Content-Type':  'application/json',
+				})
+			};
+			if(this.objetoDisciplina.id != ""){
+				this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina/"+this.objetoDisciplina.id, this.objetoDisciplina, opcoes).subscribe((dados) => {
+					console.log(dados);
+					alert("Editado com sucesso!");
+					this.router.navigateByUrl('/curso/disciplinas');
+				});
+			}
+			else{
+				this.http.post<any>("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina", this.objetoDisciplina, opcoes).subscribe((dados) => {
+					console.log(dados);
+					alert("Salvo com sucesso!");
+					this.router.navigateByUrl('/curso/disciplinas');
+				});
+			}
+
+
+
 		}
-		else{
-			this.http.post<any>("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina", this.objetoDisciplina, opcoes).subscribe((dados) => {
-				console.log(dados);
-				alert("Salvo com sucesso!");
-				this.router.navigateByUrl('/curso/disciplinas');
-			});
-		}
+
 	}
 
 	voltar():void {
