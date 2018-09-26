@@ -18,18 +18,6 @@ export class DisciplinaFormComponent implements OnInit {
 	@Input() public objetoDisciplina: any;
 
 
-	public objetoDisciplina:any = {
-		"id" : "",
-		"nomeDisciplina" : "",
-		"periodo" : "",
-		"creditos" : "",
-		"cargaHoraria" : "",
-		"idCurso" : "",
-		"dataCadastro" : "",
-		"requisitos" : []
-	};
-
-
 	constructor(private http: HttpClient, private location: Location, private router: Router) {
 
 	}
@@ -42,7 +30,7 @@ export class DisciplinaFormComponent implements OnInit {
 	public validacao():void{
 
 		this.form = new FormGroup({
-			nomeDisciplina: new FormControl(this.objetoDisciplina.nomeDisciplina, [Validators.required, Validators.maxLength(25)]),
+			nome: new FormControl(this.objetoDisciplina.nome, [Validators.required, Validators.maxLength(25)]),
 			periodo: new FormControl(this.objetoDisciplina.periodo, [Validators.min(1),Validators.max(this.curso.qtPeriodos), Validators.required]),
 			creditos: new FormControl(this.objetoDisciplina.creditos, [Validators.min(1),Validators.max(127), Validators.required]),
 			cargaHoraria: new FormControl(this.objetoDisciplina.cargaHoraria, [Validators.min(1),Validators.max(this.curso.cargaMinima), Validators.required]),
