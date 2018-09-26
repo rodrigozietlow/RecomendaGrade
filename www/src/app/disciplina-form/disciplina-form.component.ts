@@ -50,7 +50,7 @@ export class DisciplinaFormComponent implements OnInit {
 
 		this.objetoDisciplina.requisitos.push({
 			"idRequisito" : "1",
-			"tipo" : "1"
+			"tipoRequisito" : "1"
 		});
 		console.log(this.objetoDisciplina.requisitos);
 

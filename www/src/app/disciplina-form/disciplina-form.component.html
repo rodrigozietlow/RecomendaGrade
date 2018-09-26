@@ -75,7 +75,7 @@
 			<option *ngFor="let disciplina of possiveis" [value]="disciplina.id">{{disciplina.nome}}</option>
 		</select>
 		<label for="tipoRequisito">Tipo Requisito</label>
-			<select class="form-control" name="requisito.tipo-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].tipo">
+			<select class="form-control" name="requisito.tipoRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].tipoRequisito">
 				<option value="">---Selecione---</option>
 				<option value="1">Pré-Requisito</option>
 				<option value="2">Co-Requisito</option>

@@ -23,7 +23,19 @@ class ModeloDisciplina {
 		$disciplinas = array();
 
 		while($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)){
-			$disciplinas[] = new Disciplina($resultado['nome'], $resultado['periodo'], $resultado['creditos'], $resultado['cargaHoraria'], $resultado['idCurso'], $resultado['dataCadastro'], $resultado['id']);
+			// buscar requisitos
+			$requisitos = array();
+
+			$stmtReq = $this->conexao->prepare("SELECT * FROM requisito WHERE idDisciplina = :id");
+			$stmtReq->execute(array(":id" => $resultado['id']));
+
+			while($resultadoReq = $stmtReq->fetch(\PDO::FETCH_ASSOC)){
+				$requisitos[] = $resultadoReq;
+			}
+
+			$disciplinas[] = new Disciplina($resultado['nome'], $resultado['periodo'], $resultado['creditos'], $resultado['cargaHoraria'], $resultado['idCurso'], $resultado['dataCadastro'], $requisitos, $resultado['id']);
+
+
 		}
 
 		return $disciplinas;
@@ -48,18 +60,24 @@ class ModeloDisciplina {
 		return $resultado;
 	}
 
-	public function salvarRequisitos($idDisciplina, $requisitos){
+	public function salvarRequisitos($disciplina, $requisitos){
 		$resultado = TRUE;
 
 		if(count($requisitos) > 0){
 			$stmt = $this->conexao->prepare("INSERT into requisito(idDisciplina, idRequisito, tipoRequisito) VALUES (:idDisciplina, :idRequisito, :tipoRequisito)");
 
 			foreach ($requisitos as $requisito) {
-				$resultado = $resultado && $stmt->execute(array(
-					":idDisciplina" => $idDisciplina,
+				$requisitoObj = array(
+					":idDisciplina" => $disciplina->getId(),
 					":idRequisito" => $requisito['idRequisito'],
 					":tipoRequisito" => $requisito['tipo'],
-				));
+				);
+
+				$novosRequisitos = $disciplina->getRequisitos();
+				$novosRequisitos[] = $requisitoObj;
+				$disciplina->setRequisitos($novosRequisitos);
+
+				$resultado = $resultado && $stmt->execute($requisitoObj);
 			}
 
 		}
