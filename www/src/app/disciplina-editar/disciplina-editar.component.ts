@@ -10,7 +10,7 @@ export class DisciplinaEditarComponent implements OnInit {
 
 	public disciplina:any = {
 		"id" : "",
-		"nomeDisciplina" : "",
+		"nome" : "",
 		"periodo" : "",
 		"creditos" : "",
 		"cargaHoraria" : "",

@@ -16,7 +16,7 @@ class ControleDisciplina {
 		// primero, precisamos pegar os dados que vem por stream
 		$dados = json_decode(file_get_contents("php://input"), true);
 
-		$nome = $dados['nomeDisciplina'] ?? "";
+		$nome = $dados['nome'] ?? "";
 		$periodo = $dados['periodo'] ?? 0;
 		$creditos = $dados['creditos'] ?? 0;
 		$cargaHoraria = $dados['cargaHoraria'] ?? 0;

@@ -9,7 +9,7 @@ export class DisciplinaCadastrarComponent implements OnInit {
 
 	public disciplinaBranco:any = {
 		"id" : "",
-		"nomeDisciplina" : "",
+		"nome" : "",
 		"periodo" : "",
 		"creditos" : "",
 		"cargaHoraria" : "",

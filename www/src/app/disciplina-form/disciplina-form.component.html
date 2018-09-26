@@ -2,14 +2,14 @@
 <div *ngIf="curso != undefined" [formGroup]="form">
 	<!--nome da disciplina tem que ser unico-->
   Nome da Disciplina:
-  <input type="text" name="nomeDisciplina" [(ngModel)]="objetoDisciplina.nomeDisciplina" formControlName="nomeDisciplina"><br>
+  <input type="text" name="nome" [(ngModel)]="objetoDisciplina.nome" formControlName="nome"><br>
 
-  <div *ngIf="form.controls['nomeDisciplina'].invalid && (form.controls['nomeDisciplina'].dirty || form.controls['nomeDisciplina'].touched)" class="erros">
+  <div *ngIf="form.controls['nome'].invalid && (form.controls['nome'].dirty || form.controls['nome'].touched)" class="erros">
 		Erros:
-		<div *ngIf="form.controls['nomeDisciplina'].errors.required">
+		<div *ngIf="form.controls['nome'].errors.required">
 			Você deve preencher o nome das disciplinas
 		</div>
-		<div *ngIf="form.controls['nomeDisciplina'].errors.maxlength">
+		<div *ngIf="form.controls['nome'].errors.maxlength">
 			Informe um nome para a disciplina com no máximo de 25 caracteres
 		</div>
 	</div>
