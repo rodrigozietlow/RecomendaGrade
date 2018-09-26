@@ -30,7 +30,7 @@ export class DisciplinaFormComponent implements OnInit {
 	};
 	*/
 
-	constructor(private http: HttpClient) {
+	constructor(private http: HttpClient, private location: Location, private router: Router) {
 
 	}
 
