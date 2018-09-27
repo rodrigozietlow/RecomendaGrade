@@ -16,7 +16,7 @@
 	</div>
 
 	<!--limitar com a quantidade de periodos inserido em curso-->
-  Periodo da Disciplina:
+  Período da Disciplina:
   <input type="number" name="periodo" id="periodo" [(ngModel)]="objetoDisciplina.periodo" formControlName="periodo"><br>
 
   <div *ngIf="form.controls['periodo'].invalid && (form.controls['periodo'].dirty || form.controls['periodo'].touched)" class="erros">
@@ -33,7 +33,7 @@
 	</div>
 
 	<!--limitar com a quantidade de creditos inserido em curso-->
-  Quantidade de Créditos:
+  Quantidade de Créditos Semanais:
   <input type="number" name="creditos" id="creditos" min="1" [(ngModel)]="objetoDisciplina.creditos" formControlName="creditos"><br>
 
   <div *ngIf="form.controls['creditos'].invalid && (form.controls['creditos'].dirty || form.controls['creditos'].touched)" class="erros">
@@ -51,7 +51,7 @@
 
 	<!--limitar com a carga horaria inserido em curso-->
 
-  Carga Horária:
+  Carga Horária Total (em horas):
   <input type="number" name="cargaHoraria" min="1" [(ngModel)]="objetoDisciplina.cargaHoraria" formControlName="cargaHoraria"><br>
 
 

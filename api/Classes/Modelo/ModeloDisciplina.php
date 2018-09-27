@@ -70,7 +70,7 @@ class ModeloDisciplina {
 				$requisitoObj = array(
 					":idDisciplina" => $disciplina->getId(),
 					":idRequisito" => $requisito['idRequisito'],
-					":tipoRequisito" => $requisito['tipo'],
+					":tipoRequisito" => $requisito['tipoRequisito'],
 				);
 
 				$novosRequisitos = $disciplina->getRequisitos();
@@ -83,6 +83,11 @@ class ModeloDisciplina {
 		}
 
 		return $resultado;
+	}
+
+	public function excluirRequisitos($disciplina){
+		$stmt = $this->conexao->prepare("DELETE FROM requisito WHERE idDisciplina = :idDisciplina");
+		return $stmt->execute(array(":idDisciplina" => $disciplina->getId()));
 	}
 
 
