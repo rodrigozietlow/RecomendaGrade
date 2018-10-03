@@ -44,6 +44,8 @@ export class DisciplinaFormComponent implements OnInit {
 				"periodo": i.periodo
 			});
 		}
+
+		console.log(this.curso);
 	}
 
 	public adicionarRequisito():void {
