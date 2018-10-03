@@ -8,6 +8,9 @@ class ModeloCurso {
 	public function __construct(\PDO $conexao){
 		$this->conexao = $conexao;
 	}
+	public function getConexao(){
+		return $this->conexao;
+	}
 
 	public function buscarCurso($id){
 		$stmt = $this->conexao->prepare("SELECT * FROM curso WHERE id = :id"); // buscar as informações do curso
@@ -66,8 +69,4 @@ class ModeloCurso {
 		);
 	}
 
-
-	public getConexao(){
-		return $this->conexao;
-	}
 }

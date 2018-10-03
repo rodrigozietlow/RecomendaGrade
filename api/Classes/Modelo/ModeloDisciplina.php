@@ -9,6 +9,9 @@ class ModeloDisciplina {
 	public function __construct(\PDO $conexao){
 		$this->conexao = $conexao;
 	}
+	public function getConexao(){
+		return $this->conexao;
+	}
 
 	public function buscarDisciplina($id){
 		// TODO
