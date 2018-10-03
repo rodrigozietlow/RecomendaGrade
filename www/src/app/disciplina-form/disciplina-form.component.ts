@@ -41,6 +41,7 @@ export class DisciplinaFormComponent implements OnInit {
 			this.possiveis.push({
 				"id" : i.id,
 				"nome": i.nome
+				"periodo": i.periodo
 			});
 		}
 	}
