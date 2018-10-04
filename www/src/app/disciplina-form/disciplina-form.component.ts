@@ -16,6 +16,8 @@ export class DisciplinaFormComponent implements OnInit {
 	public curso:any;
 	public form:FormGroup;
 	public possiveis = [];
+	public listPreRequisito = [];
+	public listCoRequisito = [];
 	@Input() public objetoDisciplina: any;
 
 
@@ -49,6 +51,17 @@ export class DisciplinaFormComponent implements OnInit {
 		});
 
 	}
+
+
+	public getPossiveis(tipo: number):any[]{
+		return this.possiveis.filter((possivel) => {
+			if(possivel.periodo < this.objetoDisciplina.periodo && tipo == 1) return true; // pre-requisito
+			else if(possivel.periodo == this.objetoDisciplina.periodo && tipo == 2 && possivel.id != this.objetoDisciplina.id) return true; // co-requisito
+			else return false;
+			}
+		);
+	}
+
 	public carregarDisciplinas():void{
 		for(let i of this.provider.curso.disciplinas){
 			this.possiveis.push({
@@ -59,6 +72,7 @@ export class DisciplinaFormComponent implements OnInit {
 		}
 
 	}
+
 
 	public adicionarRequisito():void {
 
@@ -90,6 +104,7 @@ export class DisciplinaFormComponent implements OnInit {
 				})
 			};
 			if(this.objetoDisciplina.id != ""){
+		
 				this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina/"+this.objetoDisciplina.id, this.objetoDisciplina, opcoes).subscribe((dados) => {
 					console.log(dados);
 					alert("Editado com sucesso!");

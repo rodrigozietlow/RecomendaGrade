@@ -27,6 +27,7 @@ export class DisciplinaEditarComponent implements OnInit {
 		let id = +this.route.snapshot.paramMap.get('id');
 
 		this.disciplina = this.buscarDisciplina(id);
+
 	}
 
 
@@ -49,9 +50,11 @@ export class DisciplinaEditarComponent implements OnInit {
 				let disciplina = this.provider.curso.disciplinas[i];
 				console.log(this.provider.curso);
 				if(+disciplina.id == idDisc){
-					console.log("entrou if");
 					this.disciplina = disciplina;
 				}
 			}
+
+			console.log(this.disciplina);
+
 		}
 	}
