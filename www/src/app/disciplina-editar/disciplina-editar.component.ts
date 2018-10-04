@@ -31,7 +31,6 @@ export class DisciplinaEditarComponent implements OnInit {
 
 	buscarDisciplina(idDisc:number):any{
 		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1").subscribe((dados) => {
-			console.log(dados);
 			for(let i = 0; i<dados.disciplinas.length; i++){
 				let disciplina = dados.disciplinas[i];
 				console.log(disciplina);
