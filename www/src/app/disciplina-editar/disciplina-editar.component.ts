@@ -26,6 +26,7 @@ export class DisciplinaEditarComponent implements OnInit {
 		let id = +this.route.snapshot.paramMap.get('id');
 		console.log(id);
 		this.disciplina = this.buscarDisciplina(id);
+
 	}
 
 
@@ -33,12 +34,12 @@ export class DisciplinaEditarComponent implements OnInit {
 		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1").subscribe((dados) => {
 			for(let i = 0; i<dados.disciplinas.length; i++){
 				let disciplina = dados.disciplinas[i];
-				console.log(disciplina);
 				if(+disciplina.id == idDisc){
-					console.log("entrou if");
 					this.disciplina = disciplina;
 				}
 			}
+
+			console.log(this.disciplina);
 
 		});
 	}

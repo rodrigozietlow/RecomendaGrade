@@ -64,4 +64,6 @@ export class CursoFormComponent implements OnInit {
 		this.location.back();
 	}
 
+	
+
 }

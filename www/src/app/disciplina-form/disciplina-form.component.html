@@ -1,97 +1,97 @@
 <form (submit)="salvarDisciplina()">
-<div *ngIf="curso != undefined"  [formGroup]="form">
-	<!--nome da disciplina tem que ser unico-->
+    <div *ngIf="curso != undefined"  [formGroup]="form">
+        <!--nome da disciplina tem que ser unico-->
 
-  Nome da Disciplina:
-  <input type="text" name="nome" [(ngModel)]="objetoDisciplina.nome" formControlName="nome"><br>
+        Nome da Disciplina:
+        <input type="text" name="nome" [(ngModel)]="objetoDisciplina.nome" formControlName="nome"><br>
 
-  <div *ngIf="form.controls['nome'].invalid && (form.controls['nome'].dirty || form.controls['nome'].touched)" class="erros">
-		Erros:
-		<div *ngIf="form.controls['nome'].errors.required">
-			Você deve preencher o nome das disciplinas
-		</div>
-		<div *ngIf="form.controls['nome'].errors.maxlength">
-			Informe um nome para a disciplina com no máximo de 25 caracteres
-		</div>
-	</div>
+        <div *ngIf="form.controls['nome'].invalid && (form.controls['nome'].dirty || form.controls['nome'].touched)" class="erros">
+            Erros:
+            <div *ngIf="form.controls['nome'].errors.required">
+                Você deve preencher o nome das disciplinas
+            </div>
+            <div *ngIf="form.controls['nome'].errors.maxlength">
+                Informe um nome para a disciplina com no máximo de 25 caracteres
+            </div>
+        </div>
 
-	<!--limitar com a quantidade de periodos inserido em curso-->
-  {{curso.nomePeriodos}} da Disciplina:
-  <input type="number" name="periodo" id="periodo" [(ngModel)]="objetoDisciplina.periodo" formControlName="periodo"><br>
+        <!--limitar com a quantidade de periodos inserido em curso-->
+        {{curso.nomePeriodos}} da Disciplina:
+        <input type="number" name="periodo" id="periodo" [(ngModel)]="objetoDisciplina.periodo" formControlName="periodo"><br>
 
-  <div *ngIf="form.controls['periodo'].invalid && (form.controls['periodo'].dirty || form.controls['periodo'].touched)" class="erros">
-		Erros:
-		<div *ngIf="form.controls['periodo'].errors.required">
-			Você deve preencher a quantidade
-		</div>
-		<div *ngIf="form.controls['periodo'].errors.max">
-			O curso possui o máximo de {{curso.qtPeriodos}} períodos. Informe um período válido para este curso
-		</div>
-		<div *ngIf="form.controls['periodo'].errors.min">
-			Mínimo 1 período
-		</div>
-	</div>
+        <div *ngIf="form.controls['periodo'].invalid && (form.controls['periodo'].dirty || form.controls['periodo'].touched)" class="erros">
+            Erros:
+            <div *ngIf="form.controls['periodo'].errors.required">
+                Você deve preencher a quantidade
+            </div>
+            <div *ngIf="form.controls['periodo'].errors.max">
+                O curso possui o máximo de {{curso.qtPeriodos}} períodos. Informe um período válido para este curso
+            </div>
+            <div *ngIf="form.controls['periodo'].errors.min">
+                Mínimo 1 período
+            </div>
+        </div>
 
-	<!--limitar com a quantidade de creditos inserido em curso-->
-  Quantidade de Créditos Semanais:
-  <input type="number" name="creditos" id="creditos" min="1" [(ngModel)]="objetoDisciplina.creditos" formControlName="creditos"><br>
+        <!--limitar com a quantidade de creditos inserido em curso-->
+        Quantidade de Créditos Semanais:
+        <input type="number" name="creditos" id="creditos" min="1" [(ngModel)]="objetoDisciplina.creditos" formControlName="creditos"><br>
 
-  <div *ngIf="form.controls['creditos'].invalid && (form.controls['creditos'].dirty || form.controls['creditos'].touched)" class="erros">
-		Erros:
-		<div *ngIf="form.controls['creditos'].errors.required">
-			Você deve preencher a quantidade de créditos
-		</div>
-		<div *ngIf="form.controls['creditos'].errors.max">
-			Máximo 127 créditos
-		</div>
-		<div *ngIf="form.controls['creditos'].errors.min">
-			Mínimo 1 crédito
-		</div>
-	</div>
+        <div *ngIf="form.controls['creditos'].invalid && (form.controls['creditos'].dirty || form.controls['creditos'].touched)" class="erros">
+            Erros:
+            <div *ngIf="form.controls['creditos'].errors.required">
+                Você deve preencher a quantidade de créditos
+            </div>
+            <div *ngIf="form.controls['creditos'].errors.max">
+                Máximo 127 créditos
+            </div>
+            <div *ngIf="form.controls['creditos'].errors.min">
+                Mínimo 1 crédito
+            </div>
+        </div>
 
-	<!--limitar com a carga horaria inserido em curso-->
+        <!--limitar com a carga horaria inserido em curso-->
 
-  Carga Horária Total (em horas):
-  <input type="number" name="cargaHoraria" min="1" [(ngModel)]="objetoDisciplina.cargaHoraria" formControlName="cargaHoraria"><br>
-
-
-  <div *ngIf="form.controls['cargaHoraria'].invalid && (form.controls['cargaHoraria'].dirty || form.controls['cargaHoraria'].touched)" class="erros">
-		Erros:
-		<div *ngIf="form.controls['cargaHoraria'].errors.required">
-			Você deve preencher a carga horária total da disciplina
-		</div>
-		<div *ngIf="form.controls['cargaHoraria'].errors.max">
-			Máximo {{curso.cargaMinima}} horas de carga horária
-		</div>
-		<div *ngIf="form.controls['cargaHoraria'].errors.min">
-			Mínimo 1 hora
-		</div>
-	</div>
-</div><!--fim da div undefined-->
+        Carga Horária Total (em horas):
+        <input type="number" name="cargaHoraria" min="1" [(ngModel)]="objetoDisciplina.cargaHoraria" formControlName="cargaHoraria"><br>
 
 
-	<h3>Requisitos</h3>
-	<div *ngIf="objetoDisciplina != undefined">
-		<div class="" *ngFor="let requisito of objetoDisciplina.requisitos; let i = index">
-			<label for="tipoRequisito">Tipo Requisito</label>
-				<select class="form-control" name="requisito.tipoRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].tipoRequisito">
-					<option value="">---Selecione---</option>
-					<option value="1">Pré-Requisito</option>
-					<option value="2">Co-Requisito</option>
-				</select>
-			<label for="disciplina">Disciplina</label>
-			<!--inserir no name do select: -{{i}} para atualizar a lista-->
-			<select  name="idRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].idRequisito">
-				<option *ngFor="let disciplina of possiveis" [value]="disciplina.id">[{{disciplina.periodo}}]-{{disciplina.nome}}</option>
-			</select>
-
-				<button type="button" name="button" (click)="removerRequisito(i)">Remover</button>
-		</div>
-	</div>
-
-	<button type="button" name="button" (click)="adicionarRequisito()" [disabled]='curso == undefined'>Adicionar Requisito</button><br><br>
+        <div *ngIf="form.controls['cargaHoraria'].invalid && (form.controls['cargaHoraria'].dirty || form.controls['cargaHoraria'].touched)" class="erros">
+            Erros:
+            <div *ngIf="form.controls['cargaHoraria'].errors.required">
+                Você deve preencher a carga horária total da disciplina
+            </div>
+            <div *ngIf="form.controls['cargaHoraria'].errors.max">
+                Máximo {{curso.cargaMinima}} horas de carga horária
+            </div>
+            <div *ngIf="form.controls['cargaHoraria'].errors.min">
+                Mínimo 1 hora
+            </div>
+        </div>
+    </div><!--fim da div undefined-->
 
 
-	<button type="submit">Salvar</button>
-  	<button type="button" (click)="voltar()" >Voltar</button>
+    <h3>Requisitos</h3>
+    <div *ngIf="objetoDisciplina != undefined">
+        <div class="" *ngFor="let requisito of objetoDisciplina.requisitos; let i = index">
+            <label for="tipoRequisito">Tipo Requisito</label>
+            <select class="form-control" name="requisito.tipoRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].tipoRequisito">
+                <option value="">---Selecione---</option>
+                <option value="1">Pré-Requisito</option>
+                <option value="2">Co-Requisito</option>
+            </select>
+            <label for="disciplina">Disciplina</label>
+            <!--inserir no name do select: -{{i}} para atualizar a lista-->
+            <select  name="idRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].idRequisito">
+                <option *ngFor="let disciplina of getPossiveis(objetoDisciplina.requisitos[i].tipoRequisito)" [value]="disciplina.id">[{{disciplina.periodo}}]-{{disciplina.nome}}</option>
+            </select>
+
+            <button type="button" name="button" (click)="removerRequisito(i)">Remover</button>
+        </div>
+    </div>
+
+    <button type="button" name="button" (click)="adicionarRequisito()" [disabled]='curso == undefined'>Adicionar Requisito</button><br><br>
+
+
+    <button type="submit">Salvar</button>
+    <button type="button" (click)="voltar()" >Voltar</button>
 </form>

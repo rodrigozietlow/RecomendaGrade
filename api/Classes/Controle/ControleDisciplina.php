@@ -12,7 +12,6 @@ class ControleDisciplina {
 
 	public function salvar(){
 
-
 		// primero, precisamos pegar os dados que vem por stream
 		$dados = json_decode(file_get_contents("php://input"), true);
 
