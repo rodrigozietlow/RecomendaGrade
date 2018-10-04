@@ -9,3 +9,13 @@
 .color-inherit {
 	color: inherit;
 }
+
+.bg-verdinho {
+	background-color: #A1DBB2;
+}
+
+.page-footer {
+	position: absolute;
+	bottom:0;
+	width:100%;
+}
