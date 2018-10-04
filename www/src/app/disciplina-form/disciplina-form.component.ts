@@ -40,7 +40,7 @@ export class DisciplinaFormComponent implements OnInit {
 		for(let i of this.curso.disciplinas){
 			this.possiveis.push({
 				"id" : i.id,
-				"nome": i.nome
+				"nome": i.nome,
 				"periodo": i.periodo
 			});
 		}
