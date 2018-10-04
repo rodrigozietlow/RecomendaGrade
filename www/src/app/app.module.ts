@@ -13,6 +13,7 @@ import { CursoDisciplinasComponent } from './curso-disciplinas/curso-disciplinas
 import { RoutingModule } from './routing.module';
 import { DisciplinaEditarComponent } from './disciplina-editar/disciplina-editar.component';
 import { DisciplinaCadastrarComponent } from './disciplina-cadastrar/disciplina-cadastrar.component';
+import { ProviderService } from './provider.service';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { DisciplinaCadastrarComponent } from './disciplina-cadastrar/disciplina-
 	RoutingModule,
 	ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ ProviderService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

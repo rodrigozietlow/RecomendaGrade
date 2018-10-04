@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProviderService } from '../provider.service';
 
 @Component({
 	selector: 'app-disciplina-cadastrar',
@@ -17,7 +18,7 @@ export class DisciplinaCadastrarComponent implements OnInit {
 		"dataCadastro" : "",
 		"requisitos" : []
 	};
-	constructor() { }
+	constructor(public provider: ProviderService) { }
 
 	ngOnInit() {
 	}

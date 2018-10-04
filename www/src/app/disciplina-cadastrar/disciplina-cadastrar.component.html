@@ -1,2 +1,3 @@
-<h2>Cadastrar disciplinas do curso </h2>
+<div *ngIf="provider.curso != undefined">
+	<h2>Cadastrar Disciplina no curso  {{provider.curso.nomeCurso}}</h2>
 <app-disciplina-form [objetoDisciplina]="disciplinaBranco"></app-disciplina-form>

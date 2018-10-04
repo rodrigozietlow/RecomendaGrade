@@ -1,7 +1,8 @@
 <form (submit)="salvarDisciplina()">
-<div *ngIf="curso != undefined"  [formGroup]="form">
-	<!--nome da disciplina tem que ser unico-->
 
+<div *ngIf="provider.curso != undefined"  [formGroup]="form">
+	<!--nome da disciplina tem que ser unico-->
+	
   Nome da Disciplina:
   <input type="text" name="nome" [(ngModel)]="objetoDisciplina.nome" formControlName="nome"><br>
 
@@ -16,7 +17,7 @@
 	</div>
 
 	<!--limitar com a quantidade de periodos inserido em curso-->
-  {{curso.nomePeriodos}} da Disciplina:
+  {{provider.curso.nomePeriodos}} da Disciplina:
   <input type="number" name="periodo" id="periodo" [(ngModel)]="objetoDisciplina.periodo" formControlName="periodo"><br>
 
   <div *ngIf="form.controls['periodo'].invalid && (form.controls['periodo'].dirty || form.controls['periodo'].touched)" class="erros">
@@ -25,7 +26,7 @@
 			Você deve preencher a quantidade
 		</div>
 		<div *ngIf="form.controls['periodo'].errors.max">
-			O curso possui o máximo de {{curso.qtPeriodos}} períodos. Informe um período válido para este curso
+			O curso possui o máximo de {{provider.curso.qtPeriodos}} períodos. Informe um período válido para este curso
 		</div>
 		<div *ngIf="form.controls['periodo'].errors.min">
 			Mínimo 1 período
@@ -61,7 +62,7 @@
 			Você deve preencher a carga horária total da disciplina
 		</div>
 		<div *ngIf="form.controls['cargaHoraria'].errors.max">
-			Máximo {{curso.cargaMinima}} horas de carga horária
+			Máximo {{provider.curso.cargaMinima}} horas de carga horária
 		</div>
 		<div *ngIf="form.controls['cargaHoraria'].errors.min">
 			Mínimo 1 hora
@@ -89,7 +90,7 @@
 		</div>
 	</div>
 
-	<button type="button" name="button" (click)="adicionarRequisito()" [disabled]='curso == undefined'>Adicionar Requisito</button><br><br>
+	<button type="button" name="button" (click)="adicionarRequisito()" [disabled]='provider.curso == undefined'>Adicionar Requisito</button><br><br>
 
 
 	<button type="submit">Salvar</button>

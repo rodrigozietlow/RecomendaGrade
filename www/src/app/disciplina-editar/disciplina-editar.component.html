@@ -1,2 +1,5 @@
-<h2>Editar Disciplina do curso </h2>
-<app-disciplina-form [objetoDisciplina]="disciplina"></app-disciplina-form>
+<div *ngIf="provider.curso != undefined">
+
+	<h2>Editar Disciplina do curso  {{provider.curso.nomeCurso}}</h2>
+	<app-disciplina-form [objetoDisciplina]="disciplina"></app-disciplina-form>
+</div>

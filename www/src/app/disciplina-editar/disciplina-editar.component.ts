@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ProviderService } from '../provider.service';
+
 
 @Component({
 	selector: 'app-disciplina-editar',
@@ -20,28 +21,37 @@ export class DisciplinaEditarComponent implements OnInit {
 		"requisitos" : []
 	};
 
-	constructor(private route: ActivatedRoute, private http: HttpClient) { }
+	constructor(private route: ActivatedRoute, public provider: ProviderService) { }
 
 	ngOnInit(): void{
 		let id = +this.route.snapshot.paramMap.get('id');
-		console.log(id);
+
 		this.disciplina = this.buscarDisciplina(id);
 	}
 
 
 	buscarDisciplina(idDisc:number):any{
-		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1").subscribe((dados) => {
-			for(let i = 0; i<dados.disciplinas.length; i++){
-				let disciplina = dados.disciplinas[i];
-				console.log(disciplina);
+		if(this.provider.curso == undefined || this.provider.observable != undefined){
+			this.provider.observable.subscribe((dados) => {
+
+				//console.log(dados);
+				for(let i = 0; i<dados.disciplinas.length; i++){
+					let disciplina = dados.disciplinas[i];
+					console.log(disciplina);
+					if(+disciplina.id == idDisc){
+						console.log("entrou if");
+						this.disciplina = disciplina;
+					}
+				}
+			});
+		}else{
+			for(let i = 0; i<this.provider.curso.disciplinas.length; i++){
+				let disciplina = this.provider.curso.disciplinas[i];
+				console.log(this.provider.curso);
 				if(+disciplina.id == idDisc){
 					console.log("entrou if");
 					this.disciplina = disciplina;
 				}
 			}
-
-		});
+		}
 	}
-
-
-}
