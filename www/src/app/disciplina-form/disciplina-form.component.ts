@@ -45,7 +45,7 @@ export class DisciplinaFormComponent implements OnInit {
 	public validacao():void{
 		console.log(this.objetoDisciplina);
 		this.form = new FormGroup({
-			nome: new FormControl(this.objetoDisciplina.nome, [Validators.required, Validators.maxLength(25)]),
+			nome: new FormControl(this.objetoDisciplina.nome, [Validators.required, Validators.maxLength(100)]),
 			periodo: new FormControl(this.objetoDisciplina.periodo, [Validators.min(1),Validators.max(this.provider.curso.qtPeriodos), Validators.required]),
 			creditos: new FormControl(this.objetoDisciplina.creditos, [Validators.min(1),Validators.max(127), Validators.required]),
 			cargaHoraria: new FormControl(this.objetoDisciplina.cargaHoraria, [Validators.min(1),Validators.max(this.provider.curso.cargaMinima), Validators.required]),
