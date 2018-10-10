@@ -58,3 +58,4 @@ export class DisciplinaEditarComponent implements OnInit {
 
 		}
 	}
+}
