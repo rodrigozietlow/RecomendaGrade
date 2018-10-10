@@ -30,7 +30,7 @@ class ControleDisciplina {
 		//validação
 
 		// validação do nome das disciplinas
-		if(!$nome || strlen($nome) > 25){
+		if(!$nome || strlen($nome) > 100){
 			header("HTTP/1.1 422 Unprocessable Entity: Nome da disciplina");
 			die();
 		}
