@@ -1,7 +1,16 @@
 <h2>Dados do Curso</h2>
 <form (submit)="salvarCurso()" [formGroup]="form">
+
 	Nome/sigla do curso:
 	<input type="text" name="nomeCurso" id="nomeCurso" [(ngModel)]="curso.nomeCurso" formControlName="nomeCurso"><br>
+
+	<div *ngIf="form.controls['nomeCurso'].invalid && (form.controls['nomeCurso'].dirty || form.controls['nomeCurso'].touched)" class="erros">
+		Erros:
+		<div *ngIf="form.controls['nomeCurso'].errors.maxlength">
+			Máximo de 100 caracteres
+		</div>
+	</div>
+
 
 	Nome dos períodos:
 	<input type="text" name="nomePeriodos" id="nomePeriodos" [(ngModel)]="curso.nomePeriodos" formControlName="nomePeriodos" placeholder="Exemplo: Semestre, Ano">
@@ -16,11 +25,9 @@
 		</div>
 	</div>
 
+
 	<br>Total de períodos:
-
-
 	<input type="number" name="qtPeriodos" id="qtPeriodos" min="1" [(ngModel)]="curso.qtPeriodos" formControlName="qtPeriodos">
-
 
 	<div *ngIf="form.controls['qtPeriodos'].invalid && (form.controls['qtPeriodos'].dirty || form.controls['qtPeriodos'].touched)" class="erros">
 		Erros:
