@@ -6,7 +6,7 @@
 	<tr>
 		<td *ngFor="let numero of periodos">
 			<span *ngFor="let disciplina of disciplinas">
-				<div *ngIf="disciplina.periodo == numero"> {{disciplina.nome}} (<a routerLink='/disciplinas/editar/{{disciplina.id}}'>Editar</a>) (Excluir)</div>
+				<div *ngIf="disciplina.periodo == numero"> {{disciplina.nome}} (<a routerLink='/disciplinas/editar/{{disciplina.id}}'>Editar</a>) <a href="javascript:;" (click)="excluir(disciplina.id)">(Excluir)</a></div>
 			</span>
 		</td>
 	</tr>
