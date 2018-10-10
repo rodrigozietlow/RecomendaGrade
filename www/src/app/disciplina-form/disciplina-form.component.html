@@ -1,5 +1,21 @@
 <form (submit)="salvarDisciplina()" [formGroup]="form">
 
+	<!--limitar com a quantidade de periodos inserido em curso-->
+	{{provider.curso.nomePeriodos}} da Disciplina:
+	<input type="number" name="periodo" id="periodo" [(ngModel)]="objetoDisciplina.periodo" formControlName="periodo"><br>
+
+	<div *ngIf="form.controls['periodo'].invalid && (form.controls['periodo'].dirty || form.controls['periodo'].touched)" class="erros">
+		Erros:
+		<div *ngIf="form.controls['periodo'].errors.required">
+			Você deve preencher a quantidade
+		</div>
+		<div *ngIf="form.controls['periodo'].errors.max">
+			O curso possui o máximo de {{provider.curso.qtPeriodos}} períodos. Informe um período válido para este curso
+		</div>
+		<div *ngIf="form.controls['periodo'].errors.min">
+			Mínimo 1 período
+		</div>
+	</div>
 		<!--nome da disciplina tem que ser unico-->
 
 		Nome da Disciplina:
@@ -12,23 +28,6 @@
 			</div>
 			<div *ngIf="form.controls['nome'].errors.maxlength">
 				Informe um nome para a disciplina com no máximo de 25 caracteres
-			</div>
-		</div>
-
-		<!--limitar com a quantidade de periodos inserido em curso-->
-		{{provider.curso.nomePeriodos}} da Disciplina:
-		<input type="number" name="periodo" id="periodo" [(ngModel)]="objetoDisciplina.periodo" formControlName="periodo"><br>
-
-		<div *ngIf="form.controls['periodo'].invalid && (form.controls['periodo'].dirty || form.controls['periodo'].touched)" class="erros">
-			Erros:
-			<div *ngIf="form.controls['periodo'].errors.required">
-				Você deve preencher a quantidade
-			</div>
-			<div *ngIf="form.controls['periodo'].errors.max">
-				O curso possui o máximo de {{provider.curso.qtPeriodos}} períodos. Informe um período válido para este curso
-			</div>
-			<div *ngIf="form.controls['periodo'].errors.min">
-				Mínimo 1 período
 			</div>
 		</div>
 

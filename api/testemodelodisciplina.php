@@ -14,23 +14,6 @@ header("Access-Control-Allow-Headers: Content-Type");
 $pdo = new \PDO('mysql:host=localhost;dbname=recomendagrade', 'aluno', 'aluno');//PDO('mysql:host=localhost;dbname=test', $user, $pass);
 
 $modelo = new Modelo\ModeloDisciplina($pdo);
-//$modeloDisciplinas = new Modelo\ModeloDisciplina($pdo);
 
-//var_dump($modeloDisciplinas->buscarDisciplinasCurso(1));
-//var_dump($modelo->buscarCurso(1));
-
-//var_dump($modelo->publicarCurso(1));
-
-//echo "==============================================";
-
-//$controle = new Controle\ControleCurso($modelo);
-
-//$controle->editar();
-
-$disciplina = new Modelo\Disciplina ('engeharia', 2, 4, 40, 1, '2018-04-01');
-
-//$modelo->salvarDisciplina($disciplina);
-echo $modelo->salvarDisciplina($disciplina);
-
-//echo "</pre>";
+$controle = new Controle\ControleDisciplina($modelo);
 ?>
