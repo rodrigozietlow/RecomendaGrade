@@ -79,7 +79,7 @@
 			<label for="disciplina">Disciplina</label>
 			<!--inserir no name do select: -{{i}} para atualizar a lista-->
 			<select  name="idRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].idRequisito" [ngModelOptions]="{standalone: true}">
-				<option *ngFor="let disciplina of possiveis" [value]="disciplina.id">[{{disciplina.periodo}}]-{{disciplina.nome}}</option>
+				<option *ngFor="let disciplina of getPossiveis(objetoDisciplina.requisitos[i].tipoRequisito)" [value]="disciplina.id">[{{disciplina.periodo}}]-{{disciplina.nome}}</option>
 			</select>
 
 			<button type="button" name="button" (click)="removerRequisito(i)">Remover</button>
