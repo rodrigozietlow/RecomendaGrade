@@ -26,21 +26,17 @@ export class DisciplinaEditarComponent implements OnInit {
 	ngOnInit(): void{
 		let id = +this.route.snapshot.paramMap.get('id');
 
-		this.disciplina = this.buscarDisciplina(id);
+		this.buscarDisciplina(id);
 
 	}
 
 
-	buscarDisciplina(idDisc:number):any{
+	buscarDisciplina(idDisc:number):void{
 		if(this.provider.curso == undefined || this.provider.observable != undefined){
 			this.provider.observable.subscribe((dados) => {
-
-				//console.log(dados);
 				for(let i = 0; i<dados.disciplinas.length; i++){
 					let disciplina = dados.disciplinas[i];
-					console.log(disciplina);
 					if(+disciplina.id == idDisc){
-						console.log("entrou if");
 						this.disciplina = disciplina;
 					}
 				}
@@ -48,14 +44,13 @@ export class DisciplinaEditarComponent implements OnInit {
 		}else{
 			for(let i = 0; i<this.provider.curso.disciplinas.length; i++){
 				let disciplina = this.provider.curso.disciplinas[i];
-				console.log(this.provider.curso);
 				if(+disciplina.id == idDisc){
 					this.disciplina = disciplina;
 				}
 			}
 
-			console.log(this.disciplina);
-
 		}
+
 	}
+
 }

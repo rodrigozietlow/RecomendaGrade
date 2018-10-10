@@ -23,7 +23,7 @@ export class CursoFormComponent implements OnInit {
 	};
 
 	public form:FormGroup = new FormGroup({
-		nomeCurso: new FormControl({value:this.curso.nomeCurso, disabled:"true"}),
+		nomeCurso: new FormControl({value:this.curso.nomeCurso, disabled:"true"},[Validators.maxLength(100)]),
 		nomePeriodos: new FormControl(this.curso.nomePeriodos, [Validators.required, Validators.maxLength(25)]),
 		qtPeriodos: new FormControl(this.curso.qtPeriodos, [Validators.max(127), Validators.min(1), Validators.required]),
 		cargaMinima: new FormControl(this.curso.cargaMinima, [Validators.required, Validators.min(1), Validators.max(999999.99)]),
@@ -64,6 +64,6 @@ export class CursoFormComponent implements OnInit {
 		this.location.back();
 	}
 
-	
+
 
 }
