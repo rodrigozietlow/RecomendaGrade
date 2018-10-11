@@ -73,7 +73,8 @@ class ControleDisciplina {
 
 		if($Disciplina == NULL){
 			// nós deveríamos jogar um erro aqui...
-			header("HTTP/1.1 404 Not Found");
+
+			header("HTTP/1.1 404 Not Found: Disciplina");
 			die();
 		}
 
@@ -87,7 +88,7 @@ class ControleDisciplina {
 
 		if($Curso == NULL){
 			// nós deveríamos jogar um erro aqui...
-			header("HTTP/1.1 404 Not Found");
+			header("HTTP/1.1 404 Not Found: Curso");
 			die();
 		}
 
@@ -95,7 +96,6 @@ class ControleDisciplina {
 		$periodo = $dados['periodo'] ?? 0;
 		$creditos = $dados['creditos'] ?? 0;
 		$cargaHoraria = $dados['cargaHoraria'] ?? 0;
-		$dataCadastro = date("Y-m-d");
 
 		$maxPeriodo = $Curso->getQtPeriodos();
 		$maxCarga = $Curso->getCargaMinima();
@@ -103,7 +103,7 @@ class ControleDisciplina {
 		//validação
 
 		// validação do nome das disciplinas
-		if(!$nome || strlen($nome) > 25){
+		if(!$nome || strlen($nome) > 100){
 			header("HTTP/1.1 422 Unprocessable Entity: Nome da disciplina");
 			die();
 		}
@@ -127,9 +127,12 @@ class ControleDisciplina {
 		}
 
 
+		// passou pela validação
 
-		// criar um objeto disciplinas
-		$Disciplina = new Modelo\Disciplina($nome, $periodo, $creditos, $cargaHoraria, $idCurso, $dataCadastro);
+		$Disciplina->setNome($nome);
+		$Disciplina->setPeriodo($periodo);
+		$Disciplina->setCreditos($creditos);
+		$Disciplina->setCargaHoraria($cargaHoraria);
 
 		$resultado = $this->modelo->salvarDisciplina($Disciplina);
 
