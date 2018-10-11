@@ -1,0 +1,10 @@
+@media only screen and (min-width: 576px) {
+	.mt-btn-form-2 {
+		margin-top: 2em;
+	}
+}
+@media only screen and (max-width: 576px) {
+	.form-row {
+		margin-bottom: 1em;
+	}
+}

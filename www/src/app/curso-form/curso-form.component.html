@@ -1,22 +1,23 @@
 <h2>Dados do Curso</h2>
-<form (submit)="salvarCurso()" [formGroup]="form">
+<form (submit)="salvarCurso()" [formGroup]="form" class="my-3">
 
-	Nome/sigla do curso:
-	<input type="text" name="nomeCurso" id="nomeCurso" [(ngModel)]="curso.nomeCurso" formControlName="nomeCurso"><br>
-
-	<div *ngIf="form.controls['nomeCurso'].invalid && (form.controls['nomeCurso'].dirty || form.controls['nomeCurso'].touched)" class="erros">
-		Erros:
+	<div class="form-group">
+		<label for="nomeCurso">Nome/sigla do curso:</label>
+		<input type="text" class="form-control" name="nomeCurso" id="nomeCurso" [(ngModel)]="curso.nomeCurso" formControlName="nomeCurso">
+	</div>
+	<div *ngIf="form.controls['nomeCurso'].invalid && (form.controls['nomeCurso'].dirty || form.controls['nomeCurso'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
 		<div *ngIf="form.controls['nomeCurso'].errors.maxlength">
 			Máximo de 100 caracteres
 		</div>
 	</div>
 
-
-	Nome dos períodos:
-	<input type="text" name="nomePeriodos" id="nomePeriodos" [(ngModel)]="curso.nomePeriodos" formControlName="nomePeriodos" placeholder="Exemplo: Semestre, Ano">
-
-	<div *ngIf="form.controls['nomePeriodos'].invalid && (form.controls['nomePeriodos'].dirty || form.controls['nomePeriodos'].touched)" class="erros">
-		Erros:
+	<div class="form-group">
+		<label for="nomePeriodos">Nome dos períodos:</label>
+		<input type="text" class="form-control" name="nomePeriodos" id="nomePeriodos" [(ngModel)]="curso.nomePeriodos" formControlName="nomePeriodos" placeholder="Exemplo: Semestre, Ano">
+	</div>
+	<div *ngIf="form.controls['nomePeriodos'].invalid && (form.controls['nomePeriodos'].dirty || form.controls['nomePeriodos'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
 		<div *ngIf="form.controls['nomePeriodos'].errors.required">
 			Você deve preencher o nome dos períodos
 		</div>
@@ -25,12 +26,12 @@
 		</div>
 	</div>
 
-
-	<br>Total de períodos:
-	<input type="number" name="qtPeriodos" id="qtPeriodos" min="1" [(ngModel)]="curso.qtPeriodos" formControlName="qtPeriodos">
-
-	<div *ngIf="form.controls['qtPeriodos'].invalid && (form.controls['qtPeriodos'].dirty || form.controls['qtPeriodos'].touched)" class="erros">
-		Erros:
+	<div class="form-group">
+		<label for="qtPeriodos">Total de períodos:</label>
+		<input type="number" class="form-control" name="qtPeriodos" id="qtPeriodos" min="1" [(ngModel)]="curso.qtPeriodos" formControlName="qtPeriodos">
+	</div>
+	<div *ngIf="form.controls['qtPeriodos'].invalid && (form.controls['qtPeriodos'].dirty || form.controls['qtPeriodos'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
 		<div *ngIf="form.controls['qtPeriodos'].errors.required">
 			Você deve preencher a quantidade
 		</div>
@@ -42,38 +43,43 @@
 		</div>
 	</div>
 
-	<br>Carga horária mínima:
-	<input type="number" name="cargaMinima" id="cargaMinima" min="1" [(ngModel)]="curso.cargaMinima" formControlName="cargaMinima"><br>
-
-	<div *ngIf="form.controls['cargaMinima'].invalid && (form.controls['cargaMinima'].dirty || form.controls['cargaMinima'].touched)" class="erros">
-		Erros:
+	<div class="form-group">
+		<label for="cargaMinima">Carga horária mínima:</label>
+		<input type="number" class="form-control" name="cargaMinima" id="cargaMinima" min="1" [(ngModel)]="curso.cargaMinima" formControlName="cargaMinima">
+		<small class="form-text text-muted">
+			Essa é a carga horária mínima que um aluno deverá integralizar para obter certificação no curso. É utilizada para calcular a porcentagem de conclusão do curso de cada aluno.
+		</small>
+	</div>
+	<div *ngIf="form.controls['cargaMinima'].invalid && (form.controls['cargaMinima'].dirty || form.controls['cargaMinima'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
 		<div *ngIf="form.controls['cargaMinima'].errors.required">
-			Você deve preencher a quantidade
+			Você deve preencher a carga horária
 		</div>
 		<div *ngIf="form.controls['cargaMinima'].errors.max">
-			Máximo 127 períodos
+			Máximas 999999.99 horas
 		</div>
 		<div *ngIf="form.controls['cargaMinima'].errors.min">
-			Mínimo 1 período
+			Mínima 1 hora
 		</div>
 	</div>
-	<sub>
-		Essa é a carga horária mínima que um aluno deverá integralizar para obter certificação no curso. É utilizada para calcular a porcentagem de conclusão do curso de cada aluno.
-	</sub>
-	<div>
+
+	<div class="form-group">
 		Tornar público:
-		<label class="switch">
-			<input name="publico" type="checkbox" [(ngModel)]="curso.publico" formControlName="publico"/>
-			<span class="slider round" ></span>
-		</label>
+		<span class="pt-2">
+
+			<label class="switch">
+				<input name="publico" type="checkbox" [(ngModel)]="curso.publico" formControlName="publico"/>
+				<span class="slider round" ></span>
+			</label>
+		</span>
 	</div>
 
-	<div *ngIf="curso.disciplinas.length == 0">
+	<div *ngIf="curso.disciplinas.length == 0" class="alert alert-danger">
 		Você precisa cadastrar uma disciplina para publicar o curso <br>
-		<a routerLink='/disciplinas/cadastrar'>Cadastre uma agora</a>
+		<a routerLink='/disciplinas/cadastrar'>Cadastre uma agora (isto cancelará a edição do curso!)</a>
 	</div>
 
 
-	<button type="submit" [disabled]="!form.valid">Editar</button>
-	<button type="button" (click)="voltar()">Voltar</button>
+	<button class="btn btn-success" type="submit" [disabled]="!form.valid">Editar</button>
+	<button class="btn btn-secondary" type="button" (click)="voltar()">Voltar</button>
 </form>
