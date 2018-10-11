@@ -71,14 +71,19 @@
 	<div *ngIf="objetoDisciplina != undefined">
 		<div class="" *ngFor="let requisito of objetoDisciplina.requisitos; let i = index">
 			<label for="tipoRequisito">Tipo Requisito</label>
-			<select class="form-control" name="requisito.tipoRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].tipoRequisito" [ngModelOptions]="{standalone: true}">
+			<select class="form-control" (ngModelChange)="valuechange($event, i)" name="requisito.tipoRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].tipoRequisito" [ngModelOptions]="{standalone: true}">
 				<option value="">---Selecione---</option>
 				<option value="1">Pré-Requisito</option>
 				<option value="2">Co-Requisito</option>
 			</select>
+
+			<div class="alert alert-danger text-center" *ngIf="estaBloqueado(i)">
+				<span>Ao alterar o tipo de requisito você deve atualizar também a disciplina</span>
+			</div>
+
 			<label for="disciplina">Disciplina</label>
 			<!--inserir no name do select: -{{i}} para atualizar a lista-->
-			<select  name="idRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].idRequisito" [ngModelOptions]="{standalone: true}">
+			<select id="disciplinaRequisito" name="idRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].idRequisito" [ngModelOptions]="{standalone: true}">
 				<option *ngFor="let disciplina of getPossiveis(objetoDisciplina.requisitos[i].tipoRequisito)" [value]="disciplina.id">[{{disciplina.periodo}}]-{{disciplina.nome}}</option>
 			</select>
 
@@ -89,7 +94,7 @@
 	<button type="button" name="button" (click)="adicionarRequisito()" [disabled]='provider.curso == undefined'>Adicionar Requisito</button><br><br>
 
 
-	<button type="submit" [disabled]="form == undefined || !form.valid">Salvar</button>
+	<button type="submit" [disabled]="form == undefined || !form.valid || algumBloqueado()">Salvar</button>
 	<button type="button" (click)="voltar()" >Voltar</button>
 
 </form>
