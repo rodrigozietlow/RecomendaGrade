@@ -1,11 +1,11 @@
 <form (submit)="salvarDisciplina()" [formGroup]="form">
 
-	<!--limitar com a quantidade de periodos inserido em curso-->
-	{{provider.curso.nomePeriodos}} da Disciplina:
-	<input type="number" name="periodo" id="periodo" [(ngModel)]="objetoDisciplina.periodo" formControlName="periodo"><br>
-
-	<div *ngIf="form.controls['periodo'].invalid && (form.controls['periodo'].dirty || form.controls['periodo'].touched)" class="erros">
-		Erros:
+	<div class="form-group">
+		<label for="periodo">{{provider.curso.nomePeriodos}} da Disciplina:</label>
+		<input type="number" class="form-control" id="periodo" name="periodo" [(ngModel)]="objetoDisciplina.periodo" formControlName="periodo" placeholder="Enter email">
+	</div>
+	<div *ngIf="form.controls['periodo'].invalid && (form.controls['periodo'].dirty || form.controls['periodo'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
 		<div *ngIf="form.controls['periodo'].errors.required">
 			Você deve preencher a quantidade
 		</div>
@@ -16,56 +16,57 @@
 			Mínimo 1 período
 		</div>
 	</div>
-		<!--nome da disciplina tem que ser unico-->
 
-		Nome da Disciplina:
-		<input type="text" name="nome" [(ngModel)]="objetoDisciplina.nome" formControlName="nome"><br>
+	<div class="form-group">
+		<label for="nome">Nome da Disciplina:</label>
+		<input type="text" class="form-control" name="nome" [(ngModel)]="objetoDisciplina.nome" formControlName="nome">
+	</div>
 
-		<div *ngIf="form.controls['nome'].invalid && (form.controls['nome'].dirty || form.controls['nome'].touched)" class="erros">
-			Erros:
-			<div *ngIf="form.controls['nome'].errors.required">
-				Você deve preencher o nome das disciplinas
-			</div>
-			<div *ngIf="form.controls['nome'].errors.maxlength">
-				Informe um nome para a disciplina com no máximo de 25 caracteres
-			</div>
+	<div *ngIf="form.controls['nome'].invalid && (form.controls['nome'].dirty || form.controls['nome'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
+		<div *ngIf="form.controls['nome'].errors.required">
+			Você deve preencher o nome das disciplinas
 		</div>
-
-		<!--limitar com a quantidade de creditos inserido em curso-->
-		Quantidade de Créditos Semanais:
-		<input type="number" name="creditos" id="creditos" min="1" [(ngModel)]="objetoDisciplina.creditos" formControlName="creditos"><br>
-
-		<div *ngIf="form.controls['creditos'].invalid && (form.controls['creditos'].dirty || form.controls['creditos'].touched)" class="erros">
-			Erros:
-			<div *ngIf="form.controls['creditos'].errors.required">
-				Você deve preencher a quantidade de créditos
-			</div>
-			<div *ngIf="form.controls['creditos'].errors.max">
-				Máximo 127 créditos
-			</div>
-			<div *ngIf="form.controls['creditos'].errors.min">
-				Mínimo 1 crédito
-			</div>
+		<div *ngIf="form.controls['nome'].errors.maxlength">
+			Informe um nome para a disciplina com no máximo de 25 caracteres
 		</div>
+	</div>
 
-		<!--limitar com a carga horaria inserido em curso-->
+	<!--limitar com a quantidade de creditos inserido em curso-->
+	Quantidade de Créditos Semanais:
+	<input type="number" name="creditos" id="creditos" min="1" [(ngModel)]="objetoDisciplina.creditos" formControlName="creditos"><br>
 
-		Carga Horária Total (em horas):
-		<input type="number" name="cargaHoraria" min="1" [(ngModel)]="objetoDisciplina.cargaHoraria" formControlName="cargaHoraria"><br>
-
-
-		<div *ngIf="form.controls['cargaHoraria'].invalid && (form.controls['cargaHoraria'].dirty || form.controls['cargaHoraria'].touched)" class="erros">
-			Erros:
-			<div *ngIf="form.controls['cargaHoraria'].errors.required">
-				Você deve preencher a carga horária total da disciplina
-			</div>
-			<div *ngIf="form.controls['cargaHoraria'].errors.max">
-				Máximo {{provider.curso.cargaMinima}} horas de carga horária
-			</div>
-			<div *ngIf="form.controls['cargaHoraria'].errors.min">
-				Mínimo 1 hora
-			</div>
+	<div *ngIf="form.controls['creditos'].invalid && (form.controls['creditos'].dirty || form.controls['creditos'].touched)" class="erros">
+		Erros:
+		<div *ngIf="form.controls['creditos'].errors.required">
+			Você deve preencher a quantidade de créditos
 		</div>
+		<div *ngIf="form.controls['creditos'].errors.max">
+			Máximo 127 créditos
+		</div>
+		<div *ngIf="form.controls['creditos'].errors.min">
+			Mínimo 1 crédito
+		</div>
+	</div>
+
+	<!--limitar com a carga horaria inserido em curso-->
+
+	Carga Horária Total (em horas):
+	<input type="number" name="cargaHoraria" min="1" [(ngModel)]="objetoDisciplina.cargaHoraria" formControlName="cargaHoraria"><br>
+
+
+	<div *ngIf="form.controls['cargaHoraria'].invalid && (form.controls['cargaHoraria'].dirty || form.controls['cargaHoraria'].touched)" class="erros">
+		Erros:
+		<div *ngIf="form.controls['cargaHoraria'].errors.required">
+			Você deve preencher a carga horária total da disciplina
+		</div>
+		<div *ngIf="form.controls['cargaHoraria'].errors.max">
+			Máximo {{provider.curso.cargaMinima}} horas de carga horária
+		</div>
+		<div *ngIf="form.controls['cargaHoraria'].errors.min">
+			Mínimo 1 hora
+		</div>
+	</div>
 
 	<h3>Requisitos</h3>
 	<div *ngIf="objetoDisciplina != undefined">
