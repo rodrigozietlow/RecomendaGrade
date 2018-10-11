@@ -15,5 +15,5 @@ $pdo = new \PDO('mysql:host=localhost;dbname=recomendagrade', 'aluno', 'aluno');
 
 $modelo = new Modelo\ModeloDisciplina($pdo);
 
-$controle = new Controle\ControleDisciplina($modelo);
+var_dump($modelo->buscarDisciplina(51));
 ?>

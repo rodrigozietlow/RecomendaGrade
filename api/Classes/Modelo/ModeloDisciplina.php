@@ -14,9 +14,23 @@ class ModeloDisciplina {
 	}
 
 	public function buscarDisciplina($id){
-		// TODO
+		$stmt = $this->conexao->prepare("SELECT * FROM disciplina WHERE id = :id"); // buscar as informações do curso
+		$stmt->execute(array(":id" => $id));
 
-		// essa provavelmente tem pré e co requisitos
+		while($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)){ // só tem um
+
+			$requisitos = array();
+
+			$stmtReq = $this->conexao->prepare("SELECT * FROM requisito WHERE idDisciplina = :id");
+			$stmtReq->execute(array(":id" => $resultado['id']));
+
+			while($resultadoReq = $stmtReq->fetch(\PDO::FETCH_ASSOC)){
+				$requisitos[] = $resultadoReq;
+			}
+			$disciplina = new Disciplina($resultado['nome'], $resultado['periodo'], $resultado['creditos'], $resultado['cargaHoraria'], $resultado['idCurso'], $resultado['dataCadastro'], $requisitos, $resultado['id']);
+			return $disciplina;
+		}
+		return null;
 	}
 
 	public function buscarDisciplinasCurso($idCurso){
@@ -45,22 +59,42 @@ class ModeloDisciplina {
 	}
 
 	public function salvarDisciplina (Disciplina $disciplina){
-		$stmt = $this->conexao->prepare("INSERT INTO disciplina(nome, periodo, creditos, cargaHoraria, idCurso, dataCadastro) VALUES (:nome, :periodo, :creditos, :cargaHoraria, :idCurso, :dataCadastro)");
+		$id = $disciplina->getId();
+		if(empty($id)){
 
-		$resultado = $stmt->execute(
-			array(
-				":nome" => $disciplina->getNome(),
-				":periodo" => $disciplina->getPeriodo(),
-				":creditos" => $disciplina->getCreditos(),
-				":cargaHoraria" => $disciplina->getCargaHoraria(),
-				":idCurso" => $disciplina->getIdCurso(),
-				":dataCadastro" => $disciplina->getDataCadastro()
-			)
-		);
+			$stmt = $this->conexao->prepare("INSERT INTO disciplina(nome, periodo, creditos, cargaHoraria, idCurso, dataCadastro) VALUES (:nome, :periodo, :creditos, :cargaHoraria, :idCurso, :dataCadastro)");
 
-		$disciplina->setId($this->conexao->lastInsertId());
+			$resultado = $stmt->execute(
+				array(
+					":nome" => $disciplina->getNome(),
+					":periodo" => $disciplina->getPeriodo(),
+					":creditos" => $disciplina->getCreditos(),
+					":cargaHoraria" => $disciplina->getCargaHoraria(),
+					":idCurso" => $disciplina->getIdCurso(),
+					":dataCadastro" => $disciplina->getDataCadastro()
+				)
+			);
 
-		return $resultado;
+			$disciplina->setId($this->conexao->lastInsertId());
+
+			return $resultado;
+		}else{
+			$stmt = $this->conexao->prepare("UPDATE disciplina SET nome= :nome , periodo= :periodo, creditos= :creditos, cargaHoraria= :cargaHoraria WHERE id = :id");
+
+			$resultado = $stmt->execute(
+				array(
+					":nome" => $disciplina->getNome(),
+					":periodo" => $disciplina->getPeriodo(),
+					":creditos" => $disciplina->getCreditos(),
+					":cargaHoraria" => $disciplina->getCargaHoraria(),
+					":id" => $disciplina->getId()
+
+				)
+			);
+
+			return $resultado;
+
+		}
 	}
 
 	public function salvarRequisitos($disciplina, $requisitos){
