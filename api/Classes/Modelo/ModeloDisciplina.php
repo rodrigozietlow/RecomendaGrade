@@ -127,6 +127,16 @@ class ModeloDisciplina {
 		return $stmt->execute(array(":idDisciplina" => $disciplina->getId()));
 	}
 
+	public function excluirDisciplina($disciplina){
+		$stmtReq = $this->conexao->prepare("DELETE FROM requisito WHERE idDisciplina = :idDisciplina OR idRequisito = :idRequisito");
+		$retorno = $stmtReq->execute(array(
+			":idDisciplina" => $disciplina->getId(),
+			":idRequisito" => $disciplina->getId()
+		));
+		$stmtDis = $this->conexao->prepare("DELETE FROM disciplina WHERE id = :idDisciplina");
+		return $retorno && $stmtDis->execute(array(":idDisciplina" => $disciplina->getId()));
+	}
+
 
 
 }

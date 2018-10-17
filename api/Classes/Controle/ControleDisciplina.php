@@ -14,6 +14,8 @@ class ControleDisciplina {
 
 		// primero, precisamos pegar os dados que vem por stream
 		$dados = json_decode(file_get_contents("php://input"), true);
+		print_r($dados);
+
 
 		$nome = $dados['nome'] ?? "";
 		$periodo = $dados['periodo'] ?? 0;
@@ -63,6 +65,17 @@ class ControleDisciplina {
 		$requisitos = $dados['requisitos'] ?? array();
 
 		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina, $requisitos);
+
+
+
+		//verifica se existe co-requisito e salva nas disciplinas co-relacionada
+		/*
+		foreach ($requisitos as $req => $value) {
+			// code...
+		}
+
+		*/
+
 
 		return $resultado;
 	}
@@ -136,11 +149,29 @@ class ControleDisciplina {
 
 		$resultado = $this->modelo->salvarDisciplina($Disciplina);
 
+		$resultado = $resultado && $this->modelo->excluirRequisitos($Disciplina);
+
 		$requisitos = $dados['requisitos'] ?? array();
 
 		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina, $requisitos);
 
 		return $resultado;
+	}
+
+
+	public function excluir($id){
+		$Disciplina = $this->modelo->buscarDisciplina($id);
+
+		if($Disciplina == NULL){
+			// nós deveríamos jogar um erro aqui...
+
+			header("HTTP/1.1 404 Not Found: Disciplina");
+			die();
+		}
+		return $resultado = $this->modelo->excluirDisciplina($Disciplina);
+
+
+
 	}
 }
 ?>
