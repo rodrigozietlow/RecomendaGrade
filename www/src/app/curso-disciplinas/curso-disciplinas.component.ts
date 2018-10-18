@@ -62,7 +62,6 @@ export class CursoDisciplinasComponent implements OnInit {
 		}
 		if(confirm(texto)) {
 			this.provider.excluirDisciplina(disciplinaExcluir.id).subscribe((dados) => {
-				this.provider.curso = undefined;
 				this.provider.getCurso();
 			});
 		}

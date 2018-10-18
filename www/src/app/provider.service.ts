@@ -15,6 +15,7 @@ export class ProviderService{
 	}
 
 	public getCurso(): ConnectableObservable<any>{
+		this.curso = undefined;
 
 		let obsHttp = this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/"+this.idCurso);
 

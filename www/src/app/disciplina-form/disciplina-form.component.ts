@@ -117,7 +117,6 @@ export class DisciplinaFormComponent implements OnInit {
 				this.http.post<any>("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina", this.objetoDisciplina, opcoes).subscribe((dados) => {
 					console.log(dados);
 					alert("Salvo com sucesso!");
-					this.provider.curso = undefined;
 					this.provider.getCurso(); // recarregar para buscar a disciplina recém cadastrada
 					this.router.navigateByUrl('/curso/disciplinas');
 				});
