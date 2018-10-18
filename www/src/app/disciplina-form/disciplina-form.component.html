@@ -85,7 +85,7 @@
 
 			<label for="disciplina">Disciplina</label>
 			<!--inserir no name do select: -{{i}} para atualizar a lista-->
-			<select id="disciplinaRequisito" name="idRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].idRequisito" [ngModelOptions]="{standalone: true}">
+			<select class="form-control" id="disciplinaRequisito" name="idRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].idRequisito" [ngModelOptions]="{standalone: true}">
 				<option *ngFor="let disciplina of getPossiveis(objetoDisciplina.requisitos[i].tipoRequisito)" [value]="disciplina.id">[{{disciplina.periodo}}]-{{disciplina.nome}}</option>
 			</select>
 
