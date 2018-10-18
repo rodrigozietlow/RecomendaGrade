@@ -98,12 +98,11 @@ export class DisciplinaFormComponent implements OnInit {
 
 
 	public adicionarRequisito():void {
-		console.log(this.getPossiveis(1)[0].id);
+		//console.log(this.getPossiveis(1)[0].id);
 		this.objetoDisciplina.requisitos.push({
 			"idRequisito" : this.getPossiveis(1)[0].id,
 			"tipoRequisito" : "1"
 		});
-
 	}
 
 	public trackByFn(index,item){

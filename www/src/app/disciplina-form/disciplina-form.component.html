@@ -7,7 +7,7 @@
 	<div *ngIf="form.controls['periodo'].invalid && (form.controls['periodo'].dirty || form.controls['periodo'].touched)" class="alert alert-danger" role="alert">
 		<strong>Erros:</strong>
 		<div *ngIf="form.controls['periodo'].errors.required">
-			Você deve preencher a quantidade
+			Você deve preencher este campo
 		</div>
 		<div *ngIf="form.controls['periodo'].errors.max">
 			O curso possui o máximo de {{provider.curso.qtPeriodos}} {{provider.curso.nomePeriodos | lowercase}}s. Informe um {{provider.curso.nomePeriodos | lowercase}} válido para esta disciplina
@@ -97,10 +97,15 @@
 		</div>
 	</div>
 
-	<button type="button" class="btn btn-primary" name="button" (click)="adicionarRequisito()" [disabled]='provider.curso == undefined'>Adicionar Requisito</button><br><br>
+	<ng-container *ngIf="objetoDisciplina.periodo">
+		<button type="button" class="btn btn-primary" name="button" (click)="adicionarRequisito()" [disabled]='provider.curso == undefined'>Adicionar Requisito</button><br><br>
+	</ng-container>
+	<div class="alert alert-warning" role="alert" *ngIf="!objetoDisciplina.periodo">
+		Você deve preencher o {{provider.curso.nomePeriodos | lowercase}} da disciplina para adicionar um requisito
+	</div>
 
-	<button type="submit" [disabled]="form == undefined || !form.valid || algumBloqueado()">Salvar</button>
-	<button type="button" (click)="voltar()" >Voltar</button>
+	<button class="btn btn-success" type="submit" [disabled]="form == undefined || !form.valid || algumBloqueado()">Salvar</button>
+	<button class="btn btn-secondary" type="button" (click)="voltar()" >Voltar</button>
 
 
 </form>
