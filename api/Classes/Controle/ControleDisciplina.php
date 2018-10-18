@@ -14,7 +14,6 @@ class ControleDisciplina {
 
 		// primero, precisamos pegar os dados que vem por stream
 		$dados = json_decode(file_get_contents("php://input"), true);
-		print_r($dados);
 
 
 		$nome = $dados['nome'] ?? "";
