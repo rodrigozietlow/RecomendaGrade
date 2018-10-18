@@ -123,9 +123,11 @@ export class DisciplinaFormComponent implements OnInit {
 
 	public adicionarRequisito():void {
 		//console.log(this.getPossiveis(1)[0].id);
+		//console.log(this.getPossiveis(1));
+		let id = (this.getPossiveis(1).length > 0) ? this.getPossiveis(1)[0].id : this.getPossiveis(2)[0].id;
 		this.objetoDisciplina.requisitos.push({
-			"idRequisito" : this.getPossiveis(1)[0].id,
-			"tipoRequisito" : "1"
+			"idRequisito" : id,
+			"tipoRequisito" : ""
 		});
 	}
 
