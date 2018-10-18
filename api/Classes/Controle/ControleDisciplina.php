@@ -15,6 +15,7 @@ class ControleDisciplina {
 		// primero, precisamos pegar os dados que vem por stream
 		$dados = json_decode(file_get_contents("php://input"), true);
 
+
 		$nome = $dados['nome'] ?? "";
 		$periodo = $dados['periodo'] ?? 0;
 		$creditos = $dados['creditos'] ?? 0;
@@ -63,6 +64,17 @@ class ControleDisciplina {
 		$requisitos = $dados['requisitos'] ?? array();
 
 		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina, $requisitos);
+
+
+
+		//verifica se existe co-requisito e salva nas disciplinas co-relacionada
+		/*
+		foreach ($requisitos as $req => $value) {
+			// code...
+		}
+
+		*/
+
 
 		return $resultado;
 	}
@@ -126,6 +138,23 @@ class ControleDisciplina {
 			die();
 		}
 
+		// validar o período vs o período de prés e cos
+
+		$requisitos = $dados['requisitos'] ?? array();
+
+		foreach($Curso->getDisciplinas() as $disciplina) {
+			foreach($requisitos as $requisito) {
+
+				if($requisito['idRequisito'] == $disciplina->getId()){ // é a disciplina
+				
+					if(($periodo <= $disciplina->getPeriodo() && $requisito['tipoRequisito'] == 1) || ($periodo != $disciplina->getPeriodo() && $requisito['tipoRequisito'] == 2)){
+						header("HTTP/1.1 422 Unprocessable Entity: Requisitos");
+						die();
+					}
+				}
+			}
+
+		}
 
 		// passou pela validação
 
@@ -138,7 +167,6 @@ class ControleDisciplina {
 
 		$resultado = $resultado && $this->modelo->excluirRequisitos($Disciplina);
 
-		$requisitos = $dados['requisitos'] ?? array();
 
 		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina, $requisitos);
 
