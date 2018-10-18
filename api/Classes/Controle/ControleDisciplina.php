@@ -138,6 +138,23 @@ class ControleDisciplina {
 			die();
 		}
 
+		// validar o período vs o período de prés e cos
+
+		$requisitos = $dados['requisitos'] ?? array();
+
+		foreach($Curso->getDisciplinas() as $disciplina) {
+			foreach($requisitos as $requisito) {
+
+				if($requisito['idRequisito'] == $disciplina->getId()){ // é a disciplina
+				
+					if(($periodo <= $disciplina->getPeriodo() && $requisito['tipoRequisito'] == 1) || ($periodo != $disciplina->getPeriodo() && $requisito['tipoRequisito'] == 2)){
+						header("HTTP/1.1 422 Unprocessable Entity: Requisitos");
+						die();
+					}
+				}
+			}
+
+		}
 
 		// passou pela validação
 
@@ -150,7 +167,6 @@ class ControleDisciplina {
 
 		$resultado = $resultado && $this->modelo->excluirRequisitos($Disciplina);
 
-		$requisitos = $dados['requisitos'] ?? array();
 
 		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina, $requisitos);
 
