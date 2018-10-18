@@ -12,7 +12,7 @@ import {Location} from '@angular/common';
 })
 export class DisciplinaFormComponent implements OnInit {
 
-
+	public alertRequisito: any;
 	public curso:any;
 	public form:FormGroup;
 	public possiveis = [];
@@ -74,14 +74,53 @@ export class DisciplinaFormComponent implements OnInit {
 
 	}
 
+	valuechange(requisitoAlterado, indexRequisito) {
+		let objDisp = this.objetoDisciplina;
+		let dispBanco;
+
+		for(let disp of this.provider.curso.disciplinas)
+		{
+			if(disp.id == objDisp.id)
+			{
+				dispBanco = disp;
+			}
+		}
+
+		if(dispBanco.requisitos[indexRequisito].tipoRequisito != requisitoAlterado)
+		{
+			dispBanco.requisitos[indexRequisito].idRequisito = 0;
+		}
+
+	}
+
+
+	public estaBloqueado(index:number):boolean {
+		if(this.objetoDisciplina.requisitos[index].idRequisito == 0)
+		{
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	public algumBloqueado():boolean {
+		for(let requisito of this.objetoDisciplina.requisitos) {
+			if(requisito.idRequisito == 0) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 
 	public adicionarRequisito():void {
-
+		//console.log(this.getPossiveis(1)[0].id);
 		this.objetoDisciplina.requisitos.push({
-			"idRequisito" : "1",
+			"idRequisito" : this.getPossiveis(1)[0].id,
 			"tipoRequisito" : "1"
 		});
-
 	}
 
 	public trackByFn(index,item){
