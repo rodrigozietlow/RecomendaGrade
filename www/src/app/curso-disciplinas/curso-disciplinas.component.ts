@@ -31,8 +31,40 @@ export class CursoDisciplinasComponent implements OnInit {
 		}
 	}
 
-	public excluir(idDisciplina: number):void {
+	public excluir(disciplinaExcluir):void {
+		//console.log(disciplinaExcluir.id);
 
-		console.log("Log!");
+		let relacoes = [];
+
+		const requisitosDisciplinaExcluir = disciplinaExcluir.requisitos.map((requisito) => +requisito.idRequisito);
+
+
+		this.provider.curso.disciplinas.forEach((disciplina) => {
+			// buscar as disciplinas que a excluida é prerequisito
+			if(disciplina.requisitos.filter((requisito) => +requisito.idRequisito == +disciplinaExcluir.id).length > 0){ // alguma disciplina
+				relacoes.push(disciplina.nome);
+			}
+
+			// se é um dos prerequisitos
+			if(requisitosDisciplinaExcluir.indexOf(+disciplina.id) !== -1) {
+				relacoes.push(disciplina.nome);
+			}
+		});
+
+
+		let texto = "Tem certeza que deseja excluir a disciplina?";
+		if(requisitosDisciplinaExcluir.length > 0){
+			texto += "\nA disciplina que você deseja excluir possui relação com as seguintes disciplinas:";
+			relacoes.forEach((relacao) => {
+				texto += "\n- "+relacao;
+			});
+			texto+= "\nDeseja excluir mesmo assim? As relações serão apagadas permanetemente";
+		}
+		if(confirm(texto)) {
+			this.provider.excluirDisciplina(disciplinaExcluir.id).subscribe((dados) => {
+				this.provider.curso = undefined;
+				this.provider.getCurso();
+			});
+		}
 	}
 }
