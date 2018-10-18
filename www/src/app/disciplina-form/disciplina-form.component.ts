@@ -75,23 +75,29 @@ export class DisciplinaFormComponent implements OnInit {
 	}
 
 	valuechange(requisitoAlterado, indexRequisito) {
+
 		let objDisp = this.objetoDisciplina;
 		let dispBanco;
 
-		for(let disp of this.provider.curso.disciplinas)
-		{
-			if(disp.id == objDisp.id)
+		if(objDisp.id){ //quando está editando fica true, quando criar fica false
+			for(let disp of this.provider.curso.disciplinas)
 			{
-				dispBanco = disp;
+				if(disp.id == objDisp.id)
+				{
+					dispBanco = disp;
+
+				}
 			}
-		}
 
-		if(dispBanco.requisitos[indexRequisito].tipoRequisito != requisitoAlterado)
-		{
-			dispBanco.requisitos[indexRequisito].idRequisito = 0;
-		}
+			if(dispBanco.requisitos[indexRequisito].tipoRequisito != requisitoAlterado)
+			{
+				dispBanco.requisitos[indexRequisito].idRequisito = 0;
+			}
+		}// fim do if
 
-	}
+		this.objetoDisciplina.requisitos[indexRequisito].idRequisito = 0;
+
+	}//fim do método
 
 
 	public estaBloqueado(index:number):boolean {

@@ -73,6 +73,7 @@
 	<div *ngIf="objetoDisciplina != undefined">
 		<div class="" *ngFor="let requisito of objetoDisciplina.requisitos; let i = index">
 			<label for="tipoRequisito">Tipo Requisito</label>
+
 			<select class="form-control" name="requisito.tipoRequisito-{{i}}" (ngModelChange)="valuechange($event, i)" [(ngModel)]="objetoDisciplina.requisitos[i].tipoRequisito" [ngModelOptions]="{standalone: true}">
 				<option value="">---Selecione---</option>
 				<option value="1">Pré-Requisito</option>
