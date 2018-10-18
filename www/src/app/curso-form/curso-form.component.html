@@ -39,7 +39,7 @@
 			Máximo 127 períodos
 		</div>
 		<div *ngIf="form.controls['qtPeriodos'].errors.min">
-			Mínimo 1 período
+			Mínimo {{periodoMin()}} período(s)
 		</div>
 	</div>
 

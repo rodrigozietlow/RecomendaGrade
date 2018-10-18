@@ -51,7 +51,6 @@ export class CursoDisciplinasComponent implements OnInit {
 			}
 		});
 
-		console.log(relacoes);
 
 
 		let texto = "Tem certeza que deseja excluir a disciplina?";
