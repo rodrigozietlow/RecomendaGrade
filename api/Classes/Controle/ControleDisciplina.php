@@ -136,11 +136,29 @@ class ControleDisciplina {
 
 		$resultado = $this->modelo->salvarDisciplina($Disciplina);
 
+		$resultado = $resultado && $this->modelo->excluirRequisitos($Disciplina);
+
 		$requisitos = $dados['requisitos'] ?? array();
 
 		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina, $requisitos);
 
 		return $resultado;
+	}
+
+
+	public function excluir($id){
+		$Disciplina = $this->modelo->buscarDisciplina($id);
+
+		if($Disciplina == NULL){
+			// nós deveríamos jogar um erro aqui...
+
+			header("HTTP/1.1 404 Not Found: Disciplina");
+			die();
+		}
+		return $resultado = $this->modelo->excluirDisciplina($Disciplina);
+
+
+
 	}
 }
 ?>

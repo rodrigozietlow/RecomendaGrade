@@ -73,5 +73,12 @@ else{
 			die();
 		}
 	}
+	else if($verbo == "DELETE"){
+		$controle = new $rotaEscolhida["Controle"]($modelo);
+		if(!$controle->excluir($rotasArray[1])){
+			header("HTTP/1.1 500 Internal Server Error");
+			die();
+		}
+	}
 }
 ?>
