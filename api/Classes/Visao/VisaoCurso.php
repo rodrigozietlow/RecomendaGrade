@@ -36,6 +36,7 @@ class VisaoCurso {
 					"periodo" => $disciplina->getPeriodo(),
 					"creditos" => $disciplina->getCreditos(),
 					"cargaHoraria" => $disciplina->getCargaHoraria(),
+					"cor" => $disciplina->getCor(),
 					"idCurso" => $curso->getId(),
 					"dataCadastro" => $disciplina->getDataCadastro(),
 					"requisitos" => $disciplina->getRequisitos(),
