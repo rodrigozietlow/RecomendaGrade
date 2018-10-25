@@ -27,7 +27,7 @@ class ModeloDisciplina {
 			while($resultadoReq = $stmtReq->fetch(\PDO::FETCH_ASSOC)){
 				$requisitos[] = $resultadoReq;
 			}
-			$disciplina = new Disciplina($resultado['nome'], $resultado['periodo'], $resultado['creditos'], $resultado['cargaHoraria'], $resultado['idCurso'], $resultado['dataCadastro'], $requisitos, $resultado['id']);
+			$disciplina = new Disciplina($resultado['nome'], $resultado['periodo'], $resultado['creditos'], $resultado['cargaHoraria'], $resultado['cor'], $resultado['idCurso'], $resultado['dataCadastro'], $requisitos, $resultado['id']);
 			return $disciplina;
 		}
 		return null;
@@ -50,7 +50,7 @@ class ModeloDisciplina {
 				$requisitos[] = $resultadoReq;
 			}
 
-			$disciplinas[] = new Disciplina($resultado['nome'], $resultado['periodo'], $resultado['creditos'], $resultado['cargaHoraria'], $resultado['idCurso'], $resultado['dataCadastro'], $requisitos, $resultado['id']);
+			$disciplinas[] = new Disciplina($resultado['nome'], $resultado['periodo'], $resultado['creditos'], $resultado['cargaHoraria'], $resultado['cor'], $resultado['idCurso'], $resultado['dataCadastro'], $requisitos, $resultado['id']);
 
 
 		}
@@ -62,7 +62,7 @@ class ModeloDisciplina {
 		$id = $disciplina->getId();
 		if(empty($id)){
 
-			$stmt = $this->conexao->prepare("INSERT INTO disciplina(nome, periodo, creditos, cargaHoraria, idCurso, dataCadastro) VALUES (:nome, :periodo, :creditos, :cargaHoraria, :idCurso, :dataCadastro)");
+			$stmt = $this->conexao->prepare("INSERT INTO disciplina(nome, periodo, creditos, cargaHoraria, cor, idCurso, dataCadastro) VALUES (:nome, :periodo, :creditos, :cargaHoraria, :cor, :idCurso, :dataCadastro)");
 
 			$resultado = $stmt->execute(
 				array(
@@ -70,6 +70,7 @@ class ModeloDisciplina {
 					":periodo" => $disciplina->getPeriodo(),
 					":creditos" => $disciplina->getCreditos(),
 					":cargaHoraria" => $disciplina->getCargaHoraria(),
+					":cor" => $disciplina->getCor(),
 					":idCurso" => $disciplina->getIdCurso(),
 					":dataCadastro" => $disciplina->getDataCadastro()
 				)
@@ -79,7 +80,7 @@ class ModeloDisciplina {
 
 			return $resultado;
 		}else{
-			$stmt = $this->conexao->prepare("UPDATE disciplina SET nome= :nome , periodo= :periodo, creditos= :creditos, cargaHoraria= :cargaHoraria WHERE id = :id");
+			$stmt = $this->conexao->prepare("UPDATE disciplina SET nome= :nome, periodo= :periodo, creditos= :creditos, cor = :cor, cargaHoraria= :cargaHoraria WHERE id = :id");
 
 			$resultado = $stmt->execute(
 				array(
@@ -87,6 +88,7 @@ class ModeloDisciplina {
 					":periodo" => $disciplina->getPeriodo(),
 					":creditos" => $disciplina->getCreditos(),
 					":cargaHoraria" => $disciplina->getCargaHoraria(),
+					":cor" => $disciplina->getCor(),
 					":id" => $disciplina->getId()
 
 				)

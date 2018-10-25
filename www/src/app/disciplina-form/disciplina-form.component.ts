@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { ProviderService } from '../provider.service';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -8,7 +8,8 @@ import {Location} from '@angular/common';
 @Component({
 	selector: 'app-disciplina-form',
 	templateUrl: './disciplina-form.component.html',
-	styleUrls: ['./disciplina-form.component.css']
+	styleUrls: ['./disciplina-form.component.css'],
+	encapsulation: ViewEncapsulation.None
 })
 export class DisciplinaFormComponent implements OnInit {
 
@@ -48,6 +49,7 @@ export class DisciplinaFormComponent implements OnInit {
 			nome: new FormControl(this.objetoDisciplina.nome, [Validators.required, Validators.maxLength(100)]),
 			periodo: new FormControl(this.objetoDisciplina.periodo, [Validators.min(1),Validators.max(this.provider.curso.qtPeriodos), Validators.required]),
 			creditos: new FormControl(this.objetoDisciplina.creditos, [Validators.min(1),Validators.max(127), Validators.required]),
+			cor: new FormControl(this.objetoDisciplina.cor, [Validators.min(0),Validators.max(127), Validators.required]),
 			cargaHoraria: new FormControl(this.objetoDisciplina.cargaHoraria, [Validators.min(1),Validators.max(this.provider.curso.cargaMinima), Validators.required]),
 		});
 

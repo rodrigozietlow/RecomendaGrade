@@ -20,6 +20,7 @@ class ControleDisciplina {
 		$periodo = $dados['periodo'] ?? 0;
 		$creditos = $dados['creditos'] ?? 0;
 		$cargaHoraria = $dados['cargaHoraria'] ?? 0;
+		$cor = $dados['cor'] ?? 0;
 		$dataCadastro = date("Y-m-d");
 		$idCurso = $dados['idCurso'] ?? 1;
 
@@ -54,10 +55,16 @@ class ControleDisciplina {
 			die();
 		}
 
+		// validação da cor
+		if(!$cor || $cor < 0 || $cor > 127) {
+			header("HTTP/1.1 422 Unprocessable Entity: Cor");
+			die();
+		}
+
 
 
 		// criar um objeto disciplinas
-		$Disciplina = new Modelo\Disciplina($nome, $periodo, $creditos, $cargaHoraria, $idCurso, $dataCadastro);
+		$Disciplina = new Modelo\Disciplina($nome, $periodo, $creditos, $cargaHoraria, $cor, $idCurso, $dataCadastro);
 
 		$resultado = $this->modelo->salvarDisciplina($Disciplina);
 
@@ -108,6 +115,7 @@ class ControleDisciplina {
 		$periodo = $dados['periodo'] ?? 0;
 		$creditos = $dados['creditos'] ?? 0;
 		$cargaHoraria = $dados['cargaHoraria'] ?? 0;
+		$cor = $dados['cor'] ?? 0;
 
 		$maxPeriodo = $Curso->getQtPeriodos();
 		$maxCarga = $Curso->getCargaMinima();
@@ -138,6 +146,12 @@ class ControleDisciplina {
 			die();
 		}
 
+		// validação da cor
+		if(!$cor || $cor < 0 || $cor > 127) {
+			header("HTTP/1.1 422 Unprocessable Entity: Cor");
+			die();
+		}
+
 		// validar o período vs o período de prés e cos
 
 		$requisitos = $dados['requisitos'] ?? array();
@@ -146,7 +160,7 @@ class ControleDisciplina {
 			foreach($requisitos as $requisito) {
 
 				if($requisito['idRequisito'] == $disciplina->getId()){ // é a disciplina
-				
+
 					if(($periodo <= $disciplina->getPeriodo() && $requisito['tipoRequisito'] == 1) || ($periodo != $disciplina->getPeriodo() && $requisito['tipoRequisito'] == 2)){
 						header("HTTP/1.1 422 Unprocessable Entity: Requisitos");
 						die();

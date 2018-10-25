@@ -16,6 +16,7 @@ export class DisciplinaEditarComponent implements OnInit {
 		"periodo" : "",
 		"creditos" : "",
 		"cargaHoraria" : "",
+		"cor" : "0",
 		"idCurso" : "",
 		"dataCadastro" : "",
 		"requisitos" : []

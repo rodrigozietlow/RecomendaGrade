@@ -8,15 +8,17 @@ class Disciplina {
 	private $periodo;
 	private $creditos;
 	private $cargaHoraria;
+	private $cor;
 	private $idCurso;
 	private $dataCadastro;
 	private $requisitos;
 
-	public function __construct($nome, $periodo, $creditos, $cargaHoraria, $idCurso, $dataCadastro, $requisitos = [], $id=NULL){
+	public function __construct($nome, $periodo, $creditos, $cargaHoraria, $cor, $idCurso, $dataCadastro, $requisitos = [], $id=NULL){
 		$this->id = $id;
 		$this->nome = $nome;
 		$this->periodo = $periodo;
 		$this->creditos = $creditos;
+		$this->cor = $cor;
 		$this->cargaHoraria = $cargaHoraria;
 		$this->idCurso = $idCurso;
 		$this->dataCadastro = $dataCadastro;
@@ -211,6 +213,31 @@ class Disciplina {
     public function setRequisitos($requisitos)
     {
         $this->requisitos = $requisitos;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of Cor
+     *
+     * @return mixed
+     */
+    public function getCor()
+    {
+        return $this->cor;
+    }
+
+    /**
+     * Set the value of Cor
+     *
+     * @param mixed cor
+     *
+     * @return self
+     */
+    public function setCor($cor)
+    {
+        $this->cor = $cor;
 
         return $this;
     }

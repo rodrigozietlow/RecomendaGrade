@@ -12,6 +12,16 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, OPTIONS, POST, PUT, PATCH, DELETE");
 header("Access-Control-Allow-Headers: Content-Type");
 
+/*
+$cores = array(
+	"#FFC312", "#C4E538", "#12CBC4", "#FDA7DF",
+	"#ED4C67", "#EE5A24", "#A3CB38", "#1289A7",
+	"#D980FA", "#B53471", "#009432", "#0652DD",
+	"#9980FA", "#833471", "#EA2027", "#006266",
+	"#1B1464", "#5758BB", "#6F1E51"
+);
+*/
+
 $url = $_GET;
 
 // rotas estáticas:: podem ser mudadas no futuro
