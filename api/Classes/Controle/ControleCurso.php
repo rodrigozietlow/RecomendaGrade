@@ -14,11 +14,14 @@ class ControleCurso {
 
 		$Curso = $this->modelo->buscarCurso($id);
 
+
+
 		if($Curso == NULL){
 			// nós deveríamos jogar um erro aqui...
 			header("HTTP/1.1 404 Not Found");
 			die();
 		}
+		$disciplinas = $Curso->getDisciplinas();
 
 
 		// primero, precisamos pegar os dados que vem por stream

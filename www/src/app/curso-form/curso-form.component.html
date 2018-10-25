@@ -2,7 +2,7 @@
 <form (submit)="salvarCurso()" [formGroup]="form" class="my-3">
 
 	<div class="form-group">
-		<label for="nomeCurso">Nome/sigla do curso:</label>
+		<label for="nomeCurso">*Nome/sigla do curso:</label>
 		<input type="text" class="form-control" name="nomeCurso" id="nomeCurso" [(ngModel)]="curso.nomeCurso" formControlName="nomeCurso">
 	</div>
 	<div *ngIf="form.controls['nomeCurso'].invalid && (form.controls['nomeCurso'].dirty || form.controls['nomeCurso'].touched)" class="alert alert-danger" role="alert">
@@ -13,7 +13,7 @@
 	</div>
 
 	<div class="form-group">
-		<label for="nomePeriodos">Nome dos períodos:</label>
+		<label for="nomePeriodos">*Nome dos períodos:</label>
 		<input type="text" class="form-control" name="nomePeriodos" id="nomePeriodos" [(ngModel)]="curso.nomePeriodos" formControlName="nomePeriodos" placeholder="Exemplo: Semestre, Ano">
 	</div>
 	<div *ngIf="form.controls['nomePeriodos'].invalid && (form.controls['nomePeriodos'].dirty || form.controls['nomePeriodos'].touched)" class="alert alert-danger" role="alert">
@@ -27,7 +27,7 @@
 	</div>
 
 	<div class="form-group">
-		<label for="qtPeriodos">Total de períodos:</label>
+		<label for="qtPeriodos">*Total de períodos:</label>
 		<input type="number" class="form-control" name="qtPeriodos" id="qtPeriodos" min="1" [(ngModel)]="curso.qtPeriodos" formControlName="qtPeriodos">
 	</div>
 	<div *ngIf="form.controls['qtPeriodos'].invalid && (form.controls['qtPeriodos'].dirty || form.controls['qtPeriodos'].touched)" class="alert alert-danger" role="alert">
@@ -44,7 +44,7 @@
 	</div>
 
 	<div class="form-group">
-		<label for="cargaMinima">Carga horária mínima:</label>
+		<label for="cargaMinima">*Carga horária mínima:</label>
 		<input type="number" class="form-control" name="cargaMinima" id="cargaMinima" min="1" [(ngModel)]="curso.cargaMinima" formControlName="cargaMinima">
 		<small class="form-text text-muted">
 			Essa é a carga horária mínima que um aluno deverá integralizar para obter certificação no curso. É utilizada para calcular a porcentagem de conclusão do curso de cada aluno.
@@ -76,7 +76,7 @@
 		<a routerLink='/disciplinas/cadastrar'>Cadastre uma agora (isto cancelará a edição do curso!)</a>
 	</div>
 
-
+	*São campos de preenchimento obrigatório<br><br>
 	<button class="btn btn-success" type="submit" [disabled]="!form.valid">Editar</button>
 	<button class="btn btn-secondary" type="button" (click)="voltar()">Voltar</button>
 </form>
