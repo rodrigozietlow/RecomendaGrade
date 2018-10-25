@@ -53,14 +53,15 @@ export class CursoDisciplinasComponent implements OnInit {
 
 
 
-		let texto = "Tem certeza que deseja excluir a disciplina?";
+		let texto = " ";
 		if(relacoes.length > 0){
 			texto += "\nA disciplina que você deseja excluir possui relação com as seguintes disciplinas:";
 			relacoes.forEach((relacao) => {
 				texto += "\n- "+relacao;
 			});
-			texto+= "\nDeseja excluir mesmo assim? As relações serão apagadas permanetemente";
 		}
+		texto+= "\nTem certeza que deseja excluir a disciplina?";
+
 		if(confirm(texto)) {
 			this.provider.excluirDisciplina(disciplinaExcluir.id).subscribe((dados) => {
 				this.provider.getCurso();

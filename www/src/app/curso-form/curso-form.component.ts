@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
+import { ProviderService } from '../provider.service';
 
 @Component({
 	selector: 'app-curso-form',
@@ -46,21 +47,18 @@ export class CursoFormComponent implements OnInit {
 
 	//public qtPeriodosControl:any = new FormControl(this.curso.qtPeriodos, [Validators.max(127), Validators.min(1), Validators.required]);
 
-	constructor(private http: HttpClient, private location: Location) { }
+	constructor(private http: HttpClient, private location: Location, public provider: ProviderService) { }
 
 	ngOnInit() {
 		this.buscarCurso();
 	}
 
 	buscarCurso(){
-		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1").subscribe((dados) => {
-			console.log(dados)
-			this.curso = dados;
-			if(this.curso.disciplinas.length>0){
-				this.form.controls['publico'].enable();
-				this.form.controls['qtPeriodos'].setValidators([Validators.max(127), Validators.min(this.periodoMin()),Validators.required]);
-			}
-		});
+		this.curso = {...this.provider.curso};
+		if(this.curso.disciplinas.length>0){
+			this.form.controls['publico'].enable();
+			this.form.controls['qtPeriodos'].setValidators([Validators.max(127), Validators.min(this.periodoMin()),Validators.required]);
+		}
 	}
 
 	salvarCurso():void {
@@ -72,6 +70,7 @@ export class CursoFormComponent implements OnInit {
 		this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1", this.curso, opcoes).subscribe((dados) => {
 			alert("Salvo com sucesso");
 			console.log(dados);
+			this.provider.getCurso();
 		});
 	}
 
