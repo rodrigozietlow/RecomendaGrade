@@ -5,3 +5,10 @@ svg {
 a {
 	text-decoration: none;
 }
+table {
+    table-layout: fixed;
+	width: 100%;
+}
+table th {
+	text-align: center;
+}
