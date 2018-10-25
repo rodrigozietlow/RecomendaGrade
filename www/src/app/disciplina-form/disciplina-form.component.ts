@@ -77,23 +77,29 @@ export class DisciplinaFormComponent implements OnInit {
 	}
 
 	valuechange(requisitoAlterado, indexRequisito) {
+
 		let objDisp = this.objetoDisciplina;
 		let dispBanco;
 
-		for(let disp of this.provider.curso.disciplinas)
-		{
-			if(disp.id == objDisp.id)
+		if(objDisp.id){ //quando está editando fica true, quando criar fica false
+			for(let disp of this.provider.curso.disciplinas)
 			{
-				dispBanco = disp;
+				if(disp.id == objDisp.id)
+				{
+					dispBanco = disp;
+
+				}
 			}
-		}
 
-		if(dispBanco.requisitos[indexRequisito].tipoRequisito != requisitoAlterado)
-		{
-			dispBanco.requisitos[indexRequisito].idRequisito = 0;
-		}
+			if(dispBanco.requisitos[indexRequisito].tipoRequisito != requisitoAlterado)
+			{
+				dispBanco.requisitos[indexRequisito].idRequisito = 0;
+			}
+		}// fim do if
 
-	}
+		this.objetoDisciplina.requisitos[indexRequisito].idRequisito = 0;
+
+	}//fim do método
 
 
 	public estaBloqueado(index:number):boolean {
@@ -119,9 +125,11 @@ export class DisciplinaFormComponent implements OnInit {
 
 	public adicionarRequisito():void {
 		//console.log(this.getPossiveis(1)[0].id);
+		//console.log(this.getPossiveis(1));
+		let id = (this.getPossiveis(1).length > 0) ? this.getPossiveis(1)[0].id : this.getPossiveis(2)[0].id;
 		this.objetoDisciplina.requisitos.push({
-			"idRequisito" : this.getPossiveis(1)[0].id,
-			"tipoRequisito" : "1"
+			"idRequisito" : id,
+			"tipoRequisito" : ""
 		});
 	}
 

@@ -1,7 +1,7 @@
 <form (submit)="salvarDisciplina()" [formGroup]="form" class="my-3">
 
 	<div class="form-group">
-		<label for="periodo">{{provider.curso.nomePeriodos}}:</label>
+		<label for="periodo">*{{provider.curso.nomePeriodos}}:</label>
 		<input type="number" class="form-control" id="periodo" name="periodo" [(ngModel)]="objetoDisciplina.periodo" formControlName="periodo" placeholder="Digite o {{provider.curso.nomePeriodos | lowercase}}">
 	</div>
 	<div *ngIf="form.controls['periodo'].invalid && (form.controls['periodo'].dirty || form.controls['periodo'].touched)" class="alert alert-danger" role="alert">
@@ -19,7 +19,7 @@
 
 
 	<div class="form-group">
-		<label for="nome">Nome:</label>
+		<label for="nome">*Nome:</label>
 		<input type="text" class="form-control" name="nome" [(ngModel)]="objetoDisciplina.nome" formControlName="nome" placeholder="Digite o nome da disciplina">
 	</div>
 	<div *ngIf="form.controls['nome'].invalid && (form.controls['nome'].dirty || form.controls['nome'].touched)" class="alert alert-danger" role="alert">
@@ -33,7 +33,7 @@
 	</div>
 
 	<div class="form-group">
-		<label for="creditos">Quantidade de créditos semanais:</label>
+		<label for="creditos">*Quantidade de créditos semanais:</label>
 		<input type="number" class="form-control" name="creditos" id="creditos" min="1" [(ngModel)]="objetoDisciplina.creditos" formControlName="creditos" placeholder="Digite a quantidade">
 	</div>
 	<div *ngIf="form.controls['creditos'].invalid && (form.controls['creditos'].dirty || form.controls['creditos'].touched)" class="alert alert-danger" role="alert">
@@ -50,7 +50,7 @@
 	</div>
 
 	<div class="form-group">
-		<label for="cargaHoraria">Carga horária total (em horas):</label>
+		<label for="cargaHoraria">*Carga horária total (em horas):</label>
 		<input type="number" class="form-control" name="cargaHoraria" min="1" [(ngModel)]="objetoDisciplina.cargaHoraria" formControlName="cargaHoraria" placeholder="Digite a carga horária">
 	</div>
 	<div *ngIf="form.controls['cargaHoraria'].invalid && (form.controls['cargaHoraria'].dirty || form.controls['cargaHoraria'].touched)" class="alert alert-danger" role="alert">
@@ -168,7 +168,8 @@
 	<div *ngIf="objetoDisciplina != undefined">
 		<div class="" *ngFor="let requisito of objetoDisciplina.requisitos; let i = index">
 			<label for="tipoRequisito">Tipo Requisito</label>
-			<select class="form-control" name="requisito.tipoRequisito-{{i}}" (ngModelChange)="valuechange($event, i)" [(ngModel)]="objetoDisciplina.requisitos[i].tipoRequisito" [ngModelOptions]="{standalone: true}">
+
+			<select class="form-control col-sm-5" name="requisito.tipoRequisito-{{i}}" (ngModelChange)="valuechange($event, i)" [(ngModel)]="objetoDisciplina.requisitos[i].tipoRequisito" [ngModelOptions]="{standalone: true}">
 				<option value="">---Selecione---</option>
 				<option value="1">Pré-Requisito</option>
 				<option value="2">Co-Requisito</option>
@@ -180,7 +181,7 @@
 
 			<label for="disciplina">Disciplina</label>
 			<!--inserir no name do select: -{{i}} para atualizar a lista-->
-			<select class="form-control" id="disciplinaRequisito" name="idRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].idRequisito" [ngModelOptions]="{standalone: true}">
+			<select class="form-control col-sm-5" id="disciplinaRequisito" name="idRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].idRequisito" [ngModelOptions]="{standalone: true}">
 				<option *ngFor="let disciplina of getPossiveis(objetoDisciplina.requisitos[i].tipoRequisito)" [value]="disciplina.id">[{{disciplina.periodo}}]-{{disciplina.nome}}</option>
 			</select>
 
@@ -197,7 +198,7 @@
 	<div class="alert alert-warning" role="alert" *ngIf="!objetoDisciplina.periodo">
 		Você deve preencher o {{provider.curso.nomePeriodos | lowercase}} da disciplina para adicionar um requisito
 	</div>
-
+	*São campos de preenchimento obrigatório<br><br>
 	<button class="btn btn-success" type="submit" [disabled]="form == undefined || !form.valid || algumBloqueado()">Salvar</button>
 	<button class="btn btn-secondary" type="button" (click)="voltar()" >Voltar</button>
 

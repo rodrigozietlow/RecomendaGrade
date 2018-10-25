@@ -14,10 +14,21 @@ class ControleCurso {
 
 		$Curso = $this->modelo->buscarCurso($id);
 
+
+
 		if($Curso == NULL){
 			// nós deveríamos jogar um erro aqui...
 			header("HTTP/1.1 404 Not Found");
 			die();
+		}
+
+		//Mínimo de periodos permitidos no curso
+		$periodoMin = 1;
+		foreach($Curso->getDisciplinas() as $disciplina) {
+			if($disciplina->getPeriodo() > $periodoMin){
+				$periodoMin = $disciplina->getPeriodo();
+			}
+
 		}
 
 
@@ -49,7 +60,7 @@ class ControleCurso {
 		}
 
 		// validação do total de períodos
-		if(!is_numeric($qtPeriodos) || $qtPeriodos <= 0 || $qtPeriodos > 127){
+		if(!is_numeric($qtPeriodos) || $qtPeriodos < $periodoMin || $qtPeriodos > 127){
 			header("HTTP/1.1 422 Unprocessable Entity: Quantidade de periodos");
 			die();
 		}
