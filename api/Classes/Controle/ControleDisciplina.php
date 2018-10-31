@@ -72,6 +72,8 @@ class ControleDisciplina {
 
 		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina, $requisitos);
 
+		$this->salvarCoRequisitoDisciplinaRelacionada($Disciplina, $requisitos);
+
 		return $resultado;
 	}
 
@@ -81,35 +83,28 @@ class ControleDisciplina {
 		//verifica se tem requisitos
 		if(count($requisitos) > 0){
 
-			print_r("tem requisito");
-
-			/*
 			foreach ($requisitos as $req) {
 
+				if($req['tipoRequisito'] == 2){
 
-				if($req->tipoRequisito == 2){
+					$idDisciplinaRelacionada = $req['idRequisito'];
 
-
-					$DisciplinaRelacionada = $req->idRequisito
-
-
-					$requisitoRelacionado['idDisciplina'] = $req->idRequisito      // sim tem que ser trocado
-					$requisitoRelacionado['idRequisito'] = $req->idDisciplina     // sim tem que ser trocado
-					$requisitoRelacionado['tipoRequisito'] = $req->tipoRequisito
+					$requisitoRelacionado['idDisciplina'] = $req['idRequisito'];      // sim tem que ser trocado
+					$requisitoRelacionado['idRequisito'] = $req['idDisciplina'];    // sim tem que ser trocado
+					$requisitoRelacionado['tipoRequisito'] = $req['tipoRequisito'];
 
 
 					$DisciplinaModelo = new Modelo\ModeloDisciplina($this->modelo->getConexao());
 					$DisciplinaRelacionada = $DisciplinaModelo->buscarDisciplina($idDisciplinaRelacionada);
 
-					$this->modelo->salvarRequisitos($DisciplinaRelacionada, $requisitoRelacionado);
-
+					$this->modelo->salvarRequisitos($DisciplinaRelacionada, array($requisitoRelacionado));
 
 				}// fim do if
 
 			}//fim do for
-			*/
 
 		}//fim do if de verificacao se tem requisitos
+
 	}//fim da funcao
 
 
@@ -210,6 +205,9 @@ class ControleDisciplina {
 
 
 		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina, $requisitos);
+
+		//na parte de edicao de disciplina tem que verificar se tem que excluir requisito
+		//$this->salvarCoRequisitoDisciplinaRelacionada($Disciplina, $requisitos);
 
 		return $resultado;
 	}
