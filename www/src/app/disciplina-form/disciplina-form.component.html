@@ -167,27 +167,37 @@
 	<h3>Requisitos</h3>
 	<div *ngIf="objetoDisciplina != undefined">
 		<div class="" *ngFor="let requisito of objetoDisciplina.requisitos; let i = index">
-			<label for="tipoRequisito">Tipo Requisito</label>
+			<div class="row">
+				<div class="form-group col-md-4">
+					<label for="tipoRequisito">Tipo Requisito</label>
+					<select class="form-control" name="requisito.tipoRequisito-{{i}}" (ngModelChange)="valuechange($event, i)" [(ngModel)]="objetoDisciplina.requisitos[i].tipoRequisito" [ngModelOptions]="{standalone: true}">
+						<option value="">---Selecione---</option>
+						<option value="1">Pré-Requisito</option>
+						<option value="2">Co-Requisito</option>
+					</select>
+				</div>
 
-			<select class="form-control col-sm-5" name="requisito.tipoRequisito-{{i}}" (ngModelChange)="valuechange($event, i)" [(ngModel)]="objetoDisciplina.requisitos[i].tipoRequisito" [ngModelOptions]="{standalone: true}">
-				<option value="">---Selecione---</option>
-				<option value="1">Pré-Requisito</option>
-				<option value="2">Co-Requisito</option>
-			</select>
+				<div class="form-group col-md-4">
+					<label for="disciplina">Disciplina</label>
+					<!--inserir no name do select: -{{i}} para atualizar a lista-->
+					<select class="form-control" id="disciplinaRequisito" name="idRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].idRequisito" [ngModelOptions]="{standalone: true}">
+						<option *ngFor="let disciplina of getPossiveis(objetoDisciplina.requisitos[i].tipoRequisito)" [value]="disciplina.id">[{{disciplina.periodo}}]-{{disciplina.nome}}</option>
+					</select>
+				</div>
 
-			<div class="alert alert-danger text-center" *ngIf="estaBloqueado(i)">
-				<span>Ao alterar o tipo de requisito você deve atualizar também a disciplina</span>
+				<div class="form-btn  mt-btn-form-2 col-md-2">
+					<button type="button" class="btn btn-danger" name="button" (click)="removerRequisito(i)">Remover</button>
+				</div>
 			</div>
 
-			<label for="disciplina">Disciplina</label>
-			<!--inserir no name do select: -{{i}} para atualizar a lista-->
-			<select class="form-control col-sm-5" id="disciplinaRequisito" name="idRequisito-{{i}}" [(ngModel)]="objetoDisciplina.requisitos[i].idRequisito" [ngModelOptions]="{standalone: true}">
-				<option *ngFor="let disciplina of getPossiveis(objetoDisciplina.requisitos[i].tipoRequisito)" [value]="disciplina.id">[{{disciplina.periodo}}]-{{disciplina.nome}}</option>
-			</select>
-
-			<div class="form-btn col-sm-2 mt-btn-form-2">
-				<button type="button" class="btn btn-danger" name="button" (click)="removerRequisito(i)">Remover</button>
+			<div class="row">
+				<div class="col-12">
+					<div class="alert alert-danger text-center" *ngIf="estaBloqueado(i)">
+						<span>Ao alterar o tipo de requisito você deve atualizar também a disciplina</span>
+					</div>
+				</div>
 			</div>
+
 
 
 		</div>
