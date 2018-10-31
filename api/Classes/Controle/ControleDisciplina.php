@@ -174,8 +174,8 @@ class ControleDisciplina {
 		}
 
 		// validação da cor
-		if(!$cor || $cor < 0 || $cor > 127) {
-			header("HTTP/1.1 422 Unprocessable Entity: Cor");
+		if(!is_numeric($cor) || $cor < 0 || $cor > 127) {
+			header("HTTP/1.1 422 Unprocessable Entity: Cor $cor");
 			die();
 		}
 
