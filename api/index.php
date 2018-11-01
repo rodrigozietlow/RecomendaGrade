@@ -53,7 +53,6 @@ else{
 	//print_r($rotasArray);
 	//echo "<br>";
 	//print_r($rotaEscolhida);
-
 	// criar o modelo
 	$pdo = new \PDO('mysql:host=localhost;dbname=recomendagrade', 'aluno', 'aluno');//PDO('mysql:host=localhost;dbname=test', $user, $pass);
 	$modelo = new $rotaEscolhida["Modelo"]($pdo);

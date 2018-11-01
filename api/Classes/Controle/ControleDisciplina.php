@@ -29,6 +29,8 @@ class ControleDisciplina {
 		$maxPeriodo = $Curso->getQtPeriodos();
 		$maxCarga = $Curso->getCargaMinima();
 
+
+
 		//validação
 
 		// validação do nome das disciplinas
@@ -43,6 +45,7 @@ class ControleDisciplina {
 			die();
 		}
 
+
 		// validação do total de creditos
 		if(!is_numeric($creditos) || $creditos <= 0 || $creditos > 127){
 			header("HTTP/1.1 422 Unprocessable Entity: Créditos da disciplina");
@@ -56,7 +59,7 @@ class ControleDisciplina {
 		}
 
 		// validação da cor
-		if(!$cor || $cor < 0 || $cor > 127) {
+		if(!is_numeric($cor) || $cor < 0 || $cor > 127) {
 			header("HTTP/1.1 422 Unprocessable Entity: Cor");
 			die();
 		}
@@ -72,19 +75,41 @@ class ControleDisciplina {
 
 		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina, $requisitos);
 
-
-
-		//verifica se existe co-requisito e salva nas disciplinas co-relacionada
-		/*
-		foreach ($requisitos as $req => $value) {
-			// code...
-		}
-
-		*/
-
+		$this->salvarCoRequisitoDisciplinaRelacionada($Disciplina, $requisitos);
 
 		return $resultado;
 	}
+
+	//quando uma disciplina tem co-requisito a disciplina relacionada deve ter co-requisito também
+	public function salvarCoRequisitoDisciplinaRelacionada($Disciplina, $requisitos){
+
+		//verifica se tem requisitos
+		if(count($requisitos) > 0){
+
+			foreach ($requisitos as $req) {
+
+				if($req['tipoRequisito'] == 2){
+
+					$idDisciplinaRelacionada = $req['idRequisito'];
+
+					$requisitoRelacionado['idDisciplina'] = $req['idRequisito'];      // sim tem que ser trocado
+					$requisitoRelacionado['idRequisito'] = $Disciplina->getId();
+					$requisitoRelacionado['tipoRequisito'] = $req['tipoRequisito'];
+
+
+					$DisciplinaModelo = new Modelo\ModeloDisciplina($this->modelo->getConexao());
+					$DisciplinaRelacionada = $DisciplinaModelo->buscarDisciplina($idDisciplinaRelacionada);
+
+					$this->modelo->salvarRequisitos($DisciplinaRelacionada, array($requisitoRelacionado));
+
+				}// fim do if
+
+			}//fim do for
+
+		}//fim do if de verificacao se tem requisitos
+
+	}//fim da funcao
+
 
 	public function editar($id){
 
@@ -147,8 +172,8 @@ class ControleDisciplina {
 		}
 
 		// validação da cor
-		if(!$cor || $cor < 0 || $cor > 127) {
-			header("HTTP/1.1 422 Unprocessable Entity: Cor");
+		if(!is_numeric($cor) || $cor < 0 || $cor > 127) {
+			header("HTTP/1.1 422 Unprocessable Entity: Cor $cor");
 			die();
 		}
 
@@ -183,6 +208,8 @@ class ControleDisciplina {
 
 
 		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina, $requisitos);
+
+		$this->salvarCoRequisitoDisciplinaRelacionada($Disciplina, $requisitos);
 
 		return $resultado;
 	}

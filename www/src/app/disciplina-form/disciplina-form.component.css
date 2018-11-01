@@ -1,14 +1,7 @@
-@media only screen and (min-width: 576px) {
-	.mt-btn-form-2 {
-		margin-top: 2em;
-	}
+.mt-btn-form-2{
+	margin-top: 0.5em;
+	margin-bottom: 1.5em;
 }
-@media only screen and (max-width: 576px) {
-	.form-row {
-		margin-bottom: 1em;
-	}
-}
-
 .container {
 	text-align: center;
 	border-radius: 5px;
@@ -57,3 +50,14 @@
 "#", "#", "#", "#",
 "#", "#", "#"
 */
+
+@media only screen and (min-width: 755px) {
+	.mt-btn-form-2 {
+		margin-top: 2em;
+	}
+}
+@media only screen and (max-width: 576px) {
+	.form-row {
+		margin-bottom: 1em;
+	}
+}
