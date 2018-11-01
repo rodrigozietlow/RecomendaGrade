@@ -1,0 +1,29 @@
+<div class="row h-100 ">
+	<div class="col-md-6 justify-content-center text-center my-auto">
+		<img src='assets/img/logo-ifrs.jpg' width="150" class="d-inline-block" alt="Logo IFRS">
+		<p class="text-center mt-3">
+			Mantido pela instituição IFRS - Campus Feliz
+		</p>
+	</div>
+	<div class="col-md-6 h-100 bg-laranja">
+		<div class="row align-items-center justify-content-center h-100">
+			<div class="row my-auto w-75">
+				<div class="col-md-12 justify-content-center">
+					<div class="align-self-start text-center">
+						<img src='assets/icone-2.svg' width="50" height="50" class="d-inline-block align-middle" alt="Quase Lá">
+						<span class="logo-text text-big align-middle">QuaseLá</span>
+					</div>
+					<div class="text-center mt-2">
+						<button class="btn btn-dark" *ngIf="login" (click)="switch()">Quero fazer cadastro</button>
+						<button class="btn btn-dark" *ngIf="!login" (click)="switch()">Quero fazer login</button>
+					</div>
+					<div class="alert alert-danger mt-3" *ngIf="erro">
+						{{erro}}
+					</div>
+					<app-login-cadastro *ngIf="!login"></app-login-cadastro>
+					<app-login-login *ngIf="login" (login)="loginListener($event)"></app-login-login>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

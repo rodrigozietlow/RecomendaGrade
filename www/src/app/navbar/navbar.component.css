@@ -1,0 +1,12 @@
+.bg-laranja {
+	background-color: #F7A541;
+}
+
+
+.color-inherit {
+	color: inherit;
+}
+
+.clickable {
+	cursor: pointer;
+}

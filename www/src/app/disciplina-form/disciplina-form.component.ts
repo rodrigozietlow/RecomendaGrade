@@ -114,6 +114,7 @@ export class DisciplinaFormComponent implements OnInit {
 
 	public algumBloqueado():boolean {
 		for(let requisito of this.objetoDisciplina.requisitos) {
+			console.log(requisito);
 			if(requisito.idRequisito == 0) {
 				return true;
 			}
@@ -122,6 +123,16 @@ export class DisciplinaFormComponent implements OnInit {
 		return false;
 	}
 
+	//corequisito de periodo diferente do período atual
+	public errosRequisitos():boolean {
+		for(let requisito of this.objetoDisciplina.requisitos) {
+			if(this.getPossiveis(requisito.tipoRequisito).map(e => e.id).indexOf(requisito.idRequisito) == -1){
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 	public adicionarRequisito():void {
 		//console.log(this.getPossiveis(1)[0].id);

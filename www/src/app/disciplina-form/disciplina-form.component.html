@@ -212,7 +212,7 @@
 		Você não possui nenhuma disciplina para associar como pré ou co requisito neste momento.
 	</div>
 	*São campos de preenchimento obrigatório<br><br>
-	<button class="btn btn-success" type="submit" [disabled]="form == undefined || !form.valid || algumBloqueado()">Salvar</button>
+	<button class="btn btn-success" type="submit" [disabled]="form == undefined || !form.valid || algumBloqueado() || errosRequisitos()">Salvar</button>
 	<button class="btn btn-secondary" type="button" (click)="voltar()" >Voltar</button>
 
 

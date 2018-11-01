@@ -6,6 +6,7 @@ import { CursoFormComponent } from './curso-form/curso-form.component';
 import { CursoDisciplinasComponent } from './curso-disciplinas/curso-disciplinas.component';
 import { DisciplinaEditarComponent } from './disciplina-editar/disciplina-editar.component';
 import { DisciplinaCadastrarComponent } from './disciplina-cadastrar/disciplina-cadastrar.component';
+import { LoginComponent } from './login/login.component';
 
 const rotas : Routes = [
 	/* raiz e extras */
@@ -17,6 +18,8 @@ const rotas : Routes = [
 	/* disciplina */
 	{path: 'disciplinas/cadastrar', component: DisciplinaCadastrarComponent},
 	{path: 'disciplinas/editar/:id', component: DisciplinaEditarComponent},
+	/* login */
+	{path: 'login', component: LoginComponent},
 
 ];
 
