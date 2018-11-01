@@ -1,0 +1,19 @@
+<form class="mt-2">
+	<div class="form-group">
+		<label for="username">
+			Username
+		</label>
+		<div class="form-group">
+			<input class="form-control" type="text" name="username" placeholder="Digite o login" [(ngModel)]="user.username">
+		</div>
+
+		<label for="senha">
+			Senha
+		</label>
+		<div class="form-group">
+			<input class="form-control" type="password" name="senha" placeholder="Digite a senha" [(ngModel)]="user.senha">
+		</div>
+
+		<button class="btn btn-primary" type="button" name="button" (click)="submit()">Fazer login</button>
+	</div>
+</form>

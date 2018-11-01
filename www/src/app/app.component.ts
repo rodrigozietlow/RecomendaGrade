@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProviderService } from './provider.service';
 
 @Component({
@@ -6,8 +6,25 @@ import { ProviderService } from './provider.service';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 	title = 'QuaseLá';
 
-	public constructor(public provider: ProviderService) {	}
+	public usuario;
+
+	public constructor(public provider: ProviderService) {
+		this.usuario = JSON.parse(localStorage.getItem("usuario"));
+	}
+
+	ngOnInit() {
+
+	}
+
+	setUsuario(usuario) {
+		this.usuario = usuario;
+	}
+
+	unsetUsuario() {
+		this.usuario = null;
+		localStorage.removeItem("usuario");
+	}
 }

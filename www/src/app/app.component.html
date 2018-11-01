@@ -1,53 +1,29 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-laranja">
-	<a class="navbar-brand mr-auto" href="#">
-		<img src='assets/icone-2.svg' width="30" height="30" class="d-inline-block align-top" alt="{{title}}">
-		<span class="logo-text">{{title}}</span>
-	</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarNavDropdown">
-		<ul class="nav navbar-nav ml-auto">
 
-				<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					ADS
-				</a>
-				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="#">Letras</a>
-					<a class="dropdown-item" href="#">Química</a>
-					<a class="dropdown-item" href="#">Editar</a>
+<ng-container *ngIf="usuario != undefined">
+	<app-navbar [usuario]="usuario" (logout)="unsetUsuario($event)"></app-navbar>
+	Usuário!!! {{usuario | json}}
+	<div class="container-fluid">
+		<a routerLink='/curso/editar'>Editar curso</a><br>
+		<a routerLink='/curso/disciplinas'>Ver grade</a><br>
+		<a routerLink='/disciplinas/cadastrar'>Cadastrar disciplina</a><br>
+		<ng-container *ngIf="provider.curso != undefined">
+			<router-outlet></router-outlet>
+		</ng-container>
+
+		<footer class="footer bg-verdinho fixed-bottom">
+			<div class="container">
+				<!-- Copyright -->
+				<div class="footer-copyright text-center py-3">© 2018 Copyleft:
+					Time de Desenvolvimento. Distribuído em licença GPL.
 				</div>
-			</li>
-			<li class="nav-item ml-md-4 ml-sm-0">
-				<span class="navbar-text">
-					Rodrigo
-				</span>
-			</li>
-			<li class="nav-item ml-md-4">
-				<a href="#" class="nav-link">
-					<img src='assets/logout.svg' width="24" height="24" class="d-inline-block align-top" alt="Logout">
-					<span>Sair</span>
-				</a>
-			</li>
-		</ul>
+				<!-- Copyright -->
+			</div>
+		</footer>
 	</div>
-</nav>
-<div class="container-fluid">
-	<a routerLink='/curso/editar'>Editar curso</a><br>
-	<a routerLink='/curso/disciplinas'>Ver grade</a><br>
-	<a routerLink='/disciplinas/cadastrar'>Cadastrar disciplina</a><br>
-	<ng-container *ngIf="provider.curso != undefined">
-		<router-outlet></router-outlet>
-	</ng-container>
+</ng-container>
 
-</div>
-<footer class="footer bg-verdinho">
-	<div class="container">
-		<!-- Copyright -->
-		<div class="footer-copyright text-center py-3">© 2018 Copyleft:
-			Time de Desenvolvimento. Distribuído em licença GPL.
-		</div>
-		<!-- Copyright -->
+<ng-container *ngIf="usuario == undefined">
+	<div class="container-fluid h-100">
+		<app-login (usuarioLogado)="setUsuario($event)"></app-login>
 	</div>
-</footer>
+</ng-container>

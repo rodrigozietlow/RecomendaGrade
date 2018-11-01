@@ -14,6 +14,11 @@ import { RoutingModule } from './routing.module';
 import { DisciplinaEditarComponent } from './disciplina-editar/disciplina-editar.component';
 import { DisciplinaCadastrarComponent } from './disciplina-cadastrar/disciplina-cadastrar.component';
 import { ProviderService } from './provider.service';
+import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LoginLoginComponent } from './login/login-login/login-login.component';
+import { LoginCadastroComponent } from './login/login-cadastro/login-cadastro.component';
+import { LoginApiService } from './login-api.service';
 
 
 @NgModule({
@@ -25,7 +30,11 @@ import { ProviderService } from './provider.service';
     TestesBackComponent,
     CursoDisciplinasComponent,
     DisciplinaEditarComponent,
-    DisciplinaCadastrarComponent
+    DisciplinaCadastrarComponent,
+    LoginComponent,
+    NavbarComponent,
+    LoginLoginComponent,
+    LoginCadastroComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +43,7 @@ import { ProviderService } from './provider.service';
 	RoutingModule,
 	ReactiveFormsModule
   ],
-  providers: [ ProviderService ],
+  providers: [ ProviderService, LoginApiService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
