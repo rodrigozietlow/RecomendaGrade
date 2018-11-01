@@ -29,6 +29,8 @@ class ControleDisciplina {
 		$maxPeriodo = $Curso->getQtPeriodos();
 		$maxCarga = $Curso->getCargaMinima();
 
+
+
 		//validação
 
 		// validação do nome das disciplinas
@@ -42,6 +44,7 @@ class ControleDisciplina {
 			header("HTTP/1.1 422 Unprocessable Entity: Período da disciplina");
 			die();
 		}
+
 
 		// validação do total de creditos
 		if(!is_numeric($creditos) || $creditos <= 0 || $creditos > 127){
