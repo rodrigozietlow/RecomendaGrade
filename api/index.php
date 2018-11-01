@@ -29,12 +29,17 @@ $rotas = array(
 	"disciplina" => array(
 		"Modelo" => "RecomendaGrade\\Modelo\\ModeloDisciplina",
 		"Controle" => "RecomendaGrade\\Controle\\ControleDisciplina",
-		"Visao" => "RecomendaGrade\\Visao\\VisaoDisciplina"
+		"Visao" => "RecomendaGrade\\Visao\\VisaoDisciplina",
 	),
 	"curso" => array(
 		"Modelo" => "RecomendaGrade\\Modelo\\ModeloCurso",
 		"Controle" => "RecomendaGrade\\Controle\\ControleCurso",
 		"Visao" => "RecomendaGrade\\Visao\\VisaoCurso"
+	),
+	"aluno" => array(
+		"Modelo" => "RecomendaGrade\\Modelo\\ModeloAluno",
+		"Controle" => "RecomendaGrade\\Controle\\ControleAluno",
+		"Visao" => "RecomendaGrade\\Visao\\VisaoAluno"
 	),
 	"index" => array()
 );
