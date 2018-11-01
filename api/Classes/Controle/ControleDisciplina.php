@@ -90,7 +90,7 @@ class ControleDisciplina {
 					$idDisciplinaRelacionada = $req['idRequisito'];
 
 					$requisitoRelacionado['idDisciplina'] = $req['idRequisito'];      // sim tem que ser trocado
-					$requisitoRelacionado['idRequisito'] = $req['idDisciplina'];    // sim tem que ser trocado
+					$requisitoRelacionado['idRequisito'] = $Disciplina->getId();
 					$requisitoRelacionado['tipoRequisito'] = $req['tipoRequisito'];
 
 
@@ -206,8 +206,7 @@ class ControleDisciplina {
 
 		$resultado = $resultado && $this->modelo->salvarRequisitos($Disciplina, $requisitos);
 
-		//na parte de edicao de disciplina tem que verificar se tem que excluir requisito
-		//$this->salvarCoRequisitoDisciplinaRelacionada($Disciplina, $requisitos);
+		$this->salvarCoRequisitoDisciplinaRelacionada($Disciplina, $requisitos);
 
 		return $resultado;
 	}
