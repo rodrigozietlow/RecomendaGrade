@@ -44,7 +44,6 @@ export class DisciplinaFormComponent implements OnInit {
 	}
 
 	public validacao():void{
-		console.log(this.objetoDisciplina);
 		this.form = new FormGroup({
 			nome: new FormControl(this.objetoDisciplina.nome, [Validators.required, Validators.maxLength(100)]),
 			periodo: new FormControl(this.objetoDisciplina.periodo, [Validators.min(1),Validators.max(this.provider.curso.qtPeriodos), Validators.required]),
@@ -59,9 +58,11 @@ export class DisciplinaFormComponent implements OnInit {
 	public getPossiveis(tipo: number):any[]{
 		return this.possiveis.filter((possivel) => {
 			if(possivel.periodo < this.objetoDisciplina.periodo && tipo == 1) return true; // pre-requisito
-			else if(possivel.periodo == this.objetoDisciplina.periodo && tipo == 2 && possivel.id != this.objetoDisciplina.id) return true; // co-requisito
+			else if(possivel.periodo == this.objetoDisciplina.periodo && tipo == 2) return true; // co-requisito
 			else return false;
 			}
+		).filter(
+			(possivel) => possivel.id != this.objetoDisciplina.id  // não pode ser ela mesma!
 		);
 	}
 
@@ -114,7 +115,6 @@ export class DisciplinaFormComponent implements OnInit {
 
 	public algumBloqueado():boolean {
 		for(let requisito of this.objetoDisciplina.requisitos) {
-			console.log(requisito);
 			if(requisito.idRequisito == 0) {
 				return true;
 			}
@@ -135,8 +135,6 @@ export class DisciplinaFormComponent implements OnInit {
 	}
 
 	public adicionarRequisito():void {
-		//console.log(this.getPossiveis(1)[0].id);
-		//console.log(this.getPossiveis(1));
 		let id = (this.getPossiveis(1).length > 0) ? this.getPossiveis(1)[0].id : this.getPossiveis(2)[0].id;
 		this.objetoDisciplina.requisitos.push({
 			"idRequisito" : id,
@@ -167,7 +165,6 @@ export class DisciplinaFormComponent implements OnInit {
 			if(this.objetoDisciplina.id != ""){
 
 				this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina/"+this.objetoDisciplina.id, this.objetoDisciplina, opcoes).subscribe((dados) => {
-					console.log(dados);
 					alert("Editado com sucesso!");
 
 					this.router.navigateByUrl('/curso/disciplinas');
@@ -175,7 +172,6 @@ export class DisciplinaFormComponent implements OnInit {
 			}
 			else{
 				this.http.post<any>("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina", this.objetoDisciplina, opcoes).subscribe((dados) => {
-					console.log(dados);
 					alert("Salvo com sucesso!");
 					this.provider.getCurso(); // recarregar para buscar a disciplina recém cadastrada
 					this.router.navigateByUrl('/curso/disciplinas');

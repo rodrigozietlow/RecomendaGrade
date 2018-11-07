@@ -8,11 +8,18 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
 	@Input() usuario;
+	@Input() cursos;
+	@Input() cursoSelecionado;
 	@Output() logout = new EventEmitter();
+	@Output() trocarCurso = new EventEmitter();
 
 	constructor() { }
 
 	ngOnInit() {
+	}
+
+	trocar(idCurso) {
+		this.trocarCurso.emit(idCurso);
 	}
 
 	clickLogout() {

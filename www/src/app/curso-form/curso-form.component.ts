@@ -67,7 +67,7 @@ export class CursoFormComponent implements OnInit {
 				'Content-Type':  'application/json',
 			})
 		};
-		this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/1", this.curso, opcoes).subscribe((dados) => {
+		this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/"+this.provider.idCurso, this.curso, opcoes).subscribe((dados) => {
 			alert("Salvo com sucesso");
 			console.log(dados);
 			this.provider.getCurso();

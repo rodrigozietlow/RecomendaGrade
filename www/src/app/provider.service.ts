@@ -1,17 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConnectableObservable, Observable } from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class ProviderService{
 
 	public idCurso: number;
 	public curso: any;
+	public cursosDisponiveis: any;
 	public observable: ConnectableObservable<any>;
 
-	constructor(private http: HttpClient) {
-		this.idCurso = 1;
-		this.getCurso();
+	constructor(private http: HttpClient, private router: Router) {
+
+	}
+
+	public buscarCursosDisponiveis() {
+		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/cursos.php").subscribe((cursos) => {
+			this.cursosDisponiveis = cursos;
+			if(cursos.length > 0) {
+				this.selecionarCurso(cursos[0].id);
+			}
+		});
 	}
 
 	public getCurso(): ConnectableObservable<any>{
@@ -34,6 +44,12 @@ export class ProviderService{
 		return this.observable;
 	};
 
+	public selecionarCurso(idCurso: number) {
+		this.idCurso = idCurso;
+		this.getCurso(); // recarrega as infos do curso
+		this.router.navigateByUrl('/curso/disciplinas');
+	}
+
 	public excluirDisciplina(idDisciplina: number): Observable<any> {
 		const opcoes = {
 			headers: new HttpHeaders({
@@ -42,5 +58,6 @@ export class ProviderService{
 		};
 		return this.http.delete("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina/"+idDisciplina, opcoes);
 	}
+
 
 }
