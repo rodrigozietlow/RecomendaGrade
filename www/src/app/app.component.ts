@@ -12,7 +12,9 @@ export class AppComponent implements OnInit{
 	public usuario;
 
 	public constructor(public provider: ProviderService) {
-		this.usuario = JSON.parse(localStorage.getItem("usuario"));
+		if(localStorage.getItem('usuario') != undefined) {
+			this.setUsuario(JSON.parse(localStorage.getItem("usuario")));
+		}
 	}
 
 	ngOnInit() {
@@ -21,10 +23,15 @@ export class AppComponent implements OnInit{
 
 	setUsuario(usuario) {
 		this.usuario = usuario;
+		this.provider.buscarCursosDisponiveis(); // carregar os cursos depois de mudar de usuário o login
 	}
 
 	unsetUsuario() {
 		this.usuario = null;
 		localStorage.removeItem("usuario");
+	}
+
+	trocarCursoAtual(idCurso: number) {
+		this.provider.selecionarCurso(idCurso);
 	}
 }

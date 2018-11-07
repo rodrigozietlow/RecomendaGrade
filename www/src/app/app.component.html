@@ -1,25 +1,22 @@
 
 <ng-container *ngIf="usuario != undefined">
-	<app-navbar [usuario]="usuario" (logout)="unsetUsuario($event)"></app-navbar>
+	<app-navbar [usuario]="usuario" [cursos]="provider.cursosDisponiveis" [cursoSelecionado]="provider.curso" (logout)="unsetUsuario($event)" (trocarCurso)="trocarCursoAtual($event)"></app-navbar>
 	Usuário!!! {{usuario | json}}
 	<div class="container-fluid">
-		<a routerLink='/curso/editar'>Editar curso</a><br>
-		<a routerLink='/curso/disciplinas'>Ver grade</a><br>
-		<a routerLink='/disciplinas/cadastrar'>Cadastrar disciplina</a><br>
 		<ng-container *ngIf="provider.curso != undefined">
 			<router-outlet></router-outlet>
 		</ng-container>
 
-		<footer class="footer bg-verdinho fixed-bottom">
-			<div class="container">
-				<!-- Copyright -->
-				<div class="footer-copyright text-center py-3">© 2018 Copyleft:
-					Time de Desenvolvimento. Distribuído em licença GPL.
-				</div>
-				<!-- Copyright -->
-			</div>
-		</footer>
 	</div>
+	<footer class="footer bg-verdinho sticky-bottom">
+		<div class="container">
+			<!-- Copyright -->
+			<div class="footer-copyright text-center py-3">© 2018 Copyleft:
+				Time de Desenvolvimento. Distribuído em licença GPL.
+			</div>
+			<!-- Copyright -->
+		</div>
+	</footer>
 </ng-container>
 
 <ng-container *ngIf="usuario == undefined">
