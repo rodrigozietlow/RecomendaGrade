@@ -44,7 +44,7 @@ $rotas = array(
 	"index" => array()
 );
 
-$rotasArray = explode("/", $url['rota']);
+$rotasArray = array_filter(explode("/", $url['rota']));
 
 $verbo = $_SERVER['REQUEST_METHOD'];
 
@@ -70,7 +70,7 @@ else{
 			$visao->buscar($rotasArray[1]);
 		}
 		else{
-			// $visao->listar();
+			 $visao->listar();
 		}
 	}
 	else if($verbo == "POST"){
