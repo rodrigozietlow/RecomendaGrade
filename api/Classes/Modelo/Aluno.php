@@ -1,6 +1,6 @@
 <?php
 
-namespace RecomendaGrade;
+namespace RecomendaGrade\Modelo;
 
 
 class Aluno
@@ -11,10 +11,10 @@ class Aluno
     private $email;
     private $login;
     private $dataCadastro;
-    private $senha;
+    private $senhaHash;
     private $tipo;
 
-    function __construct(){}
+    // function __construct(){}
 
     function __construct($nomeAluno, $matricula, $email, $login, $dataCadastro, $senha, $tipo)
     {

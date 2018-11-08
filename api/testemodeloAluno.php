@@ -15,8 +15,15 @@ $pdo = new \PDO('mysql:host=localhost;dbname=recomendagrade', 'aluno', 'aluno');
 
 $modelo = new Modelo\ModeloAluno($pdo);
 
-$test = $modelo->login("luzinha", "aluno2");
+$test = $modelo->login("LUZINHA", "ALUNO");
 
+var_dump($test);
+
+//var_dump($test['senhaHash']);
+
+//var_dump($modelo->criptografarSenha("ALUNO"));
+
+/*
 if($test){
     print("voce logou");
 }else{
@@ -25,4 +32,6 @@ if($test){
 
 $hashed_password = password_hash("teste", PASSWORD_DEFAULT);
 var_dump($hashed_password);
+*/
+
 ?>
