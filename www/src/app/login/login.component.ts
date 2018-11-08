@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
 			response = {
 				"id": 35,
 				"username": "Rodrigo",
-				"email": "rodrigo.zietlow@gmail.com"
+				"email": "rodrigo.zietlow@gmail.com",
+				"permissao": 3
 			};
 			localStorage.setItem("usuario", JSON.stringify(response));
 			this.usuarioLogado.emit(response);

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProviderService } from '../provider.service';
+import { AppComponent } from '../app.component';
 
 @Component({
 	selector: 'app-curso-disciplinas',
@@ -8,11 +9,14 @@ import { ProviderService } from '../provider.service';
 })
 export class CursoDisciplinasComponent implements OnInit {
 
+	public usuario;
 	public periodos:number[];
 
 	public disciplinas:any[];
 
-	constructor(public provider: ProviderService) {	}
+	constructor(public provider: ProviderService, private componentePai: AppComponent) {
+		this.usuario = componentePai.usuario; // this is a hack!
+	}
 
 	ngOnInit() {
 		this.buscarDisciplinas();
