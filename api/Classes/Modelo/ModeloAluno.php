@@ -13,27 +13,36 @@ class ModeloAluno{
 		return $this->conexao;
 	}
 
-    public login($login, $senha){
-        $stmt = $this->conexao->prepare("SELECT * FROM aluno WHERE login = :login and senha = :senha");
+    public function login($login, $senha){
+        $stmt = $this->conexao->prepare("SELECT * FROM aluno WHERE login = :login");
+		$stmt->execute(array(":login" => $login));
 
-		$resultado = $stmt->execute(
-            array(
-                    ":login" => $login,
-                    ":senha" => $senha
-                )
-            );
-
-        if($resultado == 0){
-            return null;
-        }
-
-        return true;
+        //se encontrar vai retornar true, caso não escontrar retorna false
+         $stmt->fetch(\PDO::FETCH_ASSOC);
 
     }// fim do metodo
 
+    public function criptografarSenha($senha){
+        return password_hash($senha, PASSWORD_DEFAULT);
+    }
 
-    public buscarAluno(int $id){
+    public function validarSenha($senha, $hash){
+        if (password_verify($senha, $hash)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    public function buscarAluno(int $id){
+
+    }
+
+
+    public function salvarAluno(){
+
+        //usar o metodo criptografarSenha
+        //criptografarSenha($senha);
     }
 
 }// fim da classe

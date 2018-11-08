@@ -29,6 +29,16 @@ class ModeloCurso {
 		}
 		return null;
 	}
+	public function buscarCursos(){
+		$stmt = $this->conexao->prepare("SELECT curso.id, nomeCurso FROM curso"); // buscar as informações do curso
+		$stmt->execute(array());
+
+		$cursos = array();
+		while($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)){ // só tem um
+			$cursos[] = $resultado;
+		}
+		return $cursos;
+	}
 
 	public function publicarCurso($id){
 
