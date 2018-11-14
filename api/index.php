@@ -1,4 +1,5 @@
 <?php
+
 namespace RecomendaGrade;
 
 ini_set('display_errors', 1);
@@ -6,6 +7,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require 'vendor/autoload.php';
+
+session_start();
 
 // permitir chamadas
 header("Access-Control-Allow-Origin: *");
