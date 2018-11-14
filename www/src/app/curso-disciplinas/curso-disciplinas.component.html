@@ -1,4 +1,45 @@
 <h2>Grade do curso {{provider.curso.nomeCurso}}</h2>
+<div class="flex-container">
+	<div class="flex-coluna">
+		<div class="flex-item">
+			<div class="card">
+				<div class="card-body">
+					Matéria do primeiro semestre 1
+				</div>
+			</div>
+		</div>
+		<div class="flex-item">
+			<div class="card">
+				<div class="card-body">
+					Matéria do primeiro semestre 2
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="flex-coluna">
+		<div class="flex-item">
+			<div class="card">
+				<div class="card-body">
+					Matéria do segundo semestre 1
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="flex-coluna">
+		<div class="flex-item">
+			<div class="card">
+				<div class="card-body">
+					Matéria do terceiro semestre 1
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<ng-container *ngIf="usuario.permissao < 3">
+	<button class="btn btn-primary mt-2" type="button" name="button" routerLink="/disciplinas/cadastrar">Cadastrar nova disciplina</button>
+</ng-container>
 <table border="1">
 	<tr>
 		<th *ngFor="let numero of periodos">{{numero}}</th>
