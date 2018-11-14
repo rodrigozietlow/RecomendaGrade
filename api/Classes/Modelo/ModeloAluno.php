@@ -14,13 +14,13 @@ class ModeloAluno{
 	}
 
     //se encontrar vai retornar true, caso não escontrar retorna false
-    public function login($login, $inputSenha){
-        $stmt = $this->conexao->prepare("SELECT * FROM aluno WHERE login = :login");
-		$stmt->execute(array(":login" => $login));
+    public function login($email, $inputSenha){
+        $stmt = $this->conexao->prepare("SELECT * FROM aluno WHERE email = :email");
+		$stmt->execute(array(":email" => $email));
 
          $resultado = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-         //se encontrou o login verifica se a senha é compativel
+         //se encontrou o email verifica se a senha é compativel
 
          if($resultado){
              return $this->validarSenha($inputSenha, $resultado['senhaHash']);
