@@ -25,12 +25,22 @@ export class LoginComponent implements OnInit {
 	public loginListener(dados: any) : void {
 		this.loginApi.login(dados).subscribe((response) => {
 			// comentar quando lançar o login
-			response = {
-				"id": 35,
-				"username": "Rodrigo",
-				"email": "rodrigo.zietlow@gmail.com",
-				"permissao": 3
-			};
+			if(dados.username == 'coordenador') {
+				response = {
+					"id": 35,
+					"username": "Coordenador",
+					"email": "coordenador@gmail.com",
+					"permissao": 2
+				};
+			}
+			else {
+				response = {
+					"id": 35,
+					"username": "Aluno",
+					"email": "aluno@gmail.com",
+					"permissao": 3
+				};
+			}
 			localStorage.setItem("usuario", JSON.stringify(response));
 			this.usuarioLogado.emit(response);
 		},

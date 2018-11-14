@@ -63,7 +63,7 @@ class VisaoCurso {
 	}
 
 	public function listar(){
-		$cursos = $this->modeloCurso->buscarCursos();
+		$cursos = $this->modeloCurso->buscarCursosAluno();
 		echo json_encode($cursos, JSON_UNESCAPED_UNICODE);
 
 	}

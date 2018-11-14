@@ -40,6 +40,20 @@ class ModeloCurso {
 		return $cursos;
 	}
 
+	public function buscarCursosAluno(){
+		// var_dump($_SESSION);
+		$idAluno = $_SESSION['aluno']->getId();
+		$stmt = $this->conexao->prepare("SELECT curso.id, nomeCurso FROM curso, cursos_aluno, aluno WHERE curso.id = idCurso  AND aluno.id = idAluno AND aluno.id = :idAluno "); // buscar as informações do curso
+		$stmt->execute(array(":idAluno" => $idAluno));
+
+		$cursos = array();
+		while($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)){ // só tem um
+			$cursos[] = $resultado;
+		}
+		// print_r($cursos);
+		return $cursos;
+	}
+
 	public function publicarCurso($id){
 
 		$stmt = $this->conexao->prepare("SELECT * FROM curso WHERE id = :id"); // buscar as informações do curso
