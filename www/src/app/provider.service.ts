@@ -12,11 +12,11 @@ export class ProviderService{
 	public observable: ConnectableObservable<any>;
 
 	constructor(private http: HttpClient, private router: Router) {
-
+		this.http.get('http://192.168.103.223/ads_desenv/ads_dev/api/autosession.php').subscribe(() => {});
 	}
 
 	public buscarCursosDisponiveis() {
-		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/cursos.php").subscribe((cursos) => {
+		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso").subscribe((cursos) => {
 			this.cursosDisponiveis = cursos;
 			if(cursos.length > 0) {
 				this.selecionarCurso(cursos[0].id);

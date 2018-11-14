@@ -1,7 +1,7 @@
 
 <ng-container *ngIf="usuario != undefined">
 	<app-navbar [usuario]="usuario" [cursos]="provider.cursosDisponiveis" [cursoSelecionado]="provider.curso" (logout)="unsetUsuario($event)" (trocarCurso)="trocarCursoAtual($event)"></app-navbar>
-	Usuário!!! {{usuario | json}}
+	<!--Usuário!!! {{usuario | json}}-->
 	<div class="container-fluid">
 		<ng-container *ngIf="provider.curso != undefined">
 			<router-outlet></router-outlet>

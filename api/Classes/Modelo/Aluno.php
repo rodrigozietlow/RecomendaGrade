@@ -17,7 +17,7 @@ class Aluno
 
     function __construct($nomeAluno, $matricula, $email, $dataCadastro, $senhaHash, $tipo, $id=NULL)
     {
-        $this->id = $id;
+        // $this->id = $id;
         $this->nomeAluno = $nomeAluno;
         $this->matricula = $matricula;
         $this->$email = $email;
