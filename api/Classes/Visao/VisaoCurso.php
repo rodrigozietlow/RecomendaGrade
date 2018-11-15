@@ -63,8 +63,15 @@ class VisaoCurso {
 	}
 
 	public function listar(){
-		$cursos = $this->modeloCurso->buscarCursosAluno();
-		echo json_encode($cursos, JSON_UNESCAPED_UNICODE);
+		if (empty($_SESSION['aluno'])){
+			$cursos = $this->modeloCurso->buscarCursos();
+			echo json_encode($cursos, JSON_UNESCAPED_UNICODE);
+
+		}else{
+			$cursos = $this->modeloCurso->buscarCursosAluno();
+			echo json_encode($cursos, JSON_UNESCAPED_UNICODE);
+		
+		}
 
 	}
 }

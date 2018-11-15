@@ -18,12 +18,8 @@
 	<div class="form-group">
 		<label for="curso">Selecione um ou mais cursos utilizando as teclas "Shift" ou "Ctrl"</label>
 		<!--trazer nomes dos cursos-->
-	  	<select multiple class="form-control" id="sel2">
-	      	<option>1</option>
-	       	<option>2</option>
-	       	<option>3</option>
-	   		<option>4</option>
-	   		<option>5</option>
+	  	<select multiple class="form-control" id="curso">
+			<option *ngFor="let curso of cursos">{{curso.nomeCurso}}</option>
 	    </select>
 	</div>
 
