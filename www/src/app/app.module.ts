@@ -19,6 +19,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginLoginComponent } from './login/login-login/login-login.component';
 import { LoginCadastroComponent } from './login/login-cadastro/login-cadastro.component';
 import { LoginApiService } from './login-api.service';
+import { AlunoFormComponent } from './aluno-form/aluno-form.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { LoginApiService } from './login-api.service';
     LoginComponent,
     NavbarComponent,
     LoginLoginComponent,
-    LoginCadastroComponent
+    LoginCadastroComponent,
+    AlunoFormComponent
   ],
   imports: [
     BrowserModule,
