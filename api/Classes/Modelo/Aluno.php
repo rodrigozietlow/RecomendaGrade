@@ -9,22 +9,20 @@ class Aluno
     private $matricula;
     private $nomeAluno;
     private $email;
-    private $login;
     private $dataCadastro;
     private $senhaHash;
     private $tipo;
 
     // function __construct(){}
 
-    function __construct($nomeAluno, $matricula, $email, $login, $dataCadastro, $senha, $tipo)
+    function __construct($nomeAluno, $matricula, $email, $dataCadastro, $senhaHash, $tipo, $id=NULL)
     {
-        // $this->id = $id;
+        $this->id = $id;
         $this->nomeAluno = $nomeAluno;
         $this->matricula = $matricula;
         $this->$email = $email;
-        $this->login = $login;
         $this->dataCadastro = $dataCadastro;
-        $this->senhaHash = $senha;
+        $this->senhaHash = $senhaHash;
         $this->tipo = $tipo;  // 1=ADM     2=Coordenador     3=Aluno
     }
 
@@ -126,30 +124,6 @@ class Aluno
     }
 
     /**
-     * Get the value of Login
-     *
-     * @return mixed
-     */
-    public function getLogin()
-    {
-        return $this->login;
-    }
-
-    /**
-     * Set the value of Login
-     *
-     * @param mixed login
-     *
-     * @return self
-     */
-    public function setLogin($login)
-    {
-        $this->login = $login;
-
-        return $this;
-    }
-
-    /**
      * Get the value of Data Cadastro
      *
      * @return mixed
@@ -178,9 +152,9 @@ class Aluno
      *
      * @return mixed
      */
-    public function getSenha()
+    public function getSenhaHash()
     {
-        return $this->senha;
+        return $this->senhaHash;
     }
 
     /**
@@ -190,9 +164,9 @@ class Aluno
      *
      * @return self
      */
-    public function setSenha($senha)
+    public function setSenhaHash($senhaHash)
     {
-        $this->senha = $senha;
+        $this->senhaHash = $senhaHash;
 
         return $this;
     }
