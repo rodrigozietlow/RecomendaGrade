@@ -10,19 +10,93 @@ a {
 	display:flex;
 	flex-direction: row;
 	width: 100%;
+	overflow-x: auto;
 }
 .flex-coluna {
 	flex:1;
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	justify-content: center;
+	max-width: 20%;
+    min-width: 9.5em;
 }
 .flex-item {
+	display: flex;
 	background-color: blue;
 	border: solid black 1px;
-	flex: 1;
+	flex-grow: 1;
+	flex-shrink: 1;
+	padding: 0.5em;
+}
+
+.flex-item:nth-child(1) {
+	flex: 0 1 3em;
+	align-self: stretch;
 }
 
 .flex-item > .card {
-	width: 8em;
+	margin: auto;
+	max-width: 75%;
+	min-width: 8em;
+}
+
+.preco {
+	width: 1em;
+	height: 1em;
+	display: inline-block;
+	box-shadow: 1px 2px 4px #333;
+}
+
+.bolinha {
+	border-radius: 50%;
+}
+
+.elementos-abaixo {
+	border: solid black 1px;
+	display: inline-block;
+}
+
+@media only screen and (max-width: 576px) {
+	.preco {
+		width: 1.5em;
+		height: 1.5em;
+	}
+}
+
+/* tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }

@@ -1,35 +1,201 @@
 <h2>Grade do curso {{provider.curso.nomeCurso}}</h2>
+
 <div class="flex-container">
 	<div class="flex-coluna">
 		<div class="flex-item">
-			<div class="card">
+			<h3 class="text-center w-100">
+				 1
+			</h3>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-1">
 				<div class="card-body">
-					Matéria do primeiro semestre 1
+					<p class="card-text">
+						Matéria do primeiro semestre 1
+					</p>
+					<div class="elementos-abaixo w-75">
+						<div class="preco bolinha cor-1 bg-laranja">
+
+						</div>
+
+						<div class="preco cor-2">
+
+						</div>
+					</div>
+					<div class="elementos-abaixo w-25">
+						<div class="preco bolinha cor-1 bg-laranja">
+
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="flex-item">
-			<div class="card">
-				<div class="card-body">
+			<div class="card cor-2">
+				<div class="card-body text-center">
 					Matéria do primeiro semestre 2
+				</div>
+			</div>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-3">
+				<div class="card-body text-center">
+					Matéria do primeiro semestre 3
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="flex-coluna">
 		<div class="flex-item">
-			<div class="card">
+			<h3 class="text-center w-100">
+				 2
+			</h3>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-4">
 				<div class="card-body">
 					Matéria do segundo semestre 1
 				</div>
 			</div>
 		</div>
+		<div class="flex-item">
+			<div class="card cor-5">
+				<div class="card-body">
+					Matéria do segundo semestre 2
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="flex-coluna">
 		<div class="flex-item">
-			<div class="card">
+			<h3 class="text-center w-100">
+				 3
+			</h3>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-6">
 				<div class="card-body">
 					Matéria do terceiro semestre 1
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="flex-coluna">
+		<div class="flex-item">
+			<h3 class="text-center w-100">
+				 4
+			</h3>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-7">
+				<div class="card-body">
+					<p class="card-text">
+						Matéria do quarto semestre 1
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-8">
+				<div class="card-body text-center">
+					Matéria do quarto semestre 2
+				</div>
+			</div>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-9">
+				<div class="card-body text-center">
+					Matéria do quarto semestre 3
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="flex-coluna">
+		<div class="flex-item">
+			<h3 class="text-center w-100">
+				 5
+			</h3>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-10">
+				<div class="card-body">
+					<p class="card-text">
+						Matéria do quinto semestre 1
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-11">
+				<div class="card-body text-center">
+					Matéria do quinto semestre 2
+				</div>
+			</div>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-12">
+				<div class="card-body text-center">
+					Matéria do quinto semestre 3
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="flex-coluna">
+		<div class="flex-item">
+			<h3 class="text-center w-100">
+				 6
+			</h3>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-13">
+				<div class="card-body">
+					<p class="card-text">
+						Matéria do sexto semestre 1
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-14">
+				<div class="card-body text-center">
+					Matéria do sexto semestre 2
+				</div>
+			</div>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-15">
+				<div class="card-body text-center">
+					Matéria do sexto semestre 3
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="flex-coluna">
+		<div class="flex-item">
+			<h3 class="text-center w-100">
+				 7
+			</h3>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-16">
+				<div class="card-body">
+					<p class="card-text">
+						Matéria do sétimo semestre 1
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-17">
+				<div class="card-body text-center">
+					Matéria do sétimo semestre 2
+				</div>
+			</div>
+		</div>
+		<div class="flex-item">
+			<div class="card cor-0">
+				<div class="card-body text-center">
+					Matéria do sétimo semestre 3
 				</div>
 			</div>
 		</div>
@@ -38,7 +204,7 @@
 
 
 <ng-container *ngIf="usuario.permissao < 3">
-	<button class="btn btn-primary mt-2" type="button" name="button" routerLink="/disciplinas/cadastrar">Cadastrar nova disciplina</button>
+	<button class="btn btn-primary mb-2" type="button" name="button" routerLink="/disciplinas/cadastrar">Cadastrar nova disciplina</button>
 </ng-container>
 <table border="1">
 	<tr>
