@@ -44,6 +44,11 @@ $rotas = array(
 		"Controle" => "RecomendaGrade\\Controle\\ControleAluno",
 		"Visao" => "RecomendaGrade\\Visao\\VisaoAluno"
 	),
+	"login" => array(
+		"Modelo" => "RecomendaGrade\\Modelo\\ModeloAluno",
+		"Controle" => "RecomendaGrade\\Controle\\ControleLogin",
+		"Visao" => ""
+	),
 	"index" => array()
 );
 

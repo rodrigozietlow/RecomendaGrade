@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
 	public loginListener(dados: any) : void {
 		this.loginApi.login(dados).subscribe((response) => {
-			console.log("Listener");
+			console.log(response);
 			// comentar quando lançar o login
 			/*
 			if(dados.username == 'coordenador') {
