@@ -15,7 +15,7 @@ header("Access-Control-Allow-Credentials: true");
 session_start();
 
 
-$aluno = new Modelo\Aluno("Rodrigo", "201613330146", "rodrigo.zietlow@teste.com", "rodrigo", "2018-11-07", "aaaaaaaaaaaaaaa", 3);
+$aluno = new Modelo\Aluno("Rodrigo", "rodrigo.zietlow@teste.com", "2018-11-07", "aaaaaaaaaaaaaaa", 3);
 $aluno->setId(2);
 $_SESSION['aluno'] = $aluno;
 
