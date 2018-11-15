@@ -158,6 +158,7 @@ export class DisciplinaFormComponent implements OnInit {
 		}else{
 
 			const opcoes = {
+				withCredentials: true,
 				headers: new HttpHeaders({
 					'Content-Type':  'application/json',
 				})
