@@ -8,7 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class LoginLoginComponent implements OnInit {
 
 	public user = {
-		'username': '',
+		'email': '',
 		'senha': ''
 	};
 
@@ -17,10 +17,10 @@ export class LoginLoginComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit() {
+		console.log("hello");
 	}
 
 	public submit(): void {
 		this.login.emit(this.user);
 	}
-
 }

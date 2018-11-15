@@ -1,0 +1,34 @@
+<form class="my-3">
+
+	<div class="form-group">
+		<label for="nomeAluno">Nome Completo</label>
+		<input type="text" class="form-control" id="nomeAluno" name="nomeAluno"   placeholder="Digite seu nome Completo">
+	</div>
+	<div class="form-group">
+		<label for="email">E-mail</label>
+		<input type="email" class="form-control" id="email" name="email"   placeholder="Informe seu e-mail. Ex: aluno@email.com.br">
+	</div>
+
+	<div class="form-group">
+		<label for="senha">Senha</label>
+	 	<input type="password" class="form-control" id="txtSenha" >
+  		<span id="spnMostrarSenha" class="glyphicon glyphicon glyphicon-eye-open form-control-feedback"></span>
+	</div>
+
+	<div class="form-group">
+		<label for="curso">Selecione um ou mais cursos utilizando as teclas "Shift" ou "Ctrl"</label>
+		<!--trazer nomes dos cursos-->
+	  	<select multiple class="form-control" id="sel2">
+	      	<option>1</option>
+	       	<option>2</option>
+	       	<option>3</option>
+	   		<option>4</option>
+	   		<option>5</option>
+	    </select>
+	</div>
+
+
+
+	<button class="btn btn-success" type="button" name="button" (click)="submit()">Salvar</button>
+
+</form>

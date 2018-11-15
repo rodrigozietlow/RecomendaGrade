@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
 
 	public loginListener(dados: any) : void {
 		this.loginApi.login(dados).subscribe((response) => {
+			console.log(response);
 			// comentar quando lançar o login
+			/*
 			if(dados.username == 'coordenador') {
 				response = {
 					"id": 35,
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
 					"permissao": 3
 				};
 			}
+			*/
 			localStorage.setItem("usuario", JSON.stringify(response));
 			this.usuarioLogado.emit(response);
 		},

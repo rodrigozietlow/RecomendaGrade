@@ -11,16 +11,7 @@ class ControleAluno{
         $this->modelo = $modelo;
     }
 
-    public function login($login, $senha){
 
-        $acesso = $this->modelo->login($login, $senha);
-
-        if($acesso == NULL){
-            header("HTTP/1.1 401 Unauthorized");
-            die();
-        }
-
-        return view();
 
 }// fim da classe
 
