@@ -6,20 +6,16 @@ namespace RecomendaGrade\Modelo;
 class Aluno
 {
     private $id;
-    private $matricula;
     private $nomeAluno;
     private $email;
     private $dataCadastro;
     private $senhaHash;
     private $tipo;
 
-    // function __construct(){}
-
-    function __construct($nomeAluno, $matricula, $email, $dataCadastro, $senhaHash, $tipo, $id=NULL)
+    function __construct($nomeAluno, $email, $dataCadastro, $senhaHash, $tipo, $id=NULL)
     {
         $this->id = $id;
         $this->nomeAluno = $nomeAluno;
-        $this->matricula = $matricula;
         $this->$email = $email;
         $this->dataCadastro = $dataCadastro;
         $this->senhaHash = $senhaHash;
@@ -47,30 +43,6 @@ class Aluno
     public function setId($id)
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of Matricula
-     *
-     * @return mixed
-     */
-    public function getMatricula()
-    {
-        return $this->matricula;
-    }
-
-    /**
-     * Set the value of Matricula
-     *
-     * @param mixed matricula
-     *
-     * @return self
-     */
-    public function setMatricula($matricula)
-    {
-        $this->matricula = $matricula;
 
         return $this;
     }
