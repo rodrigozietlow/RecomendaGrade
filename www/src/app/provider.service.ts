@@ -10,13 +10,19 @@ export class ProviderService{
 	public curso: any;
 	public cursosDisponiveis: any;
 	public observable: ConnectableObservable<any>;
+	private opcoes = {
+		withCredentials: true,
+		headers: new HttpHeaders({
+			'Content-Type':  'application/json',
+		})
+	};
 
 	constructor(private http: HttpClient, private router: Router) {
-		this.http.get('http://192.168.103.223/ads_desenv/ads_dev/api/autosession.php').subscribe(() => {});
+		this.http.get('http://192.168.103.223/ads_desenv/ads_dev/api/autosession.php', this.opcoes).subscribe(() => {});
 	}
 
 	public buscarCursosDisponiveis() {
-		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso").subscribe((cursos) => {
+		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso", this.opcoes).subscribe((cursos) => {
 			this.cursosDisponiveis = cursos;
 			if(cursos.length > 0) {
 				this.selecionarCurso(cursos[0].id);
@@ -27,7 +33,7 @@ export class ProviderService{
 	public getCurso(): ConnectableObservable<any>{
 		this.curso = undefined;
 
-		let obsHttp = this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/"+this.idCurso);
+		let obsHttp = this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/"+this.idCurso, this.opcoes);
 
 		this.observable = ConnectableObservable.create((observer) => {
 			obsHttp.subscribe(dados => observer.next(dados));
@@ -51,12 +57,7 @@ export class ProviderService{
 	}
 
 	public excluirDisciplina(idDisciplina: number): Observable<any> {
-		const opcoes = {
-			headers: new HttpHeaders({
-				'Content-Type':  'application/json',
-			})
-		};
-		return this.http.delete("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina/"+idDisciplina, opcoes);
+		return this.http.delete("http://192.168.103.223/ads_desenv/ads_dev/api/disciplina/"+idDisciplina, this.opcoes);
 	}
 
 
