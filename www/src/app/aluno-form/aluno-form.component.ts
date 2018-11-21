@@ -9,6 +9,7 @@ export class AlunoFormComponent implements OnInit {
 
 	@Output() cadastro = new EventEmitter();
 	@Input() usuario;
+	@Input() cursos;
 
 	constructor() { }
 

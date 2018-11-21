@@ -63,4 +63,39 @@ export class LoginComponent implements OnInit {
 			console.log(error);
 		});
 	}
+	public cadastrarListener(usuario) {
+		console.log(usuario);
+
+		// se comunicar com a api através do serviço login-api
+		this.loginApi.cadastrar(usuario).subscribe(
+			(resposta) => {
+				// recebemos um confirmação da api
+
+				// adicionar no localStorage (linha 47)
+				localStorage.setItem("usuario", JSON.stringify(resposta));
+
+				// emitir o usuario logado para o pai (linha 48)
+				this.usuarioLogado.emit(resposta);
+			},
+			(error) => {
+				// recebemos uma rejeição da api
+				if(error.status == 500) {
+					this.erro = "Ops, algo deu errado no servidor";
+				}
+				else if(error.status == 422) {
+					this.erro = "Bad request dude!";
+				}
+				else if(error.status == 401) {
+					this.erro = "Informações incorretas";
+				}
+				else{
+					this.erro = "Alguma coisa desconhecida aconteceu"
+				}
+				console.log(error);
+			}
+		);
+
+
+		// caso confirmação
+	}
 }
