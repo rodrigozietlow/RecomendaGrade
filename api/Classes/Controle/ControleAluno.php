@@ -35,22 +35,6 @@ class ControleAluno{
     }
 
 
-    //esse codigo recortar e colar no ModeloAluno (arquivo sendo editado por outro colaborador)
-    public function validarEmail($email){
-        $stmt = $this->conexao->prepare("SELECT * FROM aluno WHERE email = :email");
-		$stmt->execute(array(":email" => $email));
-
-         $resultado = $stmt->fetch(\PDO::FETCH_ASSOC);
-
-         //se true econtrou o email, se false não encontrou
-         if($resultado){
-             return true;
-         }else{
-             return false;
-         }
-    }
-
-
 }// fim da classe
 
 ?>
