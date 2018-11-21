@@ -20,7 +20,7 @@
 					<div class="alert alert-danger mt-3" *ngIf="erro">
 						{{erro}}
 					</div>
-					<app-login-cadastro *ngIf="!login"></app-login-cadastro>
+					<app-login-cadastro *ngIf="!login" (cadastrar)="cadastrarListener($event)"></app-login-cadastro>
 					<app-login-login *ngIf="login" (login)="loginListener($event)"></app-login-login>
 				</div>
 			</div>
