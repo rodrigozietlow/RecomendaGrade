@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .bg-laranja {
-	background-color: #F7A541 !important;
+	background-color: #ee8339!important;
 }
 
 .logo-text {
@@ -28,11 +28,13 @@
 	background: #ED4C67;
 	transition: 0.5s;
 	color: white;
+	fill: white;
 }
 .cor-5, .cor-5-botao > .button span {
 	background: #6F1E51;
 	transition: 0.5s;
 	color: white;
+	fill: white;
 }
 .cor-6, .cor-6-botao > .button span {
 	background: #A3CB38;
@@ -42,6 +44,7 @@
 	background: #1289A7;
 	transition: 0.5s;
 	color: white;
+	fill: white;
 }
 .cor-8, .cor-8-botao > .button span {
 	background: #D980FA;
@@ -51,16 +54,19 @@
 	background: #B53471;
 	transition: 0.5s;
 	color: white;
+	fill: white;
 }
 .cor-10, .cor-10-botao > .button span {
 	background: #009432;
 	transition: 0.5s;
 	color: white;
+	fill: white;
 }
 .cor-11, .cor-11-botao > .button span {
 	background: #0652DD;
 	transition: 0.5s;
 	color: white;
+	fill: white;
 }
 .cor-12, .cor-12-botao > .button span {
 	background: #9980FA;
@@ -70,24 +76,29 @@
 	background: #833471;
 	transition: 0.5s;
 	color: white;
+	fill: white;
 }
 .cor-14, .cor-14-botao > .button span {
 	background: #EA2027;
 	transition: 0.5s;
 	color: white;
+	fill: white;
 }
 .cor-15, .cor-15-botao > .button span {
 	background: #006266;
 	transition: 0.5s;
 	color: white;
+	fill: white;
 }
 .cor-16, .cor-16-botao > .button span {
 	background: #1B1464;
 	transition: 0.5s;
 	color: white;
+	fill: white;
 }
 .cor-17, .cor-17-botao > .button span {
 	background: #5758BB;
 	transition: 0.5s;
 	color: white;
+	fill: white;
 }
