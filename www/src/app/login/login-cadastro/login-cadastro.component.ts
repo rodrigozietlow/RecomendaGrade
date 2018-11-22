@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ProviderService } from '../../provider.service';
 
 @Component({
 	selector: 'app-login-cadastro',
@@ -9,15 +10,18 @@ export class LoginCadastroComponent implements OnInit {
 
 	@Output() cadastrar = new EventEmitter();
 	public usuario = {
-		'id': undefined,
-		'nomeAluno': '',
-		'email': '',
-		'senhaHash': ''
-	}
+		"id" : "",
+		"nomeAluno" : "",
+		"email" : "",
+		"senhaHash" : "",
+		"cursos" : []
+	};
 
-	constructor() { }
+	constructor(public provider: ProviderService) {}
 
 	ngOnInit() {
+		// ao inicializar o componente, vamos buscar os cursos disponiveis
+		this.provider.buscarCursosDisponiveis();
 	}
 
 	public realizarCadastro() {
