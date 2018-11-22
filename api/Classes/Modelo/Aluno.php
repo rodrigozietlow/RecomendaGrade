@@ -166,5 +166,23 @@ class Aluno
 
         return $this;
     }
+	public function getCursos()
+    {
+        return $this->cursos;
+    }
+
+    /**
+     * Set the value of Cursos
+     *
+     * @param mixed cursos
+     *
+     * @return self
+     */
+    public function setCursos($cursos)
+    {
+        $this->cursos = $cursos;
+
+        return $this;
+    }
 
 }//fim da classe
