@@ -12,19 +12,19 @@ export class AlunoFormComponent implements OnInit {
 	@Input() usuario;
 	@Input() cursos;
 
-	public aluno = {
+	public usuario = {
 		"id" : "",
 		"nomeAluno" : "",
 		"email" : "",
-		"senha" : "",
+		"senhaHash" : "",
 		"cursos" : []
 	};
 
 	public form = new FormGroup({
-		nomeAluno: new FormControl(this.aluno.nomeAluno, [Validators.required, Validators.maxLength(100)]),
-		email: new FormControl(this.aluno.email, [Validators.maxLength(100), Validators.required]),
-		senha: new FormControl(this.aluno.senha, [Validators.min(6),Validators.maxLength(100), Validators.required]),
-		cursos: new FormControl(this.aluno.cursos, [Validators.required]),
+		nomeAluno: new FormControl(this.usuario.nomeAluno, [Validators.required, Validators.maxLength(100)]),
+		email: new FormControl(this.usuario.email, [Validators.maxLength(100), Validators.required]),
+		senhaHash: new FormControl(this.usuario.senhaHash, [Validators.min(6),Validators.maxLength(100), Validators.required]),
+		cursos: new FormControl(this.usuario.cursos, [Validators.required]),
 	});
 
 
