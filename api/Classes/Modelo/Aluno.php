@@ -16,7 +16,7 @@ class Aluno
     {
         $this->id = $id;
         $this->nomeAluno = $nomeAluno;
-        $this->$email = $email;
+        $this->email = $email;
         $this->dataCadastro = $dataCadastro;
         $this->senhaHash = $senhaHash;
         $this->tipo = $tipo;  // 1=ADM     2=Coordenador     3=Aluno

@@ -2,6 +2,7 @@
 
 namespace RecomendaGrade\Controle;
 use RecomendaGrade\Modelo;
+use RecomendaGrade\Visao;
 
 class ControleAluno{
 
@@ -16,18 +17,30 @@ class ControleAluno{
         // primero, precisamos pegar os dados que vem por stream
 		$dados = json_decode(file_get_contents("php://input"), true);
 
-        print_r($dados);
+        // print_r($dados);
 
 		$nomeAluno = $dados['nomeAluno'] ?? "";
 		$email = $dados['email'] ?? 0;
-		$senhaHash = $dados['senhaHash'] ?? 0;
+		$senha = $dados['senhaHash'] ?? 0;
 		$dataCadastro = date("Y-m-d");
 		$tipo = 3;
 
+		// validacao
+
+		//criptografar senha
+		$senhaHash = $this->modelo->criptografarSenha($senha);
+
 		// criar um objeto aluno
-		$Aluno = new Modelo\Aluno($nomeAluno, $email, $senhaHash, $dataCadastro, $tipo);
+		$Aluno = new Modelo\Aluno($nomeAluno, $email, $dataCadastro, $senhaHash, $tipo);
 
 		$resultado = $this->modelo->salvar($Aluno);
+
+		if($resultado) {
+			$_SESSION['aluno'] = $Aluno;
+		}
+
+		$visao = new Visao\VisaoAluno($this->modelo);
+		$visao->printarAluno($Aluno);
 
 		return $resultado;
         /*
