@@ -21,8 +21,8 @@ export class AlunoFormComponent implements OnInit {
 	};
 
 	public form = new FormGroup({
-		nomeAluno: new FormControl(this.usuario.nomeAluno, [Validators.required, Validators.maxLength(100)]),
-		email: new FormControl(this.usuario.email, [Validators.maxLength(100), Validators.required]),
+		nomeAluno: new FormControl(this.usuario.nomeAluno, [Validators.required, Validators.maxLength(60)]),
+		email: new FormControl(this.usuario.email, [Validators.maxLength(100), Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
 		senhaHash: new FormControl(this.usuario.senhaHash, [Validators.min(6),Validators.maxLength(100), Validators.required]),
 		cursos: new FormControl(this.usuario.cursos, [Validators.required]),
 	});
