@@ -17,6 +17,19 @@ class ControleAluno{
 		$dados = json_decode(file_get_contents("php://input"), true);
 
         print_r($dados);
+
+		$nomeAluno = $dados['nomeAluno'] ?? "";
+		$email = $dados['email'] ?? 0;
+		$senhaHash = $dados['senhaHash'] ?? 0;
+		$dataCadastro = date("Y-m-d");
+		$tipo = 3;
+
+		// criar um objeto aluno
+		$Aluno = new Modelo\Aluno($nomeAluno, $email, $senhaHash, $dataCadastro, $tipo);
+
+		$resultado = $this->modelo->salvar($Aluno);
+
+		return $resultado;
         /*
 
         if(isEmailCadastrado($dados['email'])){
@@ -27,27 +40,11 @@ class ControleAluno{
         //colocar aqui a função de salvar o cadastro de usuario
         */
 
-    }//fim da funcao
+    }//fim da funcao salvar
 
     //função para verificar e validar se o email será único
     public function isEmailCadastrado($email){
         return $this->modelo->validarEmail($email);
-    }
-
-
-    //esse codigo recortar e colar no ModeloAluno (arquivo sendo editado por outro colaborador)
-    public function validarEmail($email){
-        $stmt = $this->conexao->prepare("SELECT * FROM aluno WHERE email = :email");
-		$stmt->execute(array(":email" => $email));
-
-         $resultado = $stmt->fetch(\PDO::FETCH_ASSOC);
-
-         //se true econtrou o email, se false não encontrou
-         if($resultado){
-             return true;
-         }else{
-             return false;
-         }
     }
 
 

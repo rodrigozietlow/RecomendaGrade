@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'app-login-cadastro',
@@ -7,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginCadastroComponent implements OnInit {
 
+	@Output() cadastrar = new EventEmitter();
 	public usuario = {
 		'id': undefined,
-		'nome': 'Nome',
+		'nomeAluno': 'Nome',
 		'email': 'nome@email.com',
-		'senha': ''
+		'senhaHash': ''
 	}
 
 	constructor() { }
@@ -20,9 +21,7 @@ export class LoginCadastroComponent implements OnInit {
 	}
 
 	public realizarCadastro() {
-		console.log('foi emitido um valor');
-		// aqui fazer o código que se comunica com a api
-		// ou podemos emitir para o pai deste e tratar na página como o login
+		this.cadastrar.emit(this.usuario);
 	}
 
 }

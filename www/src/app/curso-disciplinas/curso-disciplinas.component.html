@@ -1,30 +1,87 @@
 <h2>Grade do curso {{provider.curso.nomeCurso}}</h2>
 
+<ng-container *ngIf="usuario.permissao < 3">
+	<button class="btn btn-primary mb-2" type="button" name="button" routerLink="/disciplinas/cadastrar">Cadastrar nova disciplina</button>
+</ng-container>
+
+<ng-container *ngIf="usuario.permissao == 3">
+	<div class="barra-legenda text-right" style="margin-left: 15%">
+		25% do curso concluído
+	</div>
+	<div class="progress">
+		<div class="progress-bar bg-laranja" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+	</div>
+</ng-container>
 <div class="flex-container">
-	<div class="flex-coluna">
+	<div class="flex-coluna" *ngFor="let numero of periodos">
 		<div class="flex-item">
 			<h3 class="text-center w-100">
-				 1
+				 {{numero}}
 			</h3>
 		</div>
+		<ng-container *ngFor="let disciplina of disciplinas">
+			<div class="flex-item" *ngIf="disciplina.periodo == numero">
+				<div class="card cor-{{disciplina.cor}}" >
+					<div class="card-body">
+						<p class="card-text">
+							{{disciplina.nome}}
+						</p>
+						<div class="row">
+							<div class="elementos-abaixo col-8">
+								<span *ngFor="let req of disciplina.requisitos" class="preco cor-15 {{req.tipoRequisito == 1 ? 'bolinha' : ''}} ml-1"></span>
+								<!--
+								<span class="preco cor-2"></span>
+								<span class="preco bolinha cor-1 bg-laranja"></span>
+								<span class="preco cor-2"></span>
+								<span class="preco bolinha cor-1 bg-laranja"></span>
+								<span class="preco cor-2"></span>
+								-->
+							</div>
+							<div class="elementos-abaixo col-4">
+								<!-- checkbox para o aluno -->
+								<ng-container *ngIf="usuario.permissao == 3">
+									<label class="container">
+										<input type="checkbox">
+										<span class="checkmark"></span>
+									</label>
+								</ng-container>
+
+								<!-- opcoes de edição do admin/coord -->
+								<ng-container *ngIf="usuario.permissao < 3">
+									<a routerLink="/disciplinas/editar/{{disciplina.id}}">
+										<svg class="iconezinho" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+									</a>
+									<a href="javascript:;" (click)="excluir(disciplina)">
+										<svg class="iconezinho" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+									</a>
+								</ng-container>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ng-container>
+		<!--
 		<div class="flex-item">
 			<div class="card cor-1">
 				<div class="card-body">
 					<p class="card-text">
 						Matéria do primeiro semestre 1
 					</p>
-					<div class="elementos-abaixo w-75">
-						<div class="preco bolinha cor-1 bg-laranja">
-
+					<div class="row">
+						<div class="elementos-abaixo col-8">
+							<span class="preco bolinha cor-1 bg-laranja"></span>
+							<span class="preco cor-2"></span>
+							<span class="preco bolinha cor-1 bg-laranja"></span>
+							<span class="preco cor-2"></span>
+							<span class="preco bolinha cor-1 bg-laranja"></span>
+							<span class="preco cor-2"></span>
 						</div>
-
-						<div class="preco cor-2">
-
-						</div>
-					</div>
-					<div class="elementos-abaixo w-25">
-						<div class="preco bolinha cor-1 bg-laranja">
-
+						<div class="elementos-abaixo col-4">
+							<label class="container">
+								<input type="checkbox">
+								<span class="checkmark"></span>
+							</label>
 						</div>
 					</div>
 				</div>
@@ -32,201 +89,51 @@
 		</div>
 		<div class="flex-item">
 			<div class="card cor-2">
-				<div class="card-body text-center">
-					Matéria do primeiro semestre 2
+				<div class="card-body">
+					<p class="card-text">
+						Matéria do primeiro semestre 2
+					</p>
+					<div class="row">
+						<div class="elementos-abaixo col-8">
+							<span class="preco bolinha cor-1 bg-laranja"></span>
+							<span class="preco cor-2"></span>
+							<span class="preco bolinha cor-1 bg-laranja"></span>
+							<span class="preco cor-2"></span>
+						</div>
+						<div class="elementos-abaixo col-4">
+							<label class="container">
+								<input type="checkbox">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="flex-item">
 			<div class="card cor-3">
-				<div class="card-body text-center">
-					Matéria do primeiro semestre 3
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="flex-coluna">
-		<div class="flex-item">
-			<h3 class="text-center w-100">
-				 2
-			</h3>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-4">
-				<div class="card-body">
-					Matéria do segundo semestre 1
-				</div>
-			</div>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-5">
-				<div class="card-body">
-					Matéria do segundo semestre 2
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="flex-coluna">
-		<div class="flex-item">
-			<h3 class="text-center w-100">
-				 3
-			</h3>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-6">
-				<div class="card-body">
-					Matéria do terceiro semestre 1
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="flex-coluna">
-		<div class="flex-item">
-			<h3 class="text-center w-100">
-				 4
-			</h3>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-7">
 				<div class="card-body">
 					<p class="card-text">
-						Matéria do quarto semestre 1
+						Matéria do primeiro semestre 3
 					</p>
+					<div class="row">
+						<div class="elementos-abaixo col-8">
+							<span class="preco bolinha cor-1 bg-laranja"></span>
+						</div>
+						<div class="elementos-abaixo col-4">
+							<label class="container">
+								<input type="checkbox">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="flex-item">
-			<div class="card cor-8">
-				<div class="card-body text-center">
-					Matéria do quarto semestre 2
-				</div>
-			</div>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-9">
-				<div class="card-body text-center">
-					Matéria do quarto semestre 3
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="flex-coluna">
-		<div class="flex-item">
-			<h3 class="text-center w-100">
-				 5
-			</h3>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-10">
-				<div class="card-body">
-					<p class="card-text">
-						Matéria do quinto semestre 1
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-11">
-				<div class="card-body text-center">
-					Matéria do quinto semestre 2
-				</div>
-			</div>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-12">
-				<div class="card-body text-center">
-					Matéria do quinto semestre 3
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="flex-coluna">
-		<div class="flex-item">
-			<h3 class="text-center w-100">
-				 6
-			</h3>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-13">
-				<div class="card-body">
-					<p class="card-text">
-						Matéria do sexto semestre 1
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-14">
-				<div class="card-body text-center">
-					Matéria do sexto semestre 2
-				</div>
-			</div>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-15">
-				<div class="card-body text-center">
-					Matéria do sexto semestre 3
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="flex-coluna">
-		<div class="flex-item">
-			<h3 class="text-center w-100">
-				 7
-			</h3>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-16">
-				<div class="card-body">
-					<p class="card-text">
-						Matéria do sétimo semestre 1
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-17">
-				<div class="card-body text-center">
-					Matéria do sétimo semestre 2
-				</div>
-			</div>
-		</div>
-		<div class="flex-item">
-			<div class="card cor-0">
-				<div class="card-body text-center">
-					Matéria do sétimo semestre 3
-				</div>
-			</div>
-		</div>
+		-->
 	</div>
 </div>
 
-
-<ng-container *ngIf="usuario.permissao < 3">
-	<button class="btn btn-primary mb-2" type="button" name="button" routerLink="/disciplinas/cadastrar">Cadastrar nova disciplina</button>
-</ng-container>
-<table border="1">
-	<tr>
-		<th *ngFor="let numero of periodos">{{numero}}</th>
-	</tr>
-	<tr>
-		<td *ngFor="let numero of periodos">
-			<span *ngFor="let disciplina of disciplinas">
-				<div *ngIf="disciplina.periodo == numero"> {{disciplina.nome}}
-					<ng-container *ngIf="usuario.permissao < 3">
-						<a routerLink="/disciplinas/editar/{{disciplina.id}}">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-						</a>
-						<a href="javascript:;" (click)="excluir(disciplina)">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-						</a>
-					</ng-container>
-				</div>
-			</span>
-		</td>
-	</tr>
-</table>
 <ng-container *ngIf="usuario.permissao < 3">
 	<button class="btn btn-primary mt-2" type="button" name="button" routerLink="/disciplinas/cadastrar">Cadastrar nova disciplina</button>
 </ng-container>

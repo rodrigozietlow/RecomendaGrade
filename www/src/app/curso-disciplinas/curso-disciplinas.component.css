@@ -1,5 +1,5 @@
 svg {
-	fill: black;
+	fill: inherit;
 }
 
 a {
@@ -23,8 +23,8 @@ a {
 }
 .flex-item {
 	display: flex;
-	background-color: blue;
-	border: solid black 1px;
+	/* background-color: blue;
+	border: solid black 1px; */
 	flex-grow: 1;
 	flex-shrink: 1;
 	padding: 0.5em;
@@ -37,8 +37,8 @@ a {
 
 .flex-item > .card {
 	margin: auto;
-	max-width: 75%;
-	min-width: 8em;
+	width: 100%;
+	max-width: 15em;
 }
 
 .preco {
@@ -53,8 +53,11 @@ a {
 }
 
 .elementos-abaixo {
-	border: solid black 1px;
-	display: inline-block;
+	align-self: center;
+}
+
+.iconezinho {
+	width: 1.30em;
 }
 
 @media only screen and (max-width: 576px) {
@@ -64,39 +67,81 @@ a {
 	}
 }
 
-/* tooltip */
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
+.barra-legenda {
+	text-align: justify;
+	text-justify: inter-word;
+	width: 10%;
 }
 
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 150%;
-    left: 50%;
-    margin-left: -60px;
+.progress {
+	height: 2em;
 }
 
-.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: black transparent transparent transparent;
+/* Customize the label (the container) */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.tooltip:hover .tooltiptext {
-    visibility: visible;
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  transition: 0.5s;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #EEE;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #ee8339;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 8px;
+  top: 2px;
+  width: 9px;
+  height: 18px;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
