@@ -47,6 +47,7 @@ export class LoginApiService {
 
 	public logout() {
 		const opcoes = {
+			withCredentials:true,
 			headers: new HttpHeaders({
 				'Content-Type':  'application/json',
 			})
