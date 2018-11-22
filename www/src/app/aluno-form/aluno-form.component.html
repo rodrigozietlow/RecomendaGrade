@@ -1,24 +1,47 @@
-<form class="my-3">
+<form [formGroup]="form" class="my-3">
 
 	<div class="form-group">
 		<label for="nomeAluno">Nome Completo</label>
-		<input type="text" class="form-control" id="nomeAluno" name="nomeAluno"   placeholder="Digite seu nome Completo">
+		<input type="text" class="form-control" id="nomeAluno" name="nomeAluno" [(ngModel)]="aluno.nomeAluno"  placeholder="Digite seu nome Completo" formControlName="nomeAluno">
 	</div>
+	<div *ngIf="form.controls['nomeAluno'].invalid && (form.controls['nomeAluno'].dirty || form.controls['nomeAluno'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
+		<div *ngIf="form.controls['nomeAluno'].errors.maxlength">
+			Máximo de 100 caracteres
+		</div>
+	</div>
+
+
 	<div class="form-group">
 		<label for="email">E-mail</label>
-		<input type="email" class="form-control" id="email" name="email"   placeholder="Informe seu e-mail. Ex: aluno@email.com.br">
+		<input type="email" class="form-control" id="email" name="email" [(ngModel)]="aluno.email"   placeholder="Informe seu e-mail. Ex: aluno@email.com.br" formControlName="email">
 	</div>
+	<div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
+		<div *ngIf="form.controls['email'].errors.maxlength">
+			Máximo de 100 caracteres
+		</div>
+	</div>
+
 
 	<div class="form-group">
 		<label for="senha">Senha</label>
-	 	<input type="password" class="form-control" id="txtSenha" >
+	 	<input type="password" class="form-control" id="senha" formControlName="senha" [(ngModel)]="aluno.senha">
   		<span id="spnMostrarSenha" class="glyphicon glyphicon glyphicon-eye-open form-control-feedback"></span>
 	</div>
+	<div *ngIf="form.controls['senha'].invalid && (form.controls['senha'].dirty || form.controls['senha'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
+		<div *ngIf="form.controls['senha'].errors.maxlength">
+			Máximo de 100 caracteres
+		</div>
+	</div>
+
+
 
 	<div class="form-group">
 		<label for="curso">Selecione um ou mais cursos utilizando as teclas "Shift" ou "Ctrl"</label>
 		<!--trazer nomes dos cursos-->
-	  	<select multiple class="form-control" id="curso">
+	  	<select multiple class="form-control" id="curso" formControlName="cursos" [(ngModel)]="aluno.cursos">
 			<option *ngFor="let curso of cursos">{{curso.nomeCurso}}</option>
 	    </select>
 	</div>
