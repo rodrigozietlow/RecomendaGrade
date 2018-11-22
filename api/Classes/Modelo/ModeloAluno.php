@@ -4,67 +4,76 @@ namespace RecomendaGrade\Modelo;
 
 class ModeloAluno{
 
-    private $conexao;
+	private $conexao;
 
-    public function __construct(\PDO $conexao){
+	public function __construct(\PDO $conexao){
 		$this->conexao = $conexao;
 	}
 	public function getConexao(){
 		return $this->conexao;
 	}
 
-    //se encontrar vai retornar true, caso não escontrar retorna false
-    public function login($email, $inputSenha){
-        $stmt = $this->conexao->prepare("SELECT * FROM aluno WHERE email = :email");
-		$stmt->execute(array(":email" => $email));
+	//se encontrar vai retornar true, caso não escontrar retorna false
+	public function login($email, $inputSenha){
+		$resultado = $this->buscarAlunoEmail($email);
+		//se encontrou o email verifica se a senha é compativel
 
-         $resultado = $stmt->fetch(\PDO::FETCH_ASSOC);
-
-         //se encontrou o email verifica se a senha é compativel
-
-         if($resultado){
-             return $this->validarSenha($inputSenha, $resultado['senhaHash']);
-         }else{
-             return false;
-         }
+		if($resultado && $this->validarSenha($inputSenha, $resultado->getSenhaHash())){
+			return $resultado;
+		} else{
+			return false;
+		}
+	}
 
 
-    }// fim do metodo
-    public function validarSenha($inputSenha, $hash){
-        if (password_verify($inputSenha, $hash)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+	public function validarSenha($inputSenha, $hash){
+		return password_verify($inputSenha, $hash);
+	}
 
 
-    public function criptografarSenha($inputSenha){
-        return password_hash($inputSenha, PASSWORD_DEFAULT);
-    }
+	public function criptografarSenha($inputSenha){
+		return password_hash($inputSenha, PASSWORD_DEFAULT);
+	}
 
 
+	public function buscarAluno(int $id){
+		$stmt = $this->conexao->prepare("SELECT * FROM aluno WHERE id = :id");
+		$stmt->execute(
+			array(
+				":id" => $id
+			)
+		);
+		$resultado = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-    public function buscarAluno(int $id){
+		if($resultado) {
+			return new Aluno($resultado['nomeAluno'], $resultado['email'], $resultado['dataCadastro'], $resultado['senhaHash'], $resultado['tipo'], $resultado['id']);
+		}
 
-    }
+		return null;
+	}
+
+	public function buscarAlunoEmail(string $email) {
+		$stmt = $this->conexao->prepare("SELECT * FROM aluno WHERE email = :email");
+		$stmt->execute(
+			array(
+				":email" => $email
+			)
+		);
+		$resultado = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+		if($resultado) {
+			return new Aluno($resultado['nomeAluno'], $resultado['email'], $resultado['dataCadastro'], $resultado['senhaHash'], $resultado['tipo'], $resultado['id']);
+		}
+
+		return null;
+	}
 
 
 	public function validarEmail($email){
-		$stmt = $this->conexao->prepare("SELECT * FROM aluno WHERE email = :email");
-		$stmt->execute(array(":email" => $email));
-
-		 $resultado = $stmt->fetch(\PDO::FETCH_ASSOC);
-
-		 //se true econtrou o email, se false não encontrou
-		 if($resultado){
-			 return true;
-		 }else{
-			 return false;
-		 }
+		return !empty($this->buscarAlunoEmail($email));
 	}
 
-    public function salvar(Aluno $aluno){
+	public function salvar(Aluno $aluno){
 		$id = $aluno->getId();
 		if(empty($id)){
 			//Novo cadastro
@@ -79,7 +88,7 @@ class ModeloAluno{
 					":tipo" => $aluno->getTipo()
 				)
 			);
-			
+
 			$aluno->setId($this->conexao->lastInsertId());
 
 			return $resultado;
@@ -107,8 +116,8 @@ class ModeloAluno{
 
 
 
-        //usar o metodo criptografarSenha
-        //criptografarSenha($senha);
-    }
+		//usar o metodo criptografarSenha
+		//criptografarSenha($senha);
+	}
 
 }// fim da classe

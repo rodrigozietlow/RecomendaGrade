@@ -44,4 +44,14 @@ export class LoginApiService {
 			})
 		);
 	}
+
+	public logout() {
+		const opcoes = {
+			headers: new HttpHeaders({
+				'Content-Type':  'application/json',
+			})
+		};
+
+		return this.http.delete("http://192.168.103.223/ads_desenv/ads_dev/api/login/sessao", opcoes);
+	}
 }

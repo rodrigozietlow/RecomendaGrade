@@ -21,7 +21,7 @@ export class AlunoFormComponent implements OnInit {
 			email: new FormControl(this.usuario.email, [Validators.maxLength(100), Validators.required]),
 			senhaHash: new FormControl(this.usuario.senhaHash, [Validators.min(6),Validators.maxLength(100), Validators.required]),
 			cursos: new FormControl(this.usuario.cursos, [Validators.required]),
-		}); 
+		});
 	}
 
 	submit() {

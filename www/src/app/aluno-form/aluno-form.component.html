@@ -6,8 +6,11 @@
 	</div>
 	<div *ngIf="form.controls['nomeAluno'].invalid && (form.controls['nomeAluno'].dirty || form.controls['nomeAluno'].touched)" class="alert alert-danger" role="alert">
 		<strong>Erros:</strong>
+		<div *ngIf="form.controls['nomeAluno'].errors.required">
+			Você deve preencher este campo
+		</div>
 		<div *ngIf="form.controls['nomeAluno'].errors.maxlength">
-			Máximo de 100 caracteres
+			Máximo de 60 caracteres
 		</div>
 	</div>
 
@@ -18,6 +21,14 @@
 	</div>
 	<div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)" class="alert alert-danger" role="alert">
 		<strong>Erros:</strong>
+		<div *ngIf="form.controls['email'].errors.required">
+			Você deve preencher este campo
+		</div>
+
+		<div *ngIf="form.controls['email'].hasError('pattern')">
+			Você deve preencher um email neste campo
+		</div>
+
 		<div *ngIf="form.controls['email'].errors.maxlength">
 			Máximo de 100 caracteres
 		</div>
@@ -27,10 +38,16 @@
 	<div class="form-group">
 		<label for="senhaHash">Senha</label>
 	 	<input type="password" class="form-control" id="senha" formControlName="senhaHash" [(ngModel)]="usuario.senhaHash">
-  		<span id="spnMostrarSenha" class="glyphicon glyphicon glyphicon-eye-open form-control-feedback"></span>
+  		<span id="spnMostrarSenha" style="margin: 10px" class="glyphicon glyphicon glyphicon-eye-open form-control-feedback"></span>
 	</div>
 	<div *ngIf="form.controls['senhaHash'].invalid && (form.controls['senhaHash'].dirty || form.controls['senhaHash'].touched)" class="alert alert-danger" role="alert">
 		<strong>Erros:</strong>
+		<div *ngIf="form.controls['senhaHash'].errors.required">
+			Você deve preencher este campo
+		</div>
+		<div *ngIf="form.controls['senhaHash'].errors.min">
+			Mínimo 6 caracteres
+		</div>
 		<div *ngIf="form.controls['senhaHash'].errors.maxlength">
 			Máximo de 100 caracteres
 		</div>
@@ -45,7 +62,12 @@
 			<option *ngFor="let curso of cursos">{{curso.nomeCurso}}</option>
 	    </select>
 	</div>
-
+	<div *ngIf="form.controls['cursos'].invalid && (form.controls['cursos'].dirty || form.controls['cursos'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
+		<div *ngIf="form.controls['cursos'].errors.required">
+			Você deve preencher este campo
+		</div>
+	</div>
 
 
 	<button class="btn btn-success" type="button" name="button" (click)="submit()">Salvar</button>

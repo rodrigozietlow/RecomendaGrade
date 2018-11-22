@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProviderService } from './provider.service';
+import { LoginApiService } from './login-api.service';
 
 @Component({
 	selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit{
 
 	public usuario;
 
-	public constructor(public provider: ProviderService) {
+	public constructor(public provider: ProviderService, public loginApi: LoginApiService) {
 		if(localStorage.getItem('usuario') != undefined) {
 			this.setUsuario(JSON.parse(localStorage.getItem("usuario")));
 		}
@@ -27,8 +28,12 @@ export class AppComponent implements OnInit{
 	}
 
 	unsetUsuario() {
-		this.usuario = null;
-		localStorage.removeItem("usuario");
+		this.loginApi.logout().subscribe(
+			(sucesso) => {
+				this.usuario = null;
+				localStorage.removeItem("usuario");
+			}
+		);
 	}
 
 	trocarCursoAtual(idCurso: number) {
