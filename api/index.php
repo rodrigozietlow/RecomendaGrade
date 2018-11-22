@@ -71,7 +71,9 @@ else{
 	$modelo = new $rotaEscolhida["Modelo"]($pdo);
 
 	// criar a visao
-	$visao = new $rotaEscolhida["Visao"]($modelo);
+	if(!empty($rotaEscolhida["Visao"])){
+		$visao = new $rotaEscolhida["Visao"]($modelo);
+	}
 	// and so on
 	if($verbo == "GET"){
 		if(count($rotasArray) >= 2) { // tem curso/id
