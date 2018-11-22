@@ -75,7 +75,6 @@ class ModeloAluno{
 
 	public function salvar(Aluno $aluno){
 		$id = $aluno->getId();
-		$aluno->setTipo(3);
 		if(empty($id)){
 			//Novo cadastro
 			$stmt = $this->conexao->prepare("INSERT INTO aluno(nomeAluno, email, dataCadastro, senhaHash, tipo) VALUES (:nomeAluno, :email, :dataCadastro, :senhaHash, :tipo)");

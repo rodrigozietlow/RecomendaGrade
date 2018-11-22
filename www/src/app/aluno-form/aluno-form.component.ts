@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
 	selector: 'app-aluno-form',
@@ -11,6 +12,22 @@ export class AlunoFormComponent implements OnInit {
 	@Input() usuario;
 	@Input() cursos;
 
+	public usuario = {
+		"id" : "",
+		"nomeAluno" : "",
+		"email" : "",
+		"senhaHash" : "",
+		"cursos" : []
+	};
+
+	public form = new FormGroup({
+		nomeAluno: new FormControl(this.usuario.nomeAluno, [Validators.required, Validators.maxLength(60)]),
+		email: new FormControl(this.usuario.email, [Validators.maxLength(100), Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
+		senhaHash: new FormControl(this.usuario.senhaHash, [Validators.min(6),Validators.maxLength(100), Validators.required]),
+		cursos: new FormControl(this.usuario.cursos, [Validators.required]),
+	});
+
+
 	constructor() { }
 
 	ngOnInit() {
@@ -19,5 +36,7 @@ export class AlunoFormComponent implements OnInit {
 	submit() {
 		this.cadastro.emit();
 	}
+
+
 
 }
