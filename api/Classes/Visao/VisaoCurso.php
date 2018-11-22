@@ -65,14 +65,10 @@ class VisaoCurso {
 	public function listar(){
 		if (empty($_SESSION['aluno'])){
 			$cursos = $this->modeloCurso->buscarCursos();
-			print_r($cursos);
 			echo json_encode($cursos, JSON_UNESCAPED_UNICODE);
 
 		}else{
 			$cursos = $this->modeloCurso->buscarCursosAluno();
-			echo "com sessão";
-			print_r($_SESSION);
-			print_r($cursos);
 			echo json_encode($cursos, JSON_UNESCAPED_UNICODE);
 
 		}
