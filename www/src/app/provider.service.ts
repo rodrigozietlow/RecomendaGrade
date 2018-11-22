@@ -18,7 +18,6 @@ export class ProviderService{
 	};
 
 	constructor(private http: HttpClient, private router: Router) {
-		this.http.get('http://192.168.103.223/ads_desenv/ads_dev/api/autosession.php', this.opcoes).subscribe(() => {});
 	}
 
 	public buscarCursosDisponiveis() {
@@ -26,6 +25,9 @@ export class ProviderService{
 			this.cursosDisponiveis = cursos;
 			if(cursos.length > 0) {
 				this.selecionarCurso(cursos[0].id);
+			}
+			else {
+				this.curso = undefined;
 			}
 		});
 	}

@@ -10,8 +10,8 @@ export class LoginCadastroComponent implements OnInit {
 	@Output() cadastrar = new EventEmitter();
 	public usuario = {
 		'id': undefined,
-		'nomeAluno': 'Nome',
-		'email': 'nome@email.com',
+		'nomeAluno': '',
+		'email': '',
 		'senhaHash': ''
 	}
 

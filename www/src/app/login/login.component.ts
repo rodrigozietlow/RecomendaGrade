@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
 		this.loginApi.cadastrar(usuario).subscribe(
 			(resposta) => {
 				// recebemos um confirmação da api
-
+				
 				// adicionar no localStorage (linha 47)
 				localStorage.setItem("usuario", JSON.stringify(resposta));
 
