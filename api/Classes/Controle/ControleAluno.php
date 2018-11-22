@@ -26,6 +26,12 @@ class ControleAluno{
 		$tipo = 3;
 
 		// validacao
+        $existeEmail = $this->modelo->validarEmail($email);
+
+        if($existeEmail){
+            header("HTTP/1.1 401 Unauthorized");
+            die();
+        }
 
 		//criptografar senha
 		$senhaHash = $this->modelo->criptografarSenha($senha);
@@ -43,22 +49,9 @@ class ControleAluno{
 		$visao->printarAluno($Aluno);
 
 		return $resultado;
-        /*
 
-        if(isEmailCadastrado($dados['email'])){
-            header("HTTP/1.1 401 Unauthorized");
-            die();
-        }
-
-        //colocar aqui a função de salvar o cadastro de usuario
-        */
 
     }//fim da funcao salvar
-
-    //função para verificar e validar se o email será único
-    public function isEmailCadastrado($email){
-        return $this->modelo->validarEmail($email);
-    }
 
 
 }// fim da classe
