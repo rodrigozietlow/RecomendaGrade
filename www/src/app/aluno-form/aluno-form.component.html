@@ -25,13 +25,13 @@
 
 
 	<div class="form-group">
-		<label for="senha">Senha</label>
+		<label for="senhaHash">Senha</label>
 	 	<input type="password" class="form-control" id="senha" formControlName="senhaHash" [(ngModel)]="usuario.senhaHash">
   		<span id="spnMostrarSenha" class="glyphicon glyphicon glyphicon-eye-open form-control-feedback"></span>
 	</div>
-	<div *ngIf="form.controls['senha'].invalid && (form.controls['senha'].dirty || form.controls['senha'].touched)" class="alert alert-danger" role="alert">
+	<div *ngIf="form.controls['senhaHash'].invalid && (form.controls['senhaHash'].dirty || form.controls['senhaHash'].touched)" class="alert alert-danger" role="alert">
 		<strong>Erros:</strong>
-		<div *ngIf="form.controls['senha'].errors.maxlength">
+		<div *ngIf="form.controls['senhaHash'].errors.maxlength">
 			Máximo de 100 caracteres
 		</div>
 	</div>
