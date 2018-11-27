@@ -199,6 +199,7 @@ class ControleDisciplina {
 
 		$Disciplina->setNome($nome);
 		$Disciplina->setPeriodo($periodo);
+		$Disciplina->setCor($cor);
 		$Disciplina->setCreditos($creditos);
 		$Disciplina->setCargaHoraria($cargaHoraria);
 

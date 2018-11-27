@@ -14,7 +14,7 @@ class ModeloDisciplina {
 	}
 
 	public function buscarDisciplina($id){
-		$stmt = $this->conexao->prepare("SELECT * FROM disciplina WHERE id = :id"); // buscar as informações do curso
+		$stmt = $this->conexao->prepare("SELECT * FROM disciplina WHERE id = :id ORDER BY periodo"); // buscar as informações do curso
 		$stmt->execute(array(":id" => $id));
 
 		while($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)){ // só tem um
@@ -34,7 +34,7 @@ class ModeloDisciplina {
 	}
 
 	public function buscarDisciplinasCurso($idCurso){
-		$stmt = $this->conexao->prepare("SELECT * FROM disciplina WHERE idCurso = :idCurso");
+		$stmt = $this->conexao->prepare("SELECT * FROM disciplina WHERE idCurso = :idCurso ORDER BY periodo");
 		$stmt->execute(array(":idCurso" => $idCurso));
 
 		$disciplinas = array();
@@ -135,6 +135,7 @@ class ModeloDisciplina {
 			":idDisciplina" => $disciplina->getId(),
 			":idRequisito" => $disciplina->getId()
 		));
+
 		$stmtDis = $this->conexao->prepare("DELETE FROM disciplina WHERE id = :idDisciplina");
 		return $retorno && $stmtDis->execute(array(":idDisciplina" => $disciplina->getId()));
 	}

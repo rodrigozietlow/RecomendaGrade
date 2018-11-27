@@ -17,14 +17,13 @@ class ControleLogin{
 		$dados = json_decode(file_get_contents("php://input"), true);
 
         $resultado = $this->modelo->login($dados['email'], $dados['senha']);
-
 		if(!$resultado) {
 			header("HTTP/1.1 401 Unauthorized");
             die();
 		}
 
 		// fizemos login com sucesso
-		$_SESSION['usuario'] = $resultado;
+		$_SESSION['aluno'] = $resultado;
 
 		// print_r($resultado);
 
