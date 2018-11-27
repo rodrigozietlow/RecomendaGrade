@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
 		this.loginApi.cadastrar(usuario).subscribe(
 			(resposta) => {
 				// recebemos um confirmação da api
-				
+
 				// adicionar no localStorage (linha 47)
 				localStorage.setItem("usuario", JSON.stringify(resposta));
 
@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
 					this.erro = "Bad request dude!";
 				}
 				else if(error.status == 401) {
-					this.erro = "Informações incorretas";
+					this.erro = "Já existe um cadastro com esse email";
 				}
 				else{
 					this.erro = "Alguma coisa desconhecida aconteceu"

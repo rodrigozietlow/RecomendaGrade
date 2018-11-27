@@ -11,26 +11,17 @@ export class AlunoFormComponent implements OnInit {
 	@Output() cadastro = new EventEmitter();
 	@Input() usuario;
 	@Input() cursos;
-
-	public usuario = {
-		"id" : "",
-		"nomeAluno" : "",
-		"email" : "",
-		"senhaHash" : "",
-		"cursos" : []
-	};
-
-	public form = new FormGroup({
-		nomeAluno: new FormControl(this.usuario.nomeAluno, [Validators.required, Validators.maxLength(60)]),
-		email: new FormControl(this.usuario.email, [Validators.maxLength(100), Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
-		senhaHash: new FormControl(this.usuario.senhaHash, [Validators.min(6),Validators.maxLength(100), Validators.required]),
-		cursos: new FormControl(this.usuario.cursos, [Validators.required]),
-	});
-
+	public form: FormGroup;
 
 	constructor() { }
 
 	ngOnInit() {
+		this.form = new FormGroup({
+			nomeAluno: new FormControl(this.usuario.nomeAluno, [Validators.required, Validators.maxLength(100)]),
+			email: new FormControl(this.usuario.email, [Validators.maxLength(100), Validators.required]),
+			senhaHash: new FormControl(this.usuario.senhaHash, [Validators.min(6),Validators.maxLength(100), Validators.required]),
+			cursos: new FormControl(this.usuario.cursos, [Validators.required]),
+		});
 	}
 
 	submit() {

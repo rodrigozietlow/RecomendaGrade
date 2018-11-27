@@ -70,7 +70,7 @@ class VisaoCurso {
 		}else{
 			$cursos = $this->modeloCurso->buscarCursosAluno();
 			echo json_encode($cursos, JSON_UNESCAPED_UNICODE);
-		
+
 		}
 
 	}

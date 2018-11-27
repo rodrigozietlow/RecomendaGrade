@@ -34,7 +34,7 @@ class ControleLogin{
     }
 
 	public function excluir($sessao) {
-		unset($_SESSION['usuario']);
+		unset($_SESSION['aluno']);
 		return true;
 	}
 }

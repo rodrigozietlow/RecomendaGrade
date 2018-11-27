@@ -110,7 +110,29 @@ class ModeloAluno{
 			return $resultado;
 
 		}
+		public function salvarCursosAluno($aluno, $cursos){
+			$resultado = TRUE;
 
+			if(count($cursos) > 0){
+				$stmt = $this->conexao->prepare("INSERT into cursos_aluno(idCurso, idAluno) VALUES (:idCurso, :idAluno)");
+
+				foreach ($cursos as $curso) {
+					$cursoObj = array(
+						":idAluno" => $aluno->getId(),
+						":idCurso" => $curso['idCurso'],
+					);
+
+					$novosCursos = $aluno->getCursos();
+					$novosCursos[] = $cursoObj;
+					$aluno->setCursos($novosCursos);
+
+					$resultado = $resultado && $stmt->execute($cursoObj);
+				}
+
+			}
+
+			return $resultado;
+		}
 
 
 
