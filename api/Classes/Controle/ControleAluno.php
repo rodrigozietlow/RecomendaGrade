@@ -18,10 +18,9 @@ class ControleAluno{
 		$dados = json_decode(file_get_contents("php://input"), true);
 
 		$nomeAluno = $dados['nomeAluno'] ?? "";
-		$email = $dados['email'] ?? "";
-		$senha = $dados['senhaHash'] ?? "";
+		$email = $dados['email'] ?? 0;
+		$senha = $dados['senhaHash'] ?? 0;
 		$dataCadastro = date("Y-m-d");
-        $cursos = $dados['cursos'] ?? array();
 		$tipo = 3;
 
         //validacao botao salvar
