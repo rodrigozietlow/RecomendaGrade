@@ -57,6 +57,9 @@ class ControleAluno{
 		$Aluno = new Modelo\Aluno($nomeAluno, $email, $dataCadastro, $senhaHash, $tipo);
 
 		$resultado = $this->modelo->salvar($Aluno);
+		$cursos = $dados['cursos'] ?? array();
+		$resultado = $resultado && $this->modelo->salvarCursosAluno($Aluno, $cursos);
+
 
 		if($resultado) {
 			$_SESSION['aluno'] = $Aluno;
