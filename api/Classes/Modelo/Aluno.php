@@ -12,8 +12,9 @@ class Aluno
     private $senhaHash;
 	private $disciplinas;
     private $tipo;
+	private $cursos;
 
-    function __construct($nomeAluno, $email, $dataCadastro, $senhaHash, $tipo, $id=NULL, $disciplinas=[])
+    function __construct($nomeAluno, $email, $dataCadastro, $senhaHash, $tipo, $id=NULL, $cursos=[], $disciplinas=[])
     {
         $this->id = $id;
         $this->nomeAluno = $nomeAluno;
@@ -21,6 +22,7 @@ class Aluno
         $this->dataCadastro = $dataCadastro;
         $this->senhaHash = $senhaHash;
         $this->disciplinas = $disciplinas;
+        $this->cursos = $cursos;
         $this->tipo = $tipo;  // 1=ADM     2=Coordenador     3=Aluno
     }
 
@@ -168,6 +170,7 @@ class Aluno
 
         return $this;
     }
+
 	public function getCursos()
     {
         return $this->cursos;
@@ -191,7 +194,7 @@ class Aluno
 
     /**
      * Get the value of Disciplinas
-     * 
+     *
      * @return mixed
      */
     public function getDisciplinas()

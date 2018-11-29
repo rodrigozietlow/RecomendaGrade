@@ -17,15 +17,32 @@ class ControleAluno{
         // primero, precisamos pegar os dados que vem por stream
 		$dados = json_decode(file_get_contents("php://input"), true);
 
-        // print_r($dados);
-
 		$nomeAluno = $dados['nomeAluno'] ?? "";
 		$email = $dados['email'] ?? 0;
 		$senha = $dados['senhaHash'] ?? 0;
 		$dataCadastro = date("Y-m-d");
 		$tipo = 3;
+		$cursos = $dados['cursos'] ?? array();
 
-		// validacao
+        //validacao botao salvar
+        if(!$nomeAluno || strlen($nomeAluno) > 60){
+			header("HTTP/1.1 422 Unprocessable Entity: Nome da disciplina");
+			die();
+		}
+
+        if(!$email || strlen($email) > 100){
+			header("HTTP/1.1 422 Unprocessable Entity: Nome da disciplina");
+			die();
+		}
+
+
+        if(count($cursos) == 0){
+            header("HTTP/1.1 422 Unprocessable Entity");
+            die();
+        }
+
+
+		// validacao do email
         $existeEmail = $this->modelo->validarEmail($email);
 
         if($existeEmail){
@@ -40,6 +57,8 @@ class ControleAluno{
 		$Aluno = new Modelo\Aluno($nomeAluno, $email, $dataCadastro, $senhaHash, $tipo);
 
 		$resultado = $this->modelo->salvar($Aluno);
+		$resultado = $resultado && $this->modelo->salvarCursosAluno($Aluno, $cursos);
+
 
 		if($resultado) {
 			$_SESSION['aluno'] = $Aluno;

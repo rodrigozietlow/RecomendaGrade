@@ -90,7 +90,6 @@ class ModeloAluno{
 			);
 
 			$aluno->setId($this->conexao->lastInsertId());
-
 			return $resultado;
 		}else{
 			//edição
@@ -110,36 +109,33 @@ class ModeloAluno{
 			return $resultado;
 
 		}
-		public function salvarCursosAluno($aluno, $cursos){
-			$resultado = TRUE;
+	} //fim função salvar
 
-			if(count($cursos) > 0){
-				$stmt = $this->conexao->prepare("INSERT into cursos_aluno(idCurso, idAluno) VALUES (:idCurso, :idAluno)");
+	public function salvarCursosAluno($Aluno, $cursos){
+		$resultado = TRUE;
 
-				foreach ($cursos as $curso) {
-					$cursoObj = array(
-						":idAluno" => $aluno->getId(),
-						":idCurso" => $curso['idCurso'],
-					);
+		if(count($cursos) > 0){
+			$stmt = $this->conexao->prepare("INSERT into cursos_aluno(idCurso, idAluno) VALUES (:idCurso, :idAluno)");
 
-					$novosCursos = $aluno->getCursos();
-					$novosCursos[] = $cursoObj;
-					$aluno->setCursos($novosCursos);
+			foreach ($cursos as $curso) {
+				$cursoObj = array(
+					":idAluno" => $Aluno->getId(),
+					":idCurso" => $curso,
+				);
 
-					$resultado = $resultado && $stmt->execute($cursoObj);
-				}
+				$novosCursos = $Aluno->getCursos();
+				$novosCursos[] = $cursoObj;
+				$Aluno->setCursos($novosCursos);
 
+				$resultado = $resultado && $stmt->execute($cursoObj);
 			}
 
-			return $resultado;
 		}
 
-
-
-
-
-		//usar o metodo criptografarSenha
-		//criptografarSenha($senha);
+		return $resultado;
 	}
-
+	public function excluirCursosAluno($aluno){
+		$stmt = $this->conexao->prepare("DELETE FROM cursos_aluno WHERE idAluno = :idAluno");
+		return $stmt->execute(array(":idAluno" => $aluno->getId()));
+	}
 }// fim da classe
