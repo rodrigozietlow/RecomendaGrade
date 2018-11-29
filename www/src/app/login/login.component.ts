@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	public switch() : void {
+		this.erro = undefined;
 		this.login = !this.login;
 	}
 
