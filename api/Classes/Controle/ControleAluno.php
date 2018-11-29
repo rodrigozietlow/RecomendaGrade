@@ -19,19 +19,24 @@ class ControleAluno{
 
 		$nomeAluno = $dados['nomeAluno'] ?? "";
 		$email = $dados['email'] ?? 0;
-		$senha = $dados['senhaHash'] ?? 0;
+		$senha= $dados['senhaHash'] ?? 0;
 		$dataCadastro = date("Y-m-d");
 		$tipo = 3;
 		$cursos = $dados['cursos'] ?? array();
 
         //validacao botao salvar
         if(!$nomeAluno || strlen($nomeAluno) > 60){
-			header("HTTP/1.1 422 Unprocessable Entity: Nome da disciplina");
+			header("HTTP/1.1 422 Unprocessable Entity: Nome do aluno");
+			die();
+		}
+
+		if(!$senha || strlen($senha) == 0){
+			header("HTTP/1.1 422 Unprocessable Entity: senha aluno");
 			die();
 		}
 
         if(!$email || strlen($email) > 100){
-			header("HTTP/1.1 422 Unprocessable Entity: Nome da disciplina");
+			header("HTTP/1.1 422 Unprocessable Entity: email do aluno");
 			die();
 		}
 
