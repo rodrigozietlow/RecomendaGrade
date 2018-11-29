@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProviderService } from '../provider.service';
+import { MarcarDisciplinasService } from '../marcar-disciplinas.service';
 import { AppComponent } from '../app.component';
 
 @Component({
@@ -14,8 +15,9 @@ export class CursoDisciplinasComponent implements OnInit {
 
 	public disciplinas:any[];
 
-	constructor(public provider: ProviderService, private componentePai: AppComponent) {
+	constructor(public provider: ProviderService, private componentePai: AppComponent, private marcarDisciplinas: MarcarDisciplinasService) {
 		this.usuario = componentePai.usuario; // this is a hack!
+		this.disciplinas = [];
 	}
 
 	ngOnInit() {
@@ -57,19 +59,86 @@ export class CursoDisciplinasComponent implements OnInit {
 
 
 
-		let texto = " ";
+		let texto = "";
 		if(relacoes.length > 0){
-			texto += "\nA disciplina que você deseja excluir possui relação com as seguintes disciplinas:";
+			texto += "A disciplina que você deseja excluir possui relação com as seguintes disciplinas:";
 			relacoes.forEach((relacao) => {
 				texto += "\n- "+relacao;
 			});
+			texto += "\n";
 		}
-		texto+= "\nTem certeza que deseja excluir a disciplina?";
+		texto+= "Tem certeza que deseja excluir a disciplina?";
 
 		if(confirm(texto)) {
 			this.provider.excluirDisciplina(disciplinaExcluir.id).subscribe((dados) => {
 				this.provider.getCurso();
 			});
 		}
+	}
+
+	public marcarDesmarcar(disciplina: any) {
+		console.log(disciplina);
+		const marcada = this.inMarcadas(disciplina);
+
+		// verificar se está marcada
+
+
+		if(marcada) {
+			const index = this.usuario.disciplinas[disciplina.idCurso].findIndex((disciplinaIt) => +disciplinaIt.id == +disciplina.id);
+			console.log(index);
+			if(index > -1) {
+
+				this.usuario.disciplinas[disciplina.idCurso].splice(index, 1);
+			}
+			// this.marcarDisciplinas.desmarcar(disciplina.id).subscribe((response) => {
+			// 	console.log(response);
+			// 	const index = this.usuario.disciplinas.findIndex((disciplinaIt) => disciplinaIt.id == disciplina.id);
+			// 	if(index > -1) {
+			// 		this.usuario.disciplinas.splice(index, 1);
+			// 	}
+			// });
+		}
+		else {
+			if(this.usuario.disciplinas[disciplina.idCurso] == undefined) {
+				this.usuario.disciplinas[disciplina.idCurso] = [];
+			}
+			this.usuario.disciplinas[disciplina.idCurso].push(disciplina);
+			// this.marcarDisciplinas.marcar(disciplina.id).subscribe((response) => {
+			// 	console.log("oi");
+			// 	this.usuario.disciplinas.push(disciplina);
+			// });
+		}
+	}
+
+	public inMarcadas(disciplina: any) {
+		if(this.usuario.disciplinas[disciplina.idCurso] == undefined) {
+			return false;
+		}
+		return this.usuario.disciplinas[disciplina.idCurso].find((disciplinaIt) => {
+			return disciplinaIt.id == disciplina.id;
+		}) != undefined;
+	}
+
+	public calcularBarra(idCurso: number) {
+		// console.log(this.disciplinas);
+		let maxNecessario = 0;
+		let atual = 0;
+
+		if(this.disciplinas.filter((disciplinaIt) => disciplinaIt.idCurso == idCurso).length > 0) {
+			maxNecessario = this.disciplinas.reduce((acc, disciplina) => (disciplina.idCurso == idCurso) ? acc + +disciplina.cargaHoraria : 0, 0);
+
+			if(this.usuario.disciplinas[idCurso] != undefined) {
+				atual = this.usuario.disciplinas[idCurso].reduce((acc, disciplina) => acc + +disciplina.cargaHoraria, 0);
+			}
+		}
+		else {
+			return 0;
+		}
+
+		if(maxNecessario == 0) {
+			return 0; // divisão por 0
+		}
+
+		return Math.round((atual / maxNecessario) * 100);
 	}
 }

@@ -20,6 +20,7 @@ import { LoginLoginComponent } from './login/login-login/login-login.component';
 import { LoginCadastroComponent } from './login/login-cadastro/login-cadastro.component';
 import { LoginApiService } from './login-api.service';
 import { AlunoFormComponent } from './aluno-form/aluno-form.component';
+import { MarcarDisciplinasService } from './marcar-disciplinas.service';
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import { AlunoFormComponent } from './aluno-form/aluno-form.component';
 	RoutingModule,
 	ReactiveFormsModule
   ],
-  providers: [ ProviderService, LoginApiService ],
+  providers: [ ProviderService, LoginApiService, MarcarDisciplinasService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,11 +5,11 @@
 </ng-container>
 
 <ng-container *ngIf="usuario.permissao == 3">
-	<div class="barra-legenda text-right" style="margin-left: 15%">
-		25% do curso concluído
+	<div class="barra-legenda text-right" [style.margin-left]="(calcularBarra(provider.curso.id) > 10 ? calcularBarra(provider.curso.id) - 10 : 0) + '%'">
+		{{calcularBarra(provider.curso.id)}}% do curso concluído
 	</div>
 	<div class="progress">
-		<div class="progress-bar bg-laranja" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+		<div class="progress-bar bg-laranja" role="progressbar" [style.width]="calcularBarra(provider.curso.id) + '%'" [attr.aria-valuenow]="calcularBarra(provider.curso.id)" aria-valuemin="0" aria-valuemax="100"></div>
 	</div>
 </ng-container>
 <div class="flex-container">
@@ -21,7 +21,7 @@
 		</div>
 		<ng-container *ngFor="let disciplina of disciplinas">
 			<div class="flex-item" *ngIf="disciplina.periodo == numero">
-				<div class="card cor-{{disciplina.cor}}" >
+				<div class="card cor-{{disciplina.cor}} {{inMarcadas(disciplina) ? 'bg-laranja' : ''}}" >
 					<div class="card-body">
 						<p class="card-text">
 							{{disciplina.nome}}
@@ -40,10 +40,10 @@
 							<div class="elementos-abaixo col-4">
 								<!-- checkbox para o aluno -->
 								<ng-container *ngIf="usuario.permissao == 3">
-									<label class="container">
-										<input type="checkbox">
-										<span class="checkmark"></span>
-									</label>
+									<span class="container">
+										<input type="checkbox" [checked]="inMarcadas(disciplina)" (change)="0">
+										<span class="checkmark" (click)="marcarDesmarcar(disciplina)"></span>
+									</span>
 								</ng-container>
 
 								<!-- opcoes de edição do admin/coord -->
