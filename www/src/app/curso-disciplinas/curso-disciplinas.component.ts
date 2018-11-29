@@ -84,29 +84,32 @@ export class CursoDisciplinasComponent implements OnInit {
 
 
 		if(marcada) {
-			const index = this.usuario.disciplinas[disciplina.idCurso].findIndex((disciplinaIt) => +disciplinaIt.id == +disciplina.id);
-			console.log(index);
-			if(index > -1) {
+			// const index = this.usuario.disciplinas[disciplina.idCurso].findIndex((disciplinaIt) => +disciplinaIt.id == +disciplina.id);
+			// console.log(index);
+			// if(index > -1) {
+			//
+			// 	this.usuario.disciplinas[disciplina.idCurso].splice(index, 1);
+			// }
+			this.marcarDisciplinas.desmarcar(disciplina.id).subscribe((response) => {
+				const index = this.usuario.disciplinas[disciplina.idCurso].findIndex((disciplinaIt) => +disciplinaIt.id == +disciplina.id);
+				console.log(index);
+				if(index > -1) {
 
-				this.usuario.disciplinas[disciplina.idCurso].splice(index, 1);
-			}
-			// this.marcarDisciplinas.desmarcar(disciplina.id).subscribe((response) => {
-			// 	console.log(response);
-			// 	const index = this.usuario.disciplinas.findIndex((disciplinaIt) => disciplinaIt.id == disciplina.id);
-			// 	if(index > -1) {
-			// 		this.usuario.disciplinas.splice(index, 1);
-			// 	}
-			// });
+					this.usuario.disciplinas[disciplina.idCurso].splice(index, 1);
+				}
+			});
 		}
 		else {
-			if(this.usuario.disciplinas[disciplina.idCurso] == undefined) {
-				this.usuario.disciplinas[disciplina.idCurso] = [];
-			}
-			this.usuario.disciplinas[disciplina.idCurso].push(disciplina);
-			// this.marcarDisciplinas.marcar(disciplina.id).subscribe((response) => {
-			// 	console.log("oi");
-			// 	this.usuario.disciplinas.push(disciplina);
-			// });
+			// if(this.usuario.disciplinas[disciplina.idCurso] == undefined) {
+			// 	this.usuario.disciplinas[disciplina.idCurso] = [];
+			// }
+			// this.usuario.disciplinas[disciplina.idCurso].push(disciplina);
+			this.marcarDisciplinas.marcar(disciplina.id).subscribe((response) => {
+				if(this.usuario.disciplinas[disciplina.idCurso] == undefined) {
+					this.usuario.disciplinas[disciplina.idCurso] = [];
+				}
+				this.usuario.disciplinas[disciplina.idCurso].push(disciplina);
+			});
 		}
 	}
 
