@@ -49,7 +49,11 @@ $rotas = array(
 		"Controle" => "RecomendaGrade\\Controle\\ControleLogin",
 		"Visao" => ""
 	),
-	"index" => array()
+	"disciplinas-aluno" => array(
+		"Modelo" => "RecomendaGrade\\Modelo\\ModeloDisciplina",
+		"Controle" => "RecomendaGrade\\Controle\\ControleDisciplinaAluno",
+		"Visao" => ""
+	)
 );
 
 $rotasArray = array_filter(explode("/", $url['rota']));

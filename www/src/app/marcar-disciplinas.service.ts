@@ -15,7 +15,7 @@ export class MarcarDisciplinasService {
 		};
 
 
-		return this.http.post("http://192.168.103.223/ads_desenv/ads_dev/api/disciplinas-aluno/"+idDisciplina, {}, opcoes);
+		return this.http.post("http://192.168.103.223/ads_desenv/ads_dev/api/disciplinas-aluno/", {'idDisciplina': idDisciplina}, opcoes);
 	}
 
 	public desmarcar(idDisciplina: number) {

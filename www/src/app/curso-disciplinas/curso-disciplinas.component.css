@@ -105,6 +105,7 @@ a {
 .checkmark {
   position: absolute;
   top: 0;
+  right: 25px;
   height: 25px;
   width: 25px;
   background-color: #eee;

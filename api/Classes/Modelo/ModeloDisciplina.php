@@ -141,5 +141,19 @@ class ModeloDisciplina {
 	}
 
 
+	public function excluirCursada($idDisciplina) {
+		$stmt = $this->conexao->prepare("DELETE FROM disciplinas_aluno WHERE idAluno = :idAluno AND idDisciplina = :idDisciplina");
+		return $stmt->execute(array(
+			":idAluno" => $_SESSION['aluno']->getId(),
+			":idDisciplina" => $idDisciplina
+		));
+	}
 
+	public function inserirCursada($idDisciplina) {
+		$stmt = $this->conexao->prepare("INSERT INTO disciplinas_aluno(idAluno, idDisciplina) VALUES(:idAluno, :idDisciplina)");
+		return $stmt->execute(array(
+			":idAluno" => $_SESSION['aluno']->getId(),
+			":idDisciplina" => $idDisciplina
+		));
+	}
 }

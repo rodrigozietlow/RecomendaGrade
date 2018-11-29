@@ -21,14 +21,14 @@ class VisaoAluno {
 		);
 
 		foreach($aluno->getDisciplinas() as $disciplina) {
-			$alunoArr['disciplinas'][$disciplina->getCurso()->getId()] = array(
+			$alunoArr['disciplinas'][$disciplina->getIdCurso()][] = array(
 				"id" => $disciplina->getId(),
 				"nome" => $disciplina->getNome(),
 				"periodo" => $disciplina->getPeriodo(),
 				"creditos" => $disciplina->getCreditos(),
 				"cargaHoraria" => $disciplina->getCargaHoraria(),
 				"cor" => $disciplina->getCor(),
-				"idCurso" => $curso->getId(),
+				"idCurso" => $disciplina->getIdCurso(),
 				"dataCadastro" => $disciplina->getDataCadastro(),
 				"requisitos" => $disciplina->getRequisitos()
 			);

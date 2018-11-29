@@ -19,7 +19,7 @@ class ModeloAluno{
 		//se encontrou o email verifica se a senha é compativel
 
 		if($resultado && $this->validarSenha($inputSenha, $resultado->getSenhaHash())){
-			return $resultado;
+			return $this->buscarAluno($resultado->getId());
 		} else{
 			return false;
 		}
@@ -46,7 +46,25 @@ class ModeloAluno{
 		$resultado = $stmt->fetch(\PDO::FETCH_ASSOC);
 
 		if($resultado) {
-			return new Aluno($resultado['nomeAluno'], $resultado['email'], $resultado['dataCadastro'], $resultado['senhaHash'], $resultado['tipo'], $resultado['id']);
+			$Aluno =  new Aluno($resultado['nomeAluno'], $resultado['email'], $resultado['dataCadastro'], $resultado['senhaHash'], $resultado['tipo'], $resultado['id']);
+
+			// buscar as disciplinas já cursadas
+			$stmt = $this->conexao->prepare('SELECT * FROM disciplinas_aluno WHERE idAluno = :idAluno');
+			$stmt->execute(array(
+				':idAluno' => $Aluno->getId()
+			));
+
+			$modeloDisciplina = new \RecomendaGrade\Modelo\ModeloDisciplina($this->conexao);
+
+			$disciplinas = [];
+			while($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)){
+				// print_r($resultado);
+				$disciplinas[] = $modeloDisciplina->buscarDisciplina($resultado['idDisciplina']);
+			}
+
+			$Aluno->setDisciplinas($disciplinas);
+
+			return $Aluno;
 		}
 
 		return null;
