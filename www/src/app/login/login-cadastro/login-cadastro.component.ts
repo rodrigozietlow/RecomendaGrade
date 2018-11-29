@@ -24,7 +24,7 @@ export class LoginCadastroComponent implements OnInit {
 		this.provider.buscarCursosDisponiveis();
 	}
 
-	public realizarCadastro() {
+	public realizarCadastro(x:any) {
 		this.cadastrar.emit(this.usuario);
 	}
 
