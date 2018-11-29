@@ -2,7 +2,7 @@
 namespace RecomendaGrade\Controle;
 use RecomendaGrade\Modelo;
 
-class ControleDisciplinasAluno{
+class ControleDisciplinaAluno{
 
     private $modelo;
 

@@ -96,6 +96,7 @@ export class CursoDisciplinasComponent implements OnInit {
 				if(index > -1) {
 
 					this.usuario.disciplinas[disciplina.idCurso].splice(index, 1);
+					localStorage.setItem("usuario", JSON.stringify(this.usuario));
 				}
 			});
 		}
@@ -109,6 +110,7 @@ export class CursoDisciplinasComponent implements OnInit {
 					this.usuario.disciplinas[disciplina.idCurso] = [];
 				}
 				this.usuario.disciplinas[disciplina.idCurso].push(disciplina);
+				localStorage.setItem("usuario", JSON.stringify(this.usuario));
 			});
 		}
 	}
