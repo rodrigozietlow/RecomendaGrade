@@ -90,7 +90,6 @@ class ModeloAluno{
 			);
 
 			$aluno->setId($this->conexao->lastInsertId());
-
 			return $resultado;
 		}else{
 			//edição
@@ -111,7 +110,7 @@ class ModeloAluno{
 
 		}
 	} //fim função salvar
-	
+
 	public function salvarCursosAluno($Aluno, $cursos){
 		$resultado = TRUE;
 
@@ -120,13 +119,13 @@ class ModeloAluno{
 
 			foreach ($cursos as $curso) {
 				$cursoObj = array(
-					":idAluno" => $aluno->getId(),
-					":idCurso" => $curso['idCurso'],
+					":idAluno" => $Aluno->getId(),
+					":idCurso" => $curso,
 				);
 
-				$novosCursos = $aluno->getCursos();
+				$novosCursos = $Aluno->getCursos();
 				$novosCursos[] = $cursoObj;
-				$aluno->setCursos($novosCursos);
+				$Aluno->setCursos($novosCursos);
 
 				$resultado = $resultado && $stmt->execute($cursoObj);
 			}

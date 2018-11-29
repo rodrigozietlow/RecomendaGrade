@@ -40,7 +40,7 @@ export class LoginApiService {
 						'Content-Type':  'application/json',
 					})
 				};
-				this.http.get('http://192.168.103.223/ads_desenv/ads_dev/api/autosession.php', opcoes).subscribe(() => {});
+			//	this.http.get('http://192.168.103.223/ads_desenv/ads_dev/api/autosession.php', opcoes).subscribe(() => {});
 			})
 		);
 	}

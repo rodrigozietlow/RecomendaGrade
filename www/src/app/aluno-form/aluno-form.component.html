@@ -57,7 +57,7 @@
 		<label for="curso">Selecione um ou mais cursos utilizando as teclas "Shift" ou "Ctrl"</label>
 		<!--trazer nomes dos cursos-->
 	  	<select multiple class="form-control" id="curso" formControlName="cursos" [(ngModel)]="usuario.cursos">
-			<option *ngFor="let curso of cursos">{{curso.nomeCurso}}</option>
+			<option *ngFor="let curso of cursos" value="{{curso.id}}">{{curso.nomeCurso}}</option>
 	    </select>
 	</div>
 	<div *ngIf="form.controls['cursos'].invalid && (form.controls['cursos'].dirty || form.controls['cursos'].touched)" class="alert alert-danger" role="alert">

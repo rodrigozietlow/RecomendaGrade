@@ -16,8 +16,23 @@ class VisaoAluno {
 			"nomeAluno" => $aluno->getNomeAluno(),
 			"email" => $aluno->getEmail(),
 			"dataCadastro" => $aluno->getDataCadastro(),
-			"permissao" => $aluno->getTipo()
+			"permissao" => $aluno->getTipo(),
+			"disciplinas" => []
 		);
+
+		foreach($aluno->getDisciplinas() as $disciplina) {
+			$alunoArr['disciplinas'][] = array(
+				"id" => $disciplina->getId(),
+				"nome" => $disciplina->getNome(),
+				"periodo" => $disciplina->getPeriodo(),
+				"creditos" => $disciplina->getCreditos(),
+				"cargaHoraria" => $disciplina->getCargaHoraria(),
+				"cor" => $disciplina->getCor(),
+				"idCurso" => $curso->getId(),
+				"dataCadastro" => $disciplina->getDataCadastro(),
+				"requisitos" => $disciplina->getRequisitos()
+			);
+		}
 
 		echo json_encode($alunoArr);
 	}

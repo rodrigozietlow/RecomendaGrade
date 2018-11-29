@@ -22,6 +22,7 @@ class ControleAluno{
 		$senha = $dados['senhaHash'] ?? 0;
 		$dataCadastro = date("Y-m-d");
 		$tipo = 3;
+		$cursos = $dados['cursos'] ?? array();
 
         //validacao botao salvar
         if(!$nomeAluno || strlen($nomeAluno) > 60){
@@ -34,12 +35,12 @@ class ControleAluno{
 			die();
 		}
 
-        /*
-        if($cursos.length() == 0){
+
+        if(count($cursos) == 0){
             header("HTTP/1.1 422 Unprocessable Entity");
             die();
         }
-        */
+
 
 		// validacao do email
         $existeEmail = $this->modelo->validarEmail($email);
@@ -56,7 +57,6 @@ class ControleAluno{
 		$Aluno = new Modelo\Aluno($nomeAluno, $email, $dataCadastro, $senhaHash, $tipo);
 
 		$resultado = $this->modelo->salvar($Aluno);
-		$cursos = $dados['cursos'] ?? array();
 		$resultado = $resultado && $this->modelo->salvarCursosAluno($Aluno, $cursos);
 
 
