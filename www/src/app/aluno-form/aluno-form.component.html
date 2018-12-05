@@ -1,8 +1,8 @@
-<form [formGroup]="form" class="my-3">
+<ng-container [formGroup]="form" >
 
 	<div class="form-group">
-		<label for="nomeAluno">Nome Completo</label>
-		<input type="text" class="form-control" id="nomeAluno" name="nomeAluno" [(ngModel)]="usuario.nomeAluno"  placeholder="Digite seu nome Completo" formControlName="nomeAluno">
+		<label for="nomeAluno">Nome completo</label>
+		<input type="text" class="form-control" id="nomeAluno" name="nomeAluno" [(ngModel)]="usuario.nomeAluno"  formControlName="nomeAluno">
 	</div>
 	<div *ngIf="form.controls['nomeAluno'].invalid && (form.controls['nomeAluno'].dirty || form.controls['nomeAluno'].touched)" class="alert alert-danger" role="alert">
 		<strong>Erros:</strong>
@@ -17,7 +17,7 @@
 
 	<div class="form-group">
 		<label for="email">E-mail</label>
-		<input type="email" class="form-control" id="email" name="email" [(ngModel)]="usuario.email"   placeholder="Informe seu e-mail. Ex: aluno@email.com.br" formControlName="email">
+		<input type="email" class="form-control" id="email" name="email" [(ngModel)]="usuario.email" formControlName="email">
 	</div>
 	<div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)" class="alert alert-danger" role="alert">
 		<strong>Erros:</strong>
@@ -56,9 +56,12 @@
 	<div class="form-group">
 		<label for="curso">Selecione um ou mais cursos utilizando as teclas "Shift" ou "Ctrl"</label>
 		<!--trazer nomes dos cursos-->
-	  	<select multiple class="form-control" id="curso" formControlName="cursos" [(ngModel)]="usuario.cursos">
+	  	<select multiple class="form-control multiple" id="curso" formControlName="cursos" [(ngModel)]="usuario.cursos">
 			<option *ngFor="let curso of cursos" value="{{curso.id}}">{{curso.nomeCurso}}</option>
 	    </select>
+		<small class="form-text text-muted">
+			Não encontrou seu curso? Entre em contato com a sua instituição de ensino.
+		</small>
 	</div>
 	<div *ngIf="form.controls['cursos'].invalid && (form.controls['cursos'].dirty || form.controls['cursos'].touched)" class="alert alert-danger" role="alert">
 		<strong>Erros:</strong>
@@ -68,6 +71,6 @@
 	</div>
 
 
-	<button class="btn btn-success" [disabled]="form == undefined || !form.valid" type="button" name="button" (click)="submit()">Salvar</button>
+	<button class="btn btn-success" [disabled]="form == undefined || !form.valid" type="button" name="button" (click)="submit()">Cadastrar</button>
 
-</form>
+</ng-container>
