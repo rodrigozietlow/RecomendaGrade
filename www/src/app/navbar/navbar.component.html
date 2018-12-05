@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-laranja">
+<nav class="navbar navbar-expand-md navbar-light bg-laranja">
 	<a class="navbar-brand mr-auto" routerLink="curso/disciplinas">
 		<img src='assets/icone-2.svg' width="30" height="30" class="d-inline-block align-top" alt="QuaseLá">
 		<span class="logo-text">QuaseLá</span>
@@ -10,7 +10,9 @@
 		<ul class="nav navbar-nav ml-auto" *ngIf="usuario != undefined">
 			<li class="nav-item ml-sm-0">
 				<ng-container *ngIf="usuario.permissao < 3">
-					<a class="nav-link clickable" routerLink="curso/editar">Editar curso </a>
+					<a class="nav-link clickable" routerLink="curso/editar">
+						<img src='assets/edit.svg' width="24" height="24" class="d-inline-block align-top" alt="Editar">
+					</a>
 				</ng-container>
 			</li>
 			<li class="nav-item dropdown">
