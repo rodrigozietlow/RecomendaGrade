@@ -1,20 +1,25 @@
-<h2>Grade do curso {{provider.curso.nomeCurso}}</h2>
+<h1>Curso {{provider.curso.nomeCurso}}</h1>
+
 
 <ng-container *ngIf="usuario.permissao < 3">
 	<button class="btn btn-primary mb-2" type="button" name="button" routerLink="/disciplinas/cadastrar">Cadastrar nova disciplina</button>
 </ng-container>
 
 <ng-container *ngIf="usuario.permissao == 3">
+	<h2>Meu progresso</h2>
 	<div class="barra-legenda text-right" [style.margin-left]="(calcularBarra(provider.curso.id) > 10 ? calcularBarra(provider.curso.id) - 10 : 0) + '%'">
 		{{calcularBarra(provider.curso.id)}}% do curso concluído
 	</div>
-	<div class="progress">
+	<div class="progress mb-2">
 		<div class="progress-bar bg-laranja" role="progressbar" [style.width]="calcularBarra(provider.curso.id) + '%'" [attr.aria-valuenow]="calcularBarra(provider.curso.id)" aria-valuemin="0" aria-valuemax="100"></div>
 	</div>
 	<div class="alert alert-success mt-2" *ngIf="calcularBarra(provider.curso.id) == 100">
 		Parabéns! Você concluiu o curso!
 	</div>
 </ng-container>
+
+
+<h2>Grade curricular</h2>
 <div class="flex-container">
 	<div class="flex-coluna" *ngFor="let numero of periodos">
 		<div class="flex-item">
