@@ -13,15 +13,13 @@
 						<img src='assets/icone-2.svg' width="50" height="50" class="d-inline-block align-middle" alt="Quase Lá">
 						<span class="logo-text text-big align-middle">QuaseLá</span>
 					</div>
-					<div class="text-center mt-2">
-						<button class="btn btn-dark" *ngIf="login" (click)="switch()">Quero fazer cadastro</button>
-						<button class="btn btn-dark" *ngIf="!login" (click)="switch()">Quero fazer login</button>
-					</div>
 					<div class="alert alert-danger mt-3" *ngIf="erro">
 						{{erro}}
 					</div>
 					<app-login-cadastro *ngIf="!login" (cadastrar)="cadastrarListener($event)"></app-login-cadastro>
 					<app-login-login *ngIf="login" (login)="loginListener($event)"></app-login-login>
+					<button class="btn btn-dark" *ngIf="login" (click)="switch()">Quero fazer cadastro</button>
+					<button class="btn btn-dark" *ngIf="!login" (click)="switch()">Quero fazer login</button>
 				</div>
 			</div>
 		</div>
