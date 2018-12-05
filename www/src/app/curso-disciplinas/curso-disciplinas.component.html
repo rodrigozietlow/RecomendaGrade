@@ -27,8 +27,12 @@
 							{{disciplina.nome}}
 						</p>
 						<div class="row">
+							<!--{{disciplina.requisitos | json}}-->
 							<div class="elementos-abaixo col-8">
-								<span *ngFor="let req of disciplina.requisitos" class="preco cor-15 {{req.tipoRequisito == 1 ? 'bolinha' : ''}} ml-1"></span>
+								<ng-container *ngFor="let req of disciplina.requisitos">
+									<!--{{disciplinaFromId(req.idRequisito) | json}}-->
+									<span  class="preco {{inMarcadas(disciplinaFromId(req.idRequisito)) ? 'bg-laranja' : ''}} cor-{{disciplinaFromId(req.idRequisito).cor}} {{req.tipoRequisito == 1 ? 'bolinha' : ''}} ml-1" [attr.tooltip]="provider.curso.nomePeriodos + ' ' + disciplinaFromId(req.idRequisito).periodo + ': ' + disciplinaFromId(req.idRequisito).nome"></span>
+								</ng-container>
 								<!--
 								<span class="preco cor-2"></span>
 								<span class="preco bolinha cor-1 bg-laranja"></span>
