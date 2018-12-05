@@ -21,6 +21,7 @@ import { LoginCadastroComponent } from './login/login-cadastro/login-cadastro.co
 import { LoginApiService } from './login-api.service';
 import { AlunoFormComponent } from './aluno-form/aluno-form.component';
 import { MarcarDisciplinasService } from './marcar-disciplinas.service';
+import { AlunoEditarComponent } from './aluno-editar/aluno-editar.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { MarcarDisciplinasService } from './marcar-disciplinas.service';
     NavbarComponent,
     LoginLoginComponent,
     LoginCadastroComponent,
-    AlunoFormComponent
+    AlunoFormComponent,
+    AlunoEditarComponent
   ],
   imports: [
     BrowserModule,
