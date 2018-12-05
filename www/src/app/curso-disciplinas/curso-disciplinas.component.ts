@@ -146,4 +146,8 @@ export class CursoDisciplinasComponent implements OnInit {
 
 		return Math.round((atual / maxNecessario) * 100);
 	}
+
+	public disciplinaFromId(id: number) {
+		return this.disciplinas.find((disciplina) => disciplina.id == id);
+	}
 }
