@@ -86,7 +86,10 @@ class ModeloAluno{
 	}
 
 
-	public function validarEmail($email){
+	public function validarEmail($email, $idComparativo = null){
+		if($idComparativo != null){
+			return !empty($this->buscarAlunoEmail($email)) && $this->buscarAlunoEmail($email).getId() != $idComparativo;
+		}
 		return !empty($this->buscarAlunoEmail($email));
 	}
 

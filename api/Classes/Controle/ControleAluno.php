@@ -78,7 +78,7 @@ class ControleAluno{
     }//fim da funcao salvar
 
 
-    public function editar(){
+    public function editar($id){
 
         // primero, precisamos pegar os dados que vem por stream
 		$dados = json_decode(file_get_contents("php://input"), true);
@@ -114,7 +114,7 @@ class ControleAluno{
 
 
 		// validacao do email
-        $existeEmail = $this->modelo->validarEmail($email);
+        $existeEmail = $this->modelo->validarEmail($email, $id);
 
         if($existeEmail){
             header("HTTP/1.1 401 Unauthorized");
