@@ -83,6 +83,8 @@ class ControleAluno{
         // primero, precisamos pegar os dados que vem por stream
 		$dados = json_decode(file_get_contents("php://input"), true);
 
+        $Aluno = $this->modelo->buscarAluno($id);
+
 		$nomeAluno = $dados['nomeAluno'] ?? "";
 		$email = $dados['email'] ?? 0;
 		$senha= $dados['senhaHash'] ?? 0;
@@ -125,7 +127,10 @@ class ControleAluno{
 		$senhaHash = $this->modelo->criptografarSenha($senha);
 
 		// criar um objeto aluno
-		$Aluno = new Modelo\Aluno($nomeAluno, $email, $dataCadastro, $senhaHash, $tipo);
+		// $Aluno = new Modelo\Aluno($nomeAluno, $email, $dataCadastro, $senhaHash, $tipo);
+        $Aluno->setNomeAluno($nomeAluno);
+        $Aluno->setEmail($email);
+        $Aluno->setSenhaHash($senhaHash);
 
 		$resultado = $this->modelo->salvar($Aluno);
 		$resultado = $resultado && $this->modelo->salvarCursosAluno($Aluno, $cursos);
