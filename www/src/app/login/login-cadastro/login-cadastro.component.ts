@@ -21,7 +21,7 @@ export class LoginCadastroComponent implements OnInit {
 
 	ngOnInit() {
 		// ao inicializar o componente, vamos buscar os cursos disponiveis
-		this.provider.buscarCursosDisponiveis();
+		this.provider.buscarCursosDisponiveis(false);
 	}
 
 	public realizarCadastro(x:any) {

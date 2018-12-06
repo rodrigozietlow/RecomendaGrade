@@ -24,7 +24,7 @@ export class AppComponent implements OnInit{
 
 	setUsuario(usuario) {
 		this.usuario = usuario;
-		this.provider.buscarCursosDisponiveis(); // carregar os cursos depois de mudar de usuário o login
+		this.provider.buscarCursosDisponiveis(true); // carregar os cursos depois de mudar de usuário o login
 	}
 
 	unsetUsuario() {
@@ -37,6 +37,6 @@ export class AppComponent implements OnInit{
 	}
 
 	trocarCursoAtual(idCurso: number) {
-		this.provider.selecionarCurso(idCurso);
+		this.provider.selecionarCurso(idCurso, true);
 	}
 }
