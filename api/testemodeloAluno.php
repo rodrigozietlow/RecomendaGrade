@@ -15,9 +15,15 @@ $pdo = new \PDO('mysql:host=localhost;dbname=recomendagrade', 'aluno', 'aluno');
 
 $modelo = new Modelo\ModeloAluno($pdo);
 
-$test = $modelo->login("lucianazimmer1992@hotmail.com", "ALUNO");
+$Aluno = $modelo->buscarAluno(74);
 
-var_dump($test);
+$cursos = $Aluno->getCursos();
+
+var_dump($Aluno);
+
+//$test = $modelo->login("lucianazimmer1992@hotmail.com", "ALUNO");
+
+//var_dump($test);
 
 //var_dump($test['senhaHash']);
 
