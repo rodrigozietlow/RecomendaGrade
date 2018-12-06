@@ -1,3 +1,2 @@
-<p>
-  aluno-editar works!
-</p>
+<h1>Edição de perfil</h1>
+<app-aluno-form [usuario]="usuario" [cursos]="cursos" [matriculados]="provider.cursosDisponiveis" (cadastro)="realizarEdicao($event)"></app-aluno-form>

@@ -20,11 +20,17 @@ export class ProviderService{
 	constructor(private http: HttpClient, private router: Router) {
 	}
 
-	public buscarCursosDisponiveis() {
-		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso", this.opcoes).subscribe((cursos) => {
+	public buscarCursosDisponiveis(navegar: boolean, withCredentials?:boolean) {
+		const opc2 = {
+			withCredentials: !withCredentials,
+			headers: new HttpHeaders({
+				'Content-Type':  'application/json',
+			})
+		}
+		this.http.get<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso", opc2).subscribe((cursos) => {
 			this.cursosDisponiveis = cursos;
 			if(cursos.length > 0) {
-				this.selecionarCurso(cursos[0].id);
+				this.selecionarCurso(cursos[0].id, navegar);
 			}
 			else {
 				this.curso = undefined;
@@ -52,10 +58,13 @@ export class ProviderService{
 		return this.observable;
 	};
 
-	public selecionarCurso(idCurso: number) {
+	public selecionarCurso(idCurso: number, navegar: boolean) {
 		this.idCurso = idCurso;
 		this.getCurso(); // recarrega as infos do curso
-		this.router.navigateByUrl('/curso/disciplinas');
+		if(navegar) {
+			console.log('navegando');
+			this.router.navigateByUrl('/curso/disciplinas');
+		}
 	}
 
 	public excluirDisciplina(idDisciplina: number): Observable<any> {
