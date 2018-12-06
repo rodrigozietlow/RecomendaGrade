@@ -61,7 +61,6 @@ class ModeloAluno{
 				// print_r($resultado);
 				$disciplinas[] = $modeloDisciplina->buscarDisciplina($resultado['idDisciplina']);
 			}
-
 			$Aluno->setDisciplinas($disciplinas);
 
 			return $Aluno;
@@ -140,6 +139,9 @@ class ModeloAluno{
 					":idAluno" => $Aluno->getId(),
 					":idCurso" => $curso,
 				);
+
+				//se está editando limpa a lista e insere novamente os cursos
+				$this->excluirCursosAluno($Aluno);
 
 				$novosCursos = $Aluno->getCursos();
 				$novosCursos[] = $cursoObj;
