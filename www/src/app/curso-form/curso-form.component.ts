@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ProviderService } from '../provider.service';
+import {Router} from '@angular/router';
 
 @Component({
 	selector: 'app-curso-form',
@@ -47,7 +48,7 @@ export class CursoFormComponent implements OnInit {
 
 	//public qtPeriodosControl:any = new FormControl(this.curso.qtPeriodos, [Validators.max(127), Validators.min(1), Validators.required]);
 
-	constructor(private http: HttpClient, private location: Location, public provider: ProviderService) { }
+	constructor(private http: HttpClient, private location: Location, private router: Router, public provider: ProviderService) { }
 
 	ngOnInit() {
 		this.buscarCurso();
@@ -69,8 +70,9 @@ export class CursoFormComponent implements OnInit {
 		};
 		this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/"+this.provider.idCurso, this.curso, opcoes).subscribe((dados) => {
 			alert("Salvo com sucesso");
-			console.log(dados);
+		//	console.log(dados);
 			this.provider.getCurso();
+			this.router.navigateByUrl('/curso/disciplinas');
 		});
 	}
 
