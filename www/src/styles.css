@@ -8,6 +8,11 @@
 	font-family: 'Finger Paint', cursive;
 }
 
+.cor-selecionado {
+	background: #009432!important;
+	color: white!important;
+	fill: white!important;
+}
 
 .cor-0, .cor-0-botao > .button span {
 	background: #FFC312;
@@ -54,14 +59,10 @@
 .cor-9, .cor-9-botao > .button span {
 	background: #B53471;
 	transition: 0.5s;
-	color: white;
-	fill: white;
 }
 .cor-10, .cor-10-botao > .button span {
-	background: #009432;
+	background: #ee8339;
 	transition: 0.5s;
-	color: white;
-	fill: white;
 }
 .cor-11, .cor-11-botao > .button span {
 	background: #0652DD;

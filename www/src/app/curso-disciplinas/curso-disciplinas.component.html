@@ -11,7 +11,7 @@
 		{{calcularBarra(provider.curso.id)}}% do curso concluído
 	</div>
 	<div class="progress mb-2">
-		<div class="progress-bar bg-laranja" role="progressbar" [style.width]="calcularBarra(provider.curso.id) + '%'" [attr.aria-valuenow]="calcularBarra(provider.curso.id)" aria-valuemin="0" aria-valuemax="100"></div>
+		<div class="progress-bar cor-selecionado" role="progressbar" [style.width]="calcularBarra(provider.curso.id) + '%'" [attr.aria-valuenow]="calcularBarra(provider.curso.id)" aria-valuemin="0" aria-valuemax="100"></div>
 	</div>
 	<div class="alert alert-success mt-2" *ngIf="calcularBarra(provider.curso.id) == 100">
 		Parabéns! Você concluiu o curso!
@@ -50,7 +50,7 @@
 		</div>
 		<ng-container *ngFor="let disciplina of disciplinas">
 			<div class="flex-item" *ngIf="disciplina.periodo == numero">
-				<div class="card cor-{{disciplina.cor}} {{inMarcadas(disciplina) ? 'bg-laranja' : ''}}" >
+				<div class="card cor-{{disciplina.cor}} {{inMarcadas(disciplina) ? 'cor-selecionado' : ''}}" >
 					<div class="card-body">
 						<p class="card-text">
 							{{disciplina.nome}}
@@ -60,7 +60,7 @@
 							<div class="elementos-abaixo col-8">
 								<ng-container *ngFor="let req of disciplina.requisitos">
 									<!--{{disciplinaFromId(req.idRequisito) | json}}-->
-									<span  class="preco {{inMarcadas(disciplinaFromId(req.idRequisito)) ? 'bg-laranja' : ''}} cor-{{disciplinaFromId(req.idRequisito).cor}} {{req.tipoRequisito == 1 ? 'bolinha' : ''}} ml-1" [attr.tooltip]="provider.curso.nomePeriodos + ' ' + disciplinaFromId(req.idRequisito).periodo + ': ' + disciplinaFromId(req.idRequisito).nome"></span>
+									<span  class="preco {{inMarcadas(disciplinaFromId(req.idRequisito)) ? 'cor-selecionado' : ''}} cor-{{disciplinaFromId(req.idRequisito).cor}} {{req.tipoRequisito == 1 ? 'bolinha' : ''}} ml-1" [attr.tooltip]="provider.curso.nomePeriodos + ' ' + disciplinaFromId(req.idRequisito).periodo + ': ' + disciplinaFromId(req.idRequisito).nome"></span>
 								</ng-container>
 								<!--
 								<span class="preco cor-2"></span>
