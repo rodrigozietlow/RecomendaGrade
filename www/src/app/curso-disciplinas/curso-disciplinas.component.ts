@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ProviderService } from '../provider.service';
 import { MarcarDisciplinasService } from '../marcar-disciplinas.service';
 import { AppComponent } from '../app.component';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
 	selector: 'app-curso-disciplinas',
@@ -23,6 +25,26 @@ export class CursoDisciplinasComponent implements OnInit {
 	ngOnInit() {
 		this.buscarDisciplinas();
 	}
+
+	//modal
+	open(content) {
+    	this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      	this.closeResult = `Closed with: ${result}`;
+    	}, (reason) => {
+      	this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    	});
+  	}
+	private getDismissReason(reason: any): string {
+    	if (reason === ModalDismissReasons.ESC) {
+      	return 'by pressing ESC';
+    	} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      	return 'by clicking on a backdrop';
+    	} else {
+      	return  `with: ${reason}`;
+    	}
+  	}
+
+
 
 	public buscarDisciplinas(): void{
 		if(this.provider.curso == undefined || this.provider.observable != undefined){
