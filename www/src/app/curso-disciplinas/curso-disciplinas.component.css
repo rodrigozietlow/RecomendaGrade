@@ -120,7 +120,7 @@ a {
 
 /* When the checkbox is checked, add a background color */
 .container input:checked ~ .checkmark {
-  background-color: #ee8339;
+  background-color: #009432;
   border-radius: 25%;
   border: solid 2px #00000099;
 }
