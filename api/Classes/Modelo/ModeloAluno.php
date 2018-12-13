@@ -86,7 +86,10 @@ class ModeloAluno{
 	}
 
 
-	public function validarEmail($email){
+	public function validarEmail($email, $idComparativo = null){
+		if($idComparativo != null){
+			return !empty($this->buscarAlunoEmail($email)) && $this->buscarAlunoEmail($email)->getId() != $idComparativo;
+		}
 		return !empty($this->buscarAlunoEmail($email));
 	}
 
@@ -134,22 +137,17 @@ class ModeloAluno{
 		if(count($cursos) > 0){
 			$stmt = $this->conexao->prepare("INSERT into cursos_aluno(idCurso, idAluno) VALUES (:idCurso, :idAluno)");
 
+			//se está editando limpa a lista e insere novamente os cursos
+			$this->excluirCursosAluno($Aluno);
+
 			foreach ($cursos as $curso) {
 				$cursoObj = array(
 					":idAluno" => $Aluno->getId(),
 					":idCurso" => $curso,
 				);
 
-				//se está editando limpa a lista e insere novamente os cursos
-				$this->excluirCursosAluno($Aluno);
-
-				$novosCursos = $Aluno->getCursos();
-				$novosCursos[] = $cursoObj;
-				$Aluno->setCursos($novosCursos);
-
 				$resultado = $resultado && $stmt->execute($cursoObj);
 			}
-
 		}
 
 		return $resultado;
