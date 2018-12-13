@@ -1,0 +1,71 @@
+<h2>Dados do Curso</h2>
+<form (submit)="salvarCurso()" [formGroup]="form" class="my-3">
+
+	<div class="form-group">
+		<label for="nomeCurso">*Nome/sigla do curso:</label>
+		<input type="text" class="form-control" name="nomeCurso" id="nomeCurso" [(ngModel)]="curso.nomeCurso" formControlName="nomeCurso">
+	</div>
+	<div *ngIf="form.controls['nomeCurso'].invalid && (form.controls['nomeCurso'].dirty || form.controls['nomeCurso'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
+		<div *ngIf="form.controls['nomeCurso'].errors.maxlength">
+			Máximo de 100 caracteres
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="nomeAluno">Nome completo</label>
+		<input type="text" class="form-control" id="nomeAluno" name="nomeAluno" [(ngModel)]="usuario.nomeAluno"  formControlName="nomeAluno">
+	</div>
+	<div *ngIf="form.controls['nomeAluno'].invalid && (form.controls['nomeAluno'].dirty || form.controls['nomeAluno'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
+		<div *ngIf="form.controls['nomeAluno'].errors.required">
+			Você deve preencher este campo
+		</div>
+		<div *ngIf="form.controls['nomeAluno'].errors.maxlength">
+			Máximo de 60 caracteres
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="email">E-mail</label>
+		<input type="email" class="form-control" id="email" name="email" [(ngModel)]="usuario.email" formControlName="email">
+	</div>
+	<div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
+		<div *ngIf="form.controls['email'].errors.required">
+			Você deve preencher este campo
+		</div>
+
+		<div *ngIf="form.controls['email'].hasError('pattern')">
+			Você deve preencher um email neste campo
+		</div>
+
+		<div *ngIf="form.controls['email'].errors.maxlength">
+			Máximo de 100 caracteres
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="senhaHash">Senha</label>
+	 	<input type="password" class="form-control" id="senha" formControlName="senhaHash" [(ngModel)]="usuario.senhaHash">
+  		<span id="spnMostrarSenha" style="margin: 10px" class="glyphicon glyphicon glyphicon-eye-open form-control-feedback"></span>
+	</div>
+	<div *ngIf="form.controls['senhaHash'].invalid && (form.controls['senhaHash'].dirty || form.controls['senhaHash'].touched)" class="alert alert-danger" role="alert">
+		<strong>Erros:</strong>
+		<div *ngIf="form.controls['senhaHash'].errors.required">
+			Você deve preencher este campo
+		</div>
+		<div *ngIf="form.controls['senhaHash'].errors.min">
+			Mínimo 6 caracteres
+		</div>
+		<div *ngIf="form.controls['senhaHash'].errors.maxlength">
+			Máximo de 100 caracteres
+		</div>
+	</div>
+
+
+	<button class="btn btn-success" type="submit" [disabled]="!form.valid">Salvar</button>
+	<button class="btn btn-secondary" type="button" (click)="voltar()">Voltar</button>
+</form>
