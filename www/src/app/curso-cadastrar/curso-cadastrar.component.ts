@@ -17,23 +17,11 @@ export class CursoCadastrarComponent implements OnInit {
 
 	public form: FormGroup;
 
-	public curso = {
-		"id" : "",
+	public cursocoordenador = {
 		"nomeCurso" : "",
-		"nomePeriodos" : "",
-		"qtPeriodos" : "",
-		"cargaMinima" : "",
-		"idCoordenador" : "",
-		"publico" : false,
-		"dataCadastro" : "",
-		"disciplinas" : []
-	};
-	public usuario = {
-		"id" : "",
 		"nomeAluno" : "",
 		"email" : "",
-		"senhaHash" : "",
-		"cursos" : []
+		"senhaHash" : ""
 	};
 
   constructor(private http: HttpClient, private location: Location, private router: Router, public provider: ProviderService) { }
@@ -43,10 +31,10 @@ export class CursoCadastrarComponent implements OnInit {
   ngOnInit() {
 
 	  this.form = new FormGroup({
-		  nomeCurso: new FormControl({value:this.curso.nomeCurso},[Validators.maxLength(100)]),
-		  nomeAluno: new FormControl(this.usuario.nomeAluno, [Validators.required, Validators.maxLength(100)]),
-		  email: new FormControl(this.usuario.email, [Validators.maxLength(100), Validators.required]),
-		  senhaHash: new FormControl(this.usuario.senhaHash, [Validators.min(6),Validators.maxLength(100), Validators.required]),
+		  nomeCurso: new FormControl({value:this.cursocoordenador.nomeCurso},[Validators.maxLength(100)]),
+		  nomeAluno: new FormControl(this.cursocoordenador.nomeAluno, [Validators.required, Validators.maxLength(100)]),
+		  email: new FormControl(this.cursocoordenador.email, [Validators.maxLength(100), Validators.required]),
+		  senhaHash: new FormControl(this.cursocoordenador.senhaHash, [Validators.min(6),Validators.maxLength(100), Validators.required]),
 
 	  });
   }
@@ -59,7 +47,7 @@ export class CursoCadastrarComponent implements OnInit {
 			  'Content-Type':  'application/json',
 		  })
 	  };
-	  this.http.put<any>("http://192.168.103.223/ads_desenv/ads_dev/api/curso/"+this.provider.idCurso, this.curso, opcoes).subscribe((dados) => {
+	  this.http.post<any>("http://192.168.103.223/ads_desenv/ads_dev/api/adm", this.cursocoordenador, opcoes).subscribe((dados) => {
 		  alert("Salvo com sucesso");
 	  //	console.log(dados);
 		  this.provider.getCurso();

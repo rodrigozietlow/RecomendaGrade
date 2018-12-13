@@ -3,7 +3,7 @@
 
 	<div class="form-group">
 		<label for="nomeCurso">*Nome/sigla do curso:</label>
-		<input type="text" class="form-control" name="nomeCurso" id="nomeCurso" [(ngModel)]="curso.nomeCurso" formControlName="nomeCurso">
+		<input type="text" class="form-control" name="nomeCurso" id="nomeCurso" [(ngModel)]="cursocoordenador.nomeCurso" formControlName="nomeCurso">
 	</div>
 	<div *ngIf="form.controls['nomeCurso'].invalid && (form.controls['nomeCurso'].dirty || form.controls['nomeCurso'].touched)" class="alert alert-danger" role="alert">
 		<strong>Erros:</strong>
@@ -14,7 +14,7 @@
 
 	<div class="form-group">
 		<label for="nomeAluno">Nome completo</label>
-		<input type="text" class="form-control" id="nomeAluno" name="nomeAluno" [(ngModel)]="usuario.nomeAluno"  formControlName="nomeAluno">
+		<input type="text" class="form-control" id="nomeAluno" name="nomeAluno" [(ngModel)]="cursocoordenador.nomeAluno"  formControlName="nomeAluno">
 	</div>
 	<div *ngIf="form.controls['nomeAluno'].invalid && (form.controls['nomeAluno'].dirty || form.controls['nomeAluno'].touched)" class="alert alert-danger" role="alert">
 		<strong>Erros:</strong>
@@ -29,7 +29,7 @@
 
 	<div class="form-group">
 		<label for="email">E-mail</label>
-		<input type="email" class="form-control" id="email" name="email" [(ngModel)]="usuario.email" formControlName="email">
+		<input type="email" class="form-control" id="email" name="email" [(ngModel)]="cursocoordenador.email" formControlName="email">
 	</div>
 	<div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)" class="alert alert-danger" role="alert">
 		<strong>Erros:</strong>
@@ -49,7 +49,7 @@
 
 	<div class="form-group">
 		<label for="senhaHash">Senha</label>
-	 	<input type="password" class="form-control" id="senha" formControlName="senhaHash" [(ngModel)]="usuario.senhaHash">
+	 	<input type="password" class="form-control" id="senha" formControlName="senhaHash" [(ngModel)]="cursocoordenador.senhaHash">
   		<span id="spnMostrarSenha" style="margin: 10px" class="glyphicon glyphicon glyphicon-eye-open form-control-feedback"></span>
 	</div>
 	<div *ngIf="form.controls['senhaHash'].invalid && (form.controls['senhaHash'].dirty || form.controls['senhaHash'].touched)" class="alert alert-danger" role="alert">

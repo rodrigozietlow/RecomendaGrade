@@ -79,18 +79,48 @@ class ModeloCurso {
 	}
 
 	public function salvarCurso(Curso $curso){
-		$stmt = $this->conexao->prepare("UPDATE curso SET nomeCurso = :nomeCurso, nomePeriodos = :nomePeriodos, qtPeriodos = :qtPeriodos, cargaMinima = :cargaMinima, publico = :publico WHERE id = :id");
+		if ($curso->getId() == NULL) {
+			// print_r(
+			// 	array(
+			// 		":nomeCurso" => $curso->getNomeCurso(),
+			// 		":nomePeriodos" => $curso->getNomePeriodos(),
+			// 		":qtPeriodos" => $curso->getQtPeriodos(),
+			// 		":cargaMinima" => $curso->getCargaMinima(),
+			// 		":idCoordenador" => $curso->getIdCoordenador(),
+			// 		":publico" => $curso->getPublico()
+			// 	)
+			// );
+			$stmt = $this->conexao->prepare("INSERT INTO curso VALUES (NULL, :nomeCurso, :nomePeriodos, :qtPeriodos, :cargaMinima, :idCoordenador, :publico, CURDATE())");
 
-		return $stmt->execute(
-			array(
-				":nomeCurso" => $curso->getNomeCurso(),
-				":nomePeriodos" => $curso->getNomePeriodos(),
-				":qtPeriodos" => $curso->getQtPeriodos(),
-				":cargaMinima" => $curso->getCargaMinima(),
-				":id" => $curso->getId(),
-				":publico" => $curso->getPublico()
-			)
-		);
+			$resultado = $stmt->execute(
+				array(
+					":nomeCurso" => $curso->getNomeCurso(),
+					":nomePeriodos" => $curso->getNomePeriodos(),
+					":qtPeriodos" => $curso->getQtPeriodos(),
+					":cargaMinima" => $curso->getCargaMinima(),
+					":idCoordenador" => $curso->getIdCoordenador(),
+					":publico" => $curso->getPublico()
+				)
+			);
+
+			$curso->setId($this->conexao->lastInsertId());
+
+			return $resultado;
+		}
+		else {
+			$stmt = $this->conexao->prepare("UPDATE curso SET nomeCurso = :nomeCurso, nomePeriodos = :nomePeriodos, qtPeriodos = :qtPeriodos, cargaMinima = :cargaMinima, publico = :publico WHERE id = :id");
+
+			return $stmt->execute(
+				array(
+					":nomeCurso" => $curso->getNomeCurso(),
+					":nomePeriodos" => $curso->getNomePeriodos(),
+					":qtPeriodos" => $curso->getQtPeriodos(),
+					":cargaMinima" => $curso->getCargaMinima(),
+					":id" => $curso->getId(),
+					":publico" => $curso->getPublico()
+				)
+			);
+		}
 	}
 
 }

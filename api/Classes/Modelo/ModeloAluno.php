@@ -146,6 +146,8 @@ class ModeloAluno{
 					":idCurso" => $curso,
 				);
 
+				//print_r($cursoObj);
+
 				$resultado = $resultado && $stmt->execute($cursoObj);
 			}
 		}
