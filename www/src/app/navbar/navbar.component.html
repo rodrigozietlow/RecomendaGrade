@@ -9,9 +9,10 @@
 	<div class="collapse navbar-collapse" id="navbarNavDropdown">
 		<ul class="nav navbar-nav ml-auto" *ngIf="usuario != undefined">
 			<li class="nav-item ml-sm-0">
-				<ng-container *ngIf="usuario.permissao < 3">
-					<a class="nav-link clickable" routerLink="curso/editar">
-						<img src='assets/edit.svg' width="24" height="24" class="d-inline-block align-top" alt="Editar">
+				<ng-container *ngIf="usuario.permissao < 2">
+					<a class="nav-link clickable" routerLink="curso/cadastrar">
+						<img src='assets/add.svg' width="24" height="24" class="d-inline-block align-top">
+						<span>Novo Curso</span>
 					</a>
 				</ng-container>
 			</li>
