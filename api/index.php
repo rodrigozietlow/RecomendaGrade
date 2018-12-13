@@ -39,6 +39,11 @@ $rotas = array(
 		"Controle" => "RecomendaGrade\\Controle\\ControleCurso",
 		"Visao" => "RecomendaGrade\\Visao\\VisaoCurso"
 	),
+	"curso-todos" => array(
+		"Modelo" => "RecomendaGrade\\Modelo\\ModeloCurso",
+		"Controle" => "",
+		"Visao" => "RecomendaGrade\\Visao\\VisaoCursoTodos"
+	),
 	"aluno" => array(
 		"Modelo" => "RecomendaGrade\\Modelo\\ModeloAluno",
 		"Controle" => "RecomendaGrade\\Controle\\ControleAluno",
