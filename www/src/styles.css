@@ -4,6 +4,10 @@
 	color: #000000DD!important;
 }
 
+.clickable {
+	cursor: pointer;
+}
+
 .logo-text {
 	font-family: 'Finger Paint', cursive;
 }
