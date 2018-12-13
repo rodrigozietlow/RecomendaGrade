@@ -70,7 +70,7 @@ class ControleAdm{
         $cargaMinima = 1;
         $publico = 0; //desabilitado
         $idCoordenador = $resultadoCoordenador['id'];
-        $disciplinas=[] = null;
+        $disciplinas[]= null;
 
         $Curso = new Modelo\Curso($nomeCurso, $nomePeriodos, $qtPeriodos, $cargaMinima, $idCoordenador, $dataCadastro);
         $modeloCurso = new \RecomendaGrade\Modelo\ModeloCurso($this->conexao);
@@ -92,7 +92,7 @@ class ControleAdm{
     }//fim da funcao salvar
 
 
-    
+
 }// fim da classe
 
 ?>
