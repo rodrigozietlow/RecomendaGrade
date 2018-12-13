@@ -2,15 +2,14 @@
 	<span class="align-middle">
 		Curso {{provider.curso.nomeCurso}}
 	</span>
-	<ng-container *ngIf="usuario.permissao < 3">
+	<ng-container *ngIf="podeEditar()">
 		<i class="nav-link clickable d-inline-block align-middle" routerLink="/curso/editar">
 			<img src='assets/edit.svg' width="48" height="48" class="d-inline-block align-middle" alt="Editar">
 		</i>
 	</ng-container>
 </h1>
 
-
-<ng-container *ngIf="usuario.permissao < 3">
+<ng-container *ngIf="podeEditar()">
 	<button class="btn btn-primary mb-2" type="button" name="button" routerLink="/disciplinas/cadastrar">Cadastrar nova disciplina</button>
 </ng-container>
 
@@ -95,7 +94,7 @@
 								</ng-container>
 
 								<!-- opcoes de edição do admin/coord -->
-								<ng-container *ngIf="usuario.permissao < 3">
+								<ng-container *ngIf="podeEditar()">
 									<a routerLink="/disciplinas/editar/{{disciplina.id}}">
 										<svg class="iconezinho" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
 									</a>
@@ -182,6 +181,6 @@
 	</div>
 </div>
 
-<ng-container *ngIf="usuario.permissao < 3">
+<ng-container *ngIf="podeEditar()">
 	<button class="btn btn-primary mt-2" type="button" name="button" routerLink="/disciplinas/cadastrar">Cadastrar nova disciplina</button>
 </ng-container>

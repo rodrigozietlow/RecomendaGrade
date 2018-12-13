@@ -24,6 +24,10 @@ export class CursoDisciplinasComponent implements OnInit {
 		this.buscarDisciplinas();
 	}
 
+	public podeEditar() {
+		return this.usuario.permissao == 1 || (this.usuario.permissao == 2 && this.provider.curso != undefined && this.provider.curso.idCoordenador == this.usuario.id);
+	}
+
 	public buscarDisciplinas(): void{
 		if(this.provider.curso == undefined || this.provider.observable != undefined){
 			this.provider.observable.subscribe((dados) => {
