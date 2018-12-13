@@ -58,6 +58,11 @@ $rotas = array(
 		"Modelo" => "RecomendaGrade\\Modelo\\ModeloDisciplina",
 		"Controle" => "RecomendaGrade\\Controle\\ControleDisciplinaAluno",
 		"Visao" => ""
+	),
+	"adm"=> array(
+		"Modelo" => "RecomendaGrade\\Modelo\\ModeloAluno",
+		"Controle" => "RecomendaGrade\\Controle\\ControleAdm",
+		"Visao" => ""
 	)
 );
 
