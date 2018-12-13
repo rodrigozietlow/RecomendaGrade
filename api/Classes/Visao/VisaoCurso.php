@@ -25,6 +25,7 @@ class VisaoCurso {
 			$cursoArray['cargaMinima'] = $curso->getcargaMinima();
 			$cursoArray['dataCadastro'] = $curso->getdataCadastro();
 			$cursoArray['publico'] = $curso->getpublico() ? true : false;
+			$cursoArray['idCoordenador'] = $curso->getIdCoordenador();
 			$cursoArray['disciplinas'] = array();
 
 
