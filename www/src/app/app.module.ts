@@ -22,6 +22,7 @@ import { LoginApiService } from './login-api.service';
 import { AlunoFormComponent } from './aluno-form/aluno-form.component';
 import { MarcarDisciplinasService } from './marcar-disciplinas.service';
 import { AlunoEditarComponent } from './aluno-editar/aluno-editar.component';
+import { CursoCadastrarComponent } from './curso-cadastrar/curso-cadastrar.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { AlunoEditarComponent } from './aluno-editar/aluno-editar.component';
     LoginLoginComponent,
     LoginCadastroComponent,
     AlunoFormComponent,
-    AlunoEditarComponent
+    AlunoEditarComponent,
+    CursoCadastrarComponent
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,7 @@ export class AlunoEditarComponent implements OnInit {
 	constructor(private componentePai: AppComponent, public provider: ProviderService, private http: HttpClient, private router: Router) {
 		this.usuario = componentePai.usuario;
 
-		this.http.get("http://192.168.103.223/ads_desenv/ads_dev/api/curso").subscribe((cursos) => {
+		this.http.get("http://192.168.103.223/ads_desenv/ads_dev/api/curso-todos").subscribe((cursos) => {
 			this.cursos = cursos;
 		});
 	}
