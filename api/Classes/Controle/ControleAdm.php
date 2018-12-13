@@ -60,26 +60,29 @@ class ControleAdm{
 
 		// criar um objeto aluno/coordenador
 		$Coordenador = new Modelo\Aluno($nomeAluno, $email, $dataCadastro, $senhaHash, $tipo);
-		$resultadoCoordenador = $this->modelo->salvar($Coordenador);
+		$resultado = $this->modelo->salvar($Coordenador);
 
 
 
         //criar um objeto curso
-        $nomePeriodos = "Periodo Provisório";
+        $nomePeriodos = "Período Provisório";
         $qtPeriodos = 1;
         $cargaMinima = 1;
         $publico = 0; //desabilitado
-        $idCoordenador = $resultadoCoordenador['id'];
-        $disciplinas[]= null;
+        $idCoordenador = $Coordenador->getId();
 
-        $Curso = new Modelo\Curso($nomeCurso, $nomePeriodos, $qtPeriodos, $cargaMinima, $idCoordenador, $dataCadastro);
-        $modeloCurso = new \RecomendaGrade\Modelo\ModeloCurso($this->conexao);
-        $resultadoCurso = $modeloCurso->modelo->salvar($Curso);
+        $Curso = new Modelo\Curso($nomeCurso, $nomePeriodos, $qtPeriodos, $cargaMinima, $idCoordenador, $publico, $dataCadastro);
+        $modeloCurso = new \RecomendaGrade\Modelo\ModeloCurso($this->modelo->getConexao());
+        // print_r($Curso);
+        $resultado = $resultado && $modeloCurso->salvarCurso($Curso);
 
 
         //adicionar o curso crido ao coordenador
-        $ListaCursos[] = $resultadoCurso['id'];
-        $resultado = $this->modelo->salvarCursosAluno($resultadoCoordenador, $ListaCursos);
+        $ListaCursos = array($Curso->getId());
+
+        // echo ($resultado) ? "funciona" : "não funciona";
+
+        $resultado = $resultado && $this->modelo->salvarCursosAluno($Coordenador, $ListaCursos);
 
 
         ///tem que retornar pra algum lugar (visao)
