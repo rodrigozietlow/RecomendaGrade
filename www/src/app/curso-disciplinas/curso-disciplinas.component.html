@@ -1,4 +1,13 @@
-<h1>Curso {{provider.curso.nomeCurso}}</h1>
+<h1>
+	<span class="align-middle">
+		Curso {{provider.curso.nomeCurso}}
+	</span>
+	<ng-container *ngIf="usuario.permissao < 3">
+		<i class="nav-link clickable d-inline-block align-middle" routerLink="/curso/editar">
+			<img src='assets/edit.svg' width="48" height="48" class="d-inline-block align-middle" alt="Editar">
+		</i>
+	</ng-container>
+</h1>
 
 
 <ng-container *ngIf="usuario.permissao < 3">
